@@ -3,18 +3,18 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Hexo</title>
+  <title>完全背包问题 › Hexo</title>
   <meta name="author" content="John Doe">
   
-  <meta name="description" content="title题目描述
+  <meta name="description" content="题目描述
 这里借用一个题目的描述来说明要解决问题的背景。
 
-LiYuxiang是个天资聪颖的孩子，他的梦想是成为世界上最伟大的医师。为此，他想拜附近最有威望的医师为师。医师为了判断他的资质，给他出了一个难题。医师把他带到一个到处都是草药的山洞里对他说：“孩子，这个山洞里有一些不同种类的草药">
+LiYuxiang是个天资聪颖的孩子，他的梦想是成为世界上最伟大的医师。为此，他想拜附近最有威望的医师为师。医师为了判断他的资质，给他出了一个难题。医师把他带到一个到处都是草药的山洞里对他说：“孩子，这个山洞里有一些不同种类的草药，采每一种">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="完全背包问题">
   <meta property="og:site_name" content="Hexo">
 
   
@@ -50,22 +50,21 @@ LiYuxiang是个天资聪颖的孩子，他的梦想是成为世界上最伟大�
 <div class="clearfix"></div>
 </header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="[layout]">
   <div class="post-content">
     <header>
       
   
-    <h1 class="title"></h1>
+    <h1 class="title">完全背包问题</h1>
   
 
       
-        <time datetime="2019-04-30T07:04:33.660Z">2019-04-30</time>
+        <time datetime="2019-04-30T07:10:03.000Z">2019-04-30</time>
       
     </header>
     <div class="entry">
       
-        <hr>
-<h2 id="title"><a href="#title" class="headerlink" title="title"></a>title</h2><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><blockquote>
+        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><blockquote>
 <p>这里借用一个题目的描述来说明要解决问题的背景。</p>
 </blockquote>
 <p>LiYuxiang是个天资聪颖的孩子，他的梦想是成为世界上最伟大的医师。为此，他想拜附近最有威望的医师为师。医师为了判断他的资质，给他出了一个难题。医师把他带到一个到处都是草药的山洞里对他说：“孩子，这个山洞里有一些不同种类的草药，采每一种都需要一些时间，每一种也有它自身的价值。我会给你一段时间，在这段时间里，你可以采到一些草药。如果你是一个聪明的孩子，你应该可以让采到的草药的总价值最大。”</p>
@@ -81,8 +80,229 @@ LiYuxiang是个天资聪颖的孩子，他的梦想是成为世界上最伟大�
 <li>商品的重量小于背包剩余容量。即背包中之前装入的商品不需要拿出来就可以把当前商品装下，那也不用考虑，直接装就好了。</li>
 <li>商品的重量小于背包总容量，但是剩余空间不够装了。那我们就需要考虑衡量一下，拿出来原有的一部分商品，装入现在的商品是不是划算的。</li>
 </ol>
-<p>从上面的三个条件可以看出最重要的就是第三条，我们需要判断价值。假设我们背包可以装<strong>8kg</strong>东西，现在有三个商品（商品都是以袋为单位销售不可拆分）：<br>|苹果|香蕉  | 草莓|<br>|–|–| – |<br>| 3kg | 2kg | 5kg |<br>| ￥45| ￥20| ￥150|</p>
-<p>我们以1kg为单位打表:<br>第一次打表<br>|  |0kg |1kg  |2kg  | 3kg | 4kg | 5kg | 6kg | 7kg |8kg |<br>|–|–|–|–|–|–|–|–|–|–|<br>| 无 | 0 | 0 | 0 | 0 | 0 | 0 |0  |0  |0  |<br>| 苹果  |  0 | 0 | 0 | ￥45 | ￥45 | ￥45 |￥90  |￥90  |￥90  |<br>| 香蕉  | 0 | 0 | 0 | 0 | 0 | 0 |0  |0  |0  |<br>| 草莓  | 0 | 0 | 0 | 0 | 0 | 0 |0  |0  |0  |<br>第二次打表<br>|  |0kg |1kg  |2kg  | 3kg | 4kg | 5kg | 6kg | 7kg |8kg |<br>|–|–|–|–|–|–|–|–|–|–|<br>| 无 | 0 | 0 | 0 | 0 | 0 | 0 |0  |0  |0  |<br>| 苹果  |  0 | 0 | 0 | ￥45 | ￥45 | ￥45 |￥90  |￥90  |￥90  |<br>| 香蕉  | 0 | 0 | ￥20 | ￥45 | ￥45 | ￥65 |￥90  |￥90  |￥110  |<br>| 草莓  | 0 | 0 | 0 | 0 | 0 | 0 |0  |0  |0  |<br>最终打表结果：<br>|  |0kg |1kg  |2kg  | 3kg | 4kg | 5kg | 6kg | 7kg |8kg |<br>|–|–|–|–|–|–|–|–|–|–|<br>| 无 | 0 | 0 | 0 | 0 | 0 | 0 |0  |0  |0  |<br>| 苹果 | 0 | 0 | 0 | ￥45 | ￥45 | ￥45 |￥90  |￥90  |￥90  |<br>| 香蕉 | 0 | 0 | ￥20 | ￥45 | ￥45 | ￥65 |￥90  |￥90  |￥110  |<br>| 草莓 | 0 | 0 | ￥20 |￥45 | ￥45 | ￥150 |￥150  |￥170  |￥195  |</p>
+<p>从上面的三个条件可以看出最重要的就是第三条，我们需要判断价值。假设我们背包可以装<strong>8kg</strong>东西，现在有三个商品（商品都是以袋为单位销售不可拆分）：</p>
+<table>
+<thead>
+<tr>
+<th>苹果</th>
+<th>香蕉</th>
+<th>草莓</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3kg</td>
+<td>2kg</td>
+<td>5kg</td>
+</tr>
+<tr>
+<td>￥45</td>
+<td>￥20</td>
+<td>￥150</td>
+</tr>
+</tbody>
+</table>
+<p>我们以1kg为单位打表:<br>第一次打表</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>0kg</th>
+<th>1kg</th>
+<th>2kg</th>
+<th>3kg</th>
+<th>4kg</th>
+<th>5kg</th>
+<th>6kg</th>
+<th>7kg</th>
+<th>8kg</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>苹果</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>￥45</td>
+<td>￥45</td>
+<td>￥45</td>
+<td>￥90</td>
+<td>￥90</td>
+<td>￥90</td>
+</tr>
+<tr>
+<td>香蕉</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>草莓</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>第二次打表</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>0kg</th>
+<th>1kg</th>
+<th>2kg</th>
+<th>3kg</th>
+<th>4kg</th>
+<th>5kg</th>
+<th>6kg</th>
+<th>7kg</th>
+<th>8kg</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>苹果</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>￥45</td>
+<td>￥45</td>
+<td>￥45</td>
+<td>￥90</td>
+<td>￥90</td>
+<td>￥90</td>
+</tr>
+<tr>
+<td>香蕉</td>
+<td>0</td>
+<td>0</td>
+<td>￥20</td>
+<td>￥45</td>
+<td>￥45</td>
+<td>￥65</td>
+<td>￥90</td>
+<td>￥90</td>
+<td>￥110</td>
+</tr>
+<tr>
+<td>草莓</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>最终打表结果：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>0kg</th>
+<th>1kg</th>
+<th>2kg</th>
+<th>3kg</th>
+<th>4kg</th>
+<th>5kg</th>
+<th>6kg</th>
+<th>7kg</th>
+<th>8kg</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>苹果</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>￥45</td>
+<td>￥45</td>
+<td>￥45</td>
+<td>￥90</td>
+<td>￥90</td>
+<td>￥90</td>
+</tr>
+<tr>
+<td>香蕉</td>
+<td>0</td>
+<td>0</td>
+<td>￥20</td>
+<td>￥45</td>
+<td>￥45</td>
+<td>￥65</td>
+<td>￥90</td>
+<td>￥90</td>
+<td>￥110</td>
+</tr>
+<tr>
+<td>草莓</td>
+<td>0</td>
+<td>0</td>
+<td>￥20</td>
+<td>￥45</td>
+<td>￥45</td>
+<td>￥150</td>
+<td>￥150</td>
+<td>￥170</td>
+<td>￥195</td>
+</tr>
+</tbody>
+</table>
 <p>如表我们的最终排列结果。</p>
 <p>核心判断为：<code>bag[i-1][j]</code> 和<code>bag[i-1][j-k*w[i]] + k*v[i]</code> 的价值哪个大。<br>我来说明上面的变量都代表了什么：</p>
 <ul>
@@ -148,7 +368,7 @@ LiYuxiang是个天资聪颖的孩子，他的梦想是成为世界上最伟大�
   <ul class="entry">
     
       <li>
-        <a href="/2019/04/30/完全背包问题/"></a>
+        <a href="/2019/04/30/完全背包问题/">完全背包问题</a>
       </li>
     
       <li>
