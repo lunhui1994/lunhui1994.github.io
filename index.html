@@ -51,6 +51,152 @@
     <header>
       
   
+    <h1 class="title"><a href="/2019/08/27/z-index失效了？/">z-index失效了？</a></h1>
+  
+
+      
+        <time datetime="2019-08-27T10:14:27.000Z">2019-08-27</time>
+      
+    </header>
+    <div class="entry">
+      
+        <blockquote>
+<p>我们在使用z-index的时候，有时候会发现，无论怎么样增大z-index的值，都无法改变目标元素的层级。</p>
+</blockquote>
+<ul>
+<li><strong> 其实是这几种情况在作怪 </strong></li>
+</ul>
+<ol>
+<li><strong>position</strong></li>
+<li><strong>float</strong></li>
+<li><strong>opcity</strong> </li>
+</ol>
+<ul>
+<li>父盒子的层级问题，当你的父盒子层级小于另一个父盒子层级的时候，你子元素的z-index再高都是没有用的。该元素的层级只在该元素所在的容器内起作用。该种情况大家应该容易理解，不过也可以看下面的例子。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">        .a1&#123;</span><br><span class="line">            position:relative;</span><br><span class="line">            z-index: 2;</span><br><span class="line">            width:400px;</span><br><span class="line">            height:400px;</span><br><span class="line">            background: black;</span><br><span class="line">            border:1px solid #eee;</span><br><span class="line">            margin-bottom: -100px;</span><br><span class="line">        &#125;</span><br><span class="line">        .a&#123;</span><br><span class="line">            position:relative;</span><br><span class="line">            z-index: 1;</span><br><span class="line">            width:400px;</span><br><span class="line">            height:400px;</span><br><span class="line">            background: yellow;</span><br><span class="line">            left:0;</span><br><span class="line">            border:1px solid #eee;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .b&#123;</span><br><span class="line">            position:absolute;</span><br><span class="line">            left:0;</span><br><span class="line">            top:0;</span><br><span class="line">            z-index: 50;</span><br><span class="line">            width:200px;</span><br><span class="line">            height:200px;</span><br><span class="line">            background: red;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .c&#123;</span><br><span class="line">            position: absolute;</span><br><span class="line">            left:0;</span><br><span class="line">            top:0;</span><br><span class="line">            z-index:1111;</span><br><span class="line">            width:100px;</span><br><span class="line">            height:100px;</span><br><span class="line">            background: blue;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&quot;a1&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;a&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;b&quot;&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;c&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<ul>
+<li>opcity属性，当你要设置两个元素的z-index值的时候，要注意是否给其中一个元素添加了opcity属性，如果添加了，那么添加了opcity属性的元素将一直在最上层，这个我在之前的文章中讲过</li>
+<li><a href="https://blog.csdn.net/lunhui1994_/article/details/80853410" target="_blank" rel="noopener">opcity引发的元素层级变化</a></li>
+</ul>
+<hr>
+<ul>
+<li>还有就是比较普遍的，我们设置层级一般都是因为设置了position，当你设置的两个子元素，一个有position属性，另一个没有position的时候，拥有position属性的元素将一直在其他元素上方。如下面的例子<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">        .a&#123;</span><br><span class="line">            position:relative;</span><br><span class="line">            z-index: 1;</span><br><span class="line">            width:400px;</span><br><span class="line">            height:400px;</span><br><span class="line">            background: yellow;</span><br><span class="line">            left:0;</span><br><span class="line">            border:1px solid #eee;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .b&#123;</span><br><span class="line">            position:absolute;</span><br><span class="line">            left:0;</span><br><span class="line">            top:0;</span><br><span class="line">            z-index: 50;</span><br><span class="line">            width:200px;</span><br><span class="line">            height:200px;</span><br><span class="line">            background: red;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .c&#123;</span><br><span class="line">            z-index:100;</span><br><span class="line">            width:100px;</span><br><span class="line">            height:100px;</span><br><span class="line">            background: blue;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&quot;a&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;b&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;c&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>需要给c也加上position属性才让bc可以先同处一级，然后z-index才会起作用。</p>
+<ul>
+<li>那如果我把子元素的position都去掉呢？当父盒子有position而所有子元素都没有position属性的时候，z-index一样全部失效，后面的盒子将会覆盖前面的盒子，z-index无效。</li>
+<li>同样的我们两个都加上浮动的效果跟上面的效果是一样的，后覆盖前，z-index无效</li>
+<li>一个加float另一个不加，则是加float的元素一直浮动在最上层。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">        .a&#123;</span><br><span class="line">            position:absolute;</span><br><span class="line">            z-index: 1;</span><br><span class="line">            width:400px;</span><br><span class="line">            height:400px;</span><br><span class="line">            background: yellow;</span><br><span class="line">            left:0;</span><br><span class="line">            border:1px solid #eee;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .b&#123;</span><br><span class="line">            z-index: -10;</span><br><span class="line">            width:200px;</span><br><span class="line">            height:200px;</span><br><span class="line">            background: red;</span><br><span class="line">            margin-bottom: -100px;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .c&#123;</span><br><span class="line">            z-index:101;</span><br><span class="line">            width:100px;</span><br><span class="line">            height:100px;</span><br><span class="line">            background: blue;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&quot;a&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;b&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;c&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<p>其他情况欢迎补充。</p>
+
+      
+    </div>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+      
+  </div>
+</article>
+
+
+
+
+
+  <article class="angularJS">
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title"><a href="/2019/08/27/angular 的 uiRouter 的 方法$state.includes （判断当前激活路由）/">angular 的 uiRouter 的 方法$state.includes （判断当前激活路由）</a></h1>
+  
+
+      
+        <time datetime="2019-08-27T10:08:30.000Z">2019-08-27</time>
+      
+    </header>
+    <div class="entry">
+      
+        <h3 id="angular-的-uiRouter-的-方法-state-includes-（判断当前激活路由）"><a href="#angular-的-uiRouter-的-方法-state-includes-（判断当前激活路由）" class="headerlink" title="angular 的 uiRouter 的 方法$state.includes （判断当前激活路由）"></a>angular 的 uiRouter 的 方法$state.includes （判断当前激活路由）</h3><p>作用：</p>
+<ol>
+<li><p>该方法用于判断当前激活的也就是地址栏的路由地址是哪个路由。</p>
+</li>
+<li><p>比如   $state.includes(‘app’) 那么如果页面地址为“<a href="http://www.baidu.com#/app”" target="_blank" rel="noopener">www.baidu.com#/app”</a> 或者 “<a href="http://www.baidu.com#/app/xxx”" target="_blank" rel="noopener">www.baidu.com#/app/xxx”</a> 的时候，该方法的值会返回true。<br>（<em>一般我们定义的路由和地址栏地址是相互对应的，方便管理。举例也是在app.xxx对应app/xxx这样设置路由的情况下</em>）</p>
+</li>
+<li><p>如激活的路由为 app.page.page1 那么</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$state.includes(&apos;app&apos;)              //返回 true</span><br><span class="line">$state.includes(&apos;app.page&apos;)         //返回 true</span><br><span class="line">$state.includes(&apos;app.page.page1&apos;)   //返回 true</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>用法：</p>
+<blockquote>
+<p>知道了它的作用，接下来看看它的使用背景。</p>
+<ol>
+<li>我们可以用来激活当前menu的状态。即使当前路由对应的菜单高亮或激活状态。</li>
+</ol>
+</blockquote>
+<p>举例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;div ng-init=&quot;menu_flag= !($state.includes(&apos;app.page1&apos;) || $state.includes(&apos;app.page2&apos;))&quot;&gt; 主菜单&lt;/div&gt;</span><br><span class="line">&lt;div ng-hide=&quot;menu_flag&quot;&gt;</span><br><span class="line">    &lt;div ng-class=&quot;&#123;active: $state.includes(&apos;app.page1&apos;)&#125;&quot;&gt;</span><br><span class="line">        &lt;a href=&quot;javascript:;&quot; ui-sref=&quot;app.page1&quot;&gt;子菜单一&lt;/a&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div ng-class=&quot;&#123;active: $state.includes(&apos;app.page2&apos;)&#125;&quot;&gt;</span><br><span class="line">        &lt;a href=&quot;javascript:;&quot; ui-sref=&quot;app.page2&quot;&gt;子菜单二&lt;/a&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">// ......  n个类似结构组成的菜单</span><br><span class="line"></span><br><span class="line">&lt;div ng-init=&quot;menu_flag1= !($state.includes(&apos;app.page3&apos;) || $state.includes(&apos;app.page4&apos;))&quot;&gt; 主菜单&lt;/div&gt;</span><br><span class="line">&lt;div ng-hide=&quot;menu_flag1&quot;&gt;</span><br><span class="line">    &lt;div ng-class=&quot;&#123;active: $state.includes(&apos;app.page3&apos;)&#125;&quot;&gt;</span><br><span class="line">        &lt;a href=&quot;javascript:;&quot; ui-sref=&quot;app.page1&quot;&gt;子菜单一&lt;/a&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div ng-class=&quot;&#123;active: $state.includes(&apos;app.page4&apos;)&#125;&quot;&gt;</span><br><span class="line">        &lt;a href=&quot;javascript:;&quot; ui-sref=&quot;app.page2&quot;&gt;子菜单二&lt;/a&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>如上我们的菜单构成是由若干个类似结构构成，主menu控制若干个子menu。active是我们定义的激活菜单的css类名，当我们选中某个菜单时激活该菜单。即可借用$state.includes()来实现该功能。</p>
+</li>
+<li><p>同时，当我们的主menu要控制闭合和展开的话，当我们刷新的时候，我们通过判断<code>($state.includes(&#39;app.page3&#39;) || $state.includes(&#39;app.page4&#39;))</code> 的值来在刷新之后判断该主菜单是否闭合。</p>
+</li>
+<li>当然我们也可以这样定义我们的路由。当然我们也可以这样定义我们的路由。例如： 一层菜单为 app.menu1 , 该主菜单下路由定义为</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>路由名称</th>
+<th>一级路由定义</th>
+<th>二级路由定义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一层菜单</td>
+<td>app.menu1</td>
+<td></td>
+</tr>
+<tr>
+<td>二层菜单</td>
+<td></td>
+<td>app.menu1.menu1_1</td>
+</tr>
+<tr>
+<td>二层菜单</td>
+<td></td>
+<td>app.menu1.menu1_2</td>
+</tr>
+</tbody>
+</table>
+<p>这样的话我们在主菜单闭合上只需要判断 <code>$state.includes(app.menu1)</code> 即可。</p>
+
+      
+    </div>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+      
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  <div class="post-content">
+    <header>
+      
+  
     <h1 class="title"><a href="/2019/08/27/leetcode_2. 两数相加/">leetcode_2. 两数相加</a></h1>
   
 
@@ -540,6 +686,14 @@
   <ul class="entry">
     
       <li>
+        <a href="/2019/08/27/z-index失效了？/">z-index失效了？</a>
+      </li>
+    
+      <li>
+        <a href="/2019/08/27/angular 的 uiRouter 的 方法$state.includes （判断当前激活路由）/">angular 的 uiRouter 的 方法$state.includes （判断当前激活路由）</a>
+      </li>
+    
+      <li>
         <a href="/2019/08/27/leetcode_2. 两数相加/">leetcode_2. 两数相加</a>
       </li>
     
@@ -549,14 +703,6 @@
     
       <li>
         <a href="/2019/08/27/hello-world/">Hello World</a>
-      </li>
-    
-      <li>
-        <a href="/2019/08/27/v-model/">v-model</a>
-      </li>
-    
-      <li>
-        <a href="/2019/04/30/完全背包问题/">完全背包问题</a>
       </li>
     
   </ul>

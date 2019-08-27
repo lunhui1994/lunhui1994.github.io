@@ -1,0 +1,201 @@
+<!DOCTYPE HTML>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>z-index失效了？ › Hexo</title>
+  <meta name="author" content="John Doe">
+  
+  <meta name="description" content="我们在使用z-index的时候，有时候会发现，无论怎么样增大z-index的值，都无法改变目标元素的层级。
+
+
+ 其实是这几种情况在作怪 
+
+
+position
+float
+opcity 
+
+
+父盒子的层级问题，当你的父盒子层级小于另一个父盒子层级的时候，你子元素的z-index再高都是没有用的。该">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="z-index失效了？">
+  <meta property="og:site_name" content="Hexo">
+
+  
+    <meta property="og:image" content>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+</html>
+
+<body>
+  <header id="header"><div class="meta inner">
+  <h1><a href="/">Hexo</a></h1>
+  <h2><a href="/"></a></h2>
+  <nav id="main-nav">
+    <ul>
+      
+      <li><a href="/about">About</a></li>
+      
+      <li><a href="/archives">Archives</a></li>
+      
+      <li><a href="/atom.xml">RSS</a></li>
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+</div>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title">z-index失效了？</h1>
+  
+
+      
+        <time datetime="2019-08-27T10:14:27.000Z">2019-08-27</time>
+      
+    </header>
+    <div class="entry">
+      
+        <blockquote>
+<p>我们在使用z-index的时候，有时候会发现，无论怎么样增大z-index的值，都无法改变目标元素的层级。</p>
+</blockquote>
+<ul>
+<li><strong> 其实是这几种情况在作怪 </strong></li>
+</ul>
+<ol>
+<li><strong>position</strong></li>
+<li><strong>float</strong></li>
+<li><strong>opcity</strong> </li>
+</ol>
+<ul>
+<li>父盒子的层级问题，当你的父盒子层级小于另一个父盒子层级的时候，你子元素的z-index再高都是没有用的。该元素的层级只在该元素所在的容器内起作用。该种情况大家应该容易理解，不过也可以看下面的例子。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">        .a1&#123;</span><br><span class="line">            position:relative;</span><br><span class="line">            z-index: 2;</span><br><span class="line">            width:400px;</span><br><span class="line">            height:400px;</span><br><span class="line">            background: black;</span><br><span class="line">            border:1px solid #eee;</span><br><span class="line">            margin-bottom: -100px;</span><br><span class="line">        &#125;</span><br><span class="line">        .a&#123;</span><br><span class="line">            position:relative;</span><br><span class="line">            z-index: 1;</span><br><span class="line">            width:400px;</span><br><span class="line">            height:400px;</span><br><span class="line">            background: yellow;</span><br><span class="line">            left:0;</span><br><span class="line">            border:1px solid #eee;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .b&#123;</span><br><span class="line">            position:absolute;</span><br><span class="line">            left:0;</span><br><span class="line">            top:0;</span><br><span class="line">            z-index: 50;</span><br><span class="line">            width:200px;</span><br><span class="line">            height:200px;</span><br><span class="line">            background: red;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .c&#123;</span><br><span class="line">            position: absolute;</span><br><span class="line">            left:0;</span><br><span class="line">            top:0;</span><br><span class="line">            z-index:1111;</span><br><span class="line">            width:100px;</span><br><span class="line">            height:100px;</span><br><span class="line">            background: blue;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&quot;a1&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;a&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;b&quot;&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;c&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<ul>
+<li>opcity属性，当你要设置两个元素的z-index值的时候，要注意是否给其中一个元素添加了opcity属性，如果添加了，那么添加了opcity属性的元素将一直在最上层，这个我在之前的文章中讲过</li>
+<li><a href="https://blog.csdn.net/lunhui1994_/article/details/80853410" target="_blank" rel="noopener">opcity引发的元素层级变化</a></li>
+</ul>
+<hr>
+<ul>
+<li>还有就是比较普遍的，我们设置层级一般都是因为设置了position，当你设置的两个子元素，一个有position属性，另一个没有position的时候，拥有position属性的元素将一直在其他元素上方。如下面的例子<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">        .a&#123;</span><br><span class="line">            position:relative;</span><br><span class="line">            z-index: 1;</span><br><span class="line">            width:400px;</span><br><span class="line">            height:400px;</span><br><span class="line">            background: yellow;</span><br><span class="line">            left:0;</span><br><span class="line">            border:1px solid #eee;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .b&#123;</span><br><span class="line">            position:absolute;</span><br><span class="line">            left:0;</span><br><span class="line">            top:0;</span><br><span class="line">            z-index: 50;</span><br><span class="line">            width:200px;</span><br><span class="line">            height:200px;</span><br><span class="line">            background: red;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .c&#123;</span><br><span class="line">            z-index:100;</span><br><span class="line">            width:100px;</span><br><span class="line">            height:100px;</span><br><span class="line">            background: blue;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&quot;a&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;b&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;c&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>需要给c也加上position属性才让bc可以先同处一级，然后z-index才会起作用。</p>
+<ul>
+<li>那如果我把子元素的position都去掉呢？当父盒子有position而所有子元素都没有position属性的时候，z-index一样全部失效，后面的盒子将会覆盖前面的盒子，z-index无效。</li>
+<li>同样的我们两个都加上浮动的效果跟上面的效果是一样的，后覆盖前，z-index无效</li>
+<li>一个加float另一个不加，则是加float的元素一直浮动在最上层。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">        .a&#123;</span><br><span class="line">            position:absolute;</span><br><span class="line">            z-index: 1;</span><br><span class="line">            width:400px;</span><br><span class="line">            height:400px;</span><br><span class="line">            background: yellow;</span><br><span class="line">            left:0;</span><br><span class="line">            border:1px solid #eee;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .b&#123;</span><br><span class="line">            z-index: -10;</span><br><span class="line">            width:200px;</span><br><span class="line">            height:200px;</span><br><span class="line">            background: red;</span><br><span class="line">            margin-bottom: -100px;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .c&#123;</span><br><span class="line">            z-index:101;</span><br><span class="line">            width:100px;</span><br><span class="line">            height:100px;</span><br><span class="line">            background: blue;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&quot;a&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;b&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;c&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<p>其他情况欢迎补充。</p>
+
+      
+    </div>
+      
+      <footer>
+        
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+      </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  
+</section>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:lunhui1994.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Recent Posts</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2019/08/27/z-index失效了？/">z-index失效了？</a>
+      </li>
+    
+      <li>
+        <a href="/2019/08/27/angular 的 uiRouter 的 方法$state.includes （判断当前激活路由）/">angular 的 uiRouter 的 方法$state.includes （判断当前激活路由）</a>
+      </li>
+    
+      <li>
+        <a href="/2019/08/27/leetcode_2. 两数相加/">leetcode_2. 两数相加</a>
+      </li>
+    
+      <li>
+        <a href="/2019/08/27/ES6 对象数组查找某一个对象 findIndex/">ES6 对象数组查找某一个对象 findIndex</a>
+      </li>
+    
+      <li>
+        <a href="/2019/08/27/hello-world/">Hello World</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+  
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2019 John Doe
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+
+</body>
+</html>
+
