@@ -46,6 +46,98 @@
 </header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title"><a href="/2019/08/27/hello-world/">Hello World</a></h1>
+  
+
+      
+        <time datetime="2019-08-27T09:06:11.374Z">2019-08-27</time>
+      
+    </header>
+    <div class="entry">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+      
+    </div>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+      
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title"><a href="/2019/08/27/v-model/">v-model</a></h1>
+  
+
+      
+        <time datetime="2019-08-27T08:59:13.000Z">2019-08-27</time>
+      
+    </header>
+    <div class="entry">
+      
+        <p>最近学习vue，从最基础的文档看起。到目前基础已经看完。有两个问题很迷茫。</p>
+<ol>
+<li>vue的动态参数（2.6新增）。demo一直报错。分析原因是因为vue不允许动态添加根一级的变量。（不理解）</li>
+<li>组件中v-model的使用文档中说的让我有点绕。不过已经顺过来了，所以来分享一下。</li>
+</ol>
+<h2 id="官方给出的例子是这样。-可以直接使用"><a href="#官方给出的例子是这样。-可以直接使用" class="headerlink" title="官方给出的例子是这样。(可以直接使用)"></a>官方给出的例子是这样。(可以直接使用)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">HTML:</span><br><span class="line"></span><br><span class="line">&lt;custom-input v-model=&quot;searchText&quot;&gt;&lt;/custom-input&gt;</span><br><span class="line"></span><br><span class="line">JS:</span><br><span class="line">Vue.component(&apos;custom-input&apos;, &#123;</span><br><span class="line">  props: [&apos;value&apos;],</span><br><span class="line">  template: `</span><br><span class="line">    &lt;input</span><br><span class="line">      v-bind:value=&quot;value&quot;</span><br><span class="line">      v-on:input=&quot;$emit(&apos;input&apos;, $event.target.value)&quot;</span><br><span class="line">    &gt;</span><br><span class="line">  `</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="v-model可以改写为这种形式，两者完全等价。"><a href="#v-model可以改写为这种形式，两者完全等价。" class="headerlink" title="v-model可以改写为这种形式，两者完全等价。"></a>v-model可以改写为这种形式，两者完全等价。</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;input v-model=&quot;searchText&quot;&gt;</span><br><span class="line"></span><br><span class="line">等价于：</span><br><span class="line"></span><br><span class="line">&lt;input</span><br><span class="line">  v-bind:value=&quot;searchText&quot;</span><br><span class="line">  v-on:input=&quot;searchText = $event.target.value&quot;&gt; //（ $event.target.value为事件当前目标上的value值。）</span><br></pre></td></tr></table></figure>
+<p>第二种写法：</p>
+<ol>
+<li>在input上绑定了input事件，通过触发input事件，执行给searchText赋值语句。</li>
+<li>v-bind将searchText赋值给input标签的value属性。</li>
+</ol>
+<p>再看官方的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;custom-input v-model=&quot;searchText&quot;&gt;&lt;/custom-input&gt;</span><br></pre></td></tr></table></figure></p>
+<p>等价于：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;custom-input  </span><br><span class="line">	v-bind:value=&quot;searchText&quot;</span><br><span class="line">  	v-on:input=&quot;searchText = $event&quot;   //$event 为组件内部抛出来的值。（这个如果不明白可以看组件的自定义事件部分）</span><br><span class="line">&gt;&lt;/custom-input&gt;</span><br></pre></td></tr></table></figure></p>
+<p>再加上官方的js写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(&apos;custom-input&apos;, &#123;</span><br><span class="line">  props: [&apos;value&apos;],</span><br><span class="line">  template: `</span><br><span class="line">    &lt;input</span><br><span class="line">      v-bind:value=&quot;value&quot;</span><br><span class="line">      v-on:input=&quot;$emit(&apos;input&apos;, $event.target.value)&quot;</span><br><span class="line">    &gt;</span><br><span class="line">  `</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ol>
+<li>我们在组件内的input上监听了input事件，并且用该input事件对组件上的（自定义）input事件进行触发（searchText = $event”）；</li>
+<li>将$  event.target.value作为参数传给     v-on:input=”searchText =  $ event “，$ event === $ event.target.value。执行语句searchText被赋值。</li>
+<li>组件上的v-bind:value = “searchText” 是将searchText的值绑定到组件内部的props里的value上。</li>
+<li>组件内部将props中的value 绑定到input的value上。就这样完成了一次双向绑定。</li>
+</ol>
+<p>而根据官方v-model的两种写法，组件上转换回v-modal的写法。就完成了。最终结果就如开头所示。</p>
+
+      
+    </div>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+      
+  </div>
+</article>
+
+
+
+
+
   <article class="[layout]">
   <div class="post-content">
     <header>
@@ -328,45 +420,6 @@
 
 
 
-  <article class="post">
-  <div class="post-content">
-    <header>
-      
-  
-    <h1 class="title"><a href="/2019/04/28/hello-world/">Hello World</a></h1>
-  
-
-      
-        <time datetime="2019-04-28T08:59:38.949Z">2019-04-28</time>
-      
-    </header>
-    <div class="entry">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-      
-  </div>
-</article>
-
-
-
-
-
 
 <nav id="pagination">
   
@@ -387,11 +440,15 @@
   <ul class="entry">
     
       <li>
-        <a href="/2019/04/30/完全背包问题/">完全背包问题</a>
+        <a href="/2019/08/27/hello-world/">Hello World</a>
       </li>
     
       <li>
-        <a href="/2019/04/28/hello-world/">Hello World</a>
+        <a href="/2019/08/27/v-model/">v-model</a>
+      </li>
+    
+      <li>
+        <a href="/2019/04/30/完全背包问题/">完全背包问题</a>
       </li>
     
   </ul>
