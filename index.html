@@ -51,11 +51,111 @@
     <header>
       
   
+    <h1 class="title"><a href="/2019/08/27/leetcode_2. 两数相加/">leetcode_2. 两数相加</a></h1>
+  
+
+      
+        <time datetime="2019-08-27T09:59:13.000Z">2019-08-27</time>
+      
+    </header>
+    <div class="entry">
+      
+        <p>给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。</p>
+<p>如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。</p>
+<p>您可以假设除了数字 0 之外，这两个数都不会以 0 开头。</p>
+<p>示例：</p>
+<pre><code>输入：(2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)
+输出：7 -&gt; 0 -&gt; 8
+原因：342 + 465 = 807
+</code></pre><p>题目解析：<br>    该题给出两个链表，求出两个链表各个结点的和，那首先我们需要知道链表是什么样子。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * function ListNode(val) &#123;</span><br><span class="line"> *     this.val = val;</span><br><span class="line"> *     this.next = null;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br></pre></td></tr></table></figure>
+<p>如上，链表的每个结点就是这个样子，next指向下一个结点，当然这是在js中简单的实现了链表。</p>
+<p>然后知道了链表，那么就开始各位相加吧~，这个题唯一的难点就是在于各个结点相加的时候可能会产生进位。比如9+2=11，那么就需要进一位，本位取10的余数为值，然后我们就需要在下一个结点相加时把前两位可能产生的进位也算进去。</p>
+<p>如下是我的js解答：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * function ListNode(val) &#123;</span><br><span class="line"> *     this.val = val;</span><br><span class="line"> *     this.next = null;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @param &#123;ListNode&#125; l1</span><br><span class="line"> * @param &#123;ListNode&#125; l2</span><br><span class="line"> * @return &#123;ListNode&#125;</span><br><span class="line"> * y 为进位值</span><br><span class="line"> * i 代表和的位</span><br><span class="line"> * n 代表了和的每一位的值</span><br><span class="line"> * arr 代表和（我们用数组表示更方便一点）</span><br><span class="line"> */</span><br><span class="line">var addTwoNumbers = function(l1, l2) &#123;</span><br><span class="line">    var arr = [], i = 0, n = 0, y = 0;   //初始化</span><br><span class="line">    </span><br><span class="line">    //因为链表不一定同样长的，所以只要有一个链表的结点不为空，我们都需要继续计算；同时我们也要考虑进位，即使两个链表结束了，如果有进位的话，那我们还是需要再计算一次的。</span><br><span class="line">    </span><br><span class="line">    while (l1 !==  null || l2 !== null || y !== 0) &#123;  </span><br><span class="line">        l1 = l1 ? l1 : new ListNode(0); //判断链表l1的该结点是否为null，如果为null初始化成值为0的结点，方便运算。</span><br><span class="line">        </span><br><span class="line">        l2 = l2 ? l2 : new ListNode(0); // 同理</span><br><span class="line">       	var num = l1.val + l2.val + y; // 计算该位的两个结点的和，同时要加上前两位的进位。</span><br><span class="line">        </span><br><span class="line">        num &gt; 9 ? (y = 1, n = num - 10) : (n = num, y = 0); // 判断该位是否需要进位，需要进位的话就该位取10的余数，然后进一位（y = 1），反之初始化进位值为0。</span><br><span class="line">        </span><br><span class="line">        arr[i] = n; //给和的每一位赋值</span><br><span class="line">        </span><br><span class="line">        i++; //进入下一次循环</span><br><span class="line">        </span><br><span class="line">        l1 = l1.next;  // 进入l1下一个结点</span><br><span class="line">        </span><br><span class="line">        l2 = l2.next; // 进入l2下一个结点</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    arr = arr.reverse(); //这里反转一下，原本是[7, 0, 8]反转为[8, 0, 7],方便后面生成链表。</span><br><span class="line">    </span><br><span class="line">    let listNode = new ListNode(arr.shift()) //取第一个值创建第一个结点（是最终链表的最后一个结点）</span><br><span class="line">    </span><br><span class="line">    return arr.reduce((ori,cur)=&gt;&#123;</span><br><span class="line">    </span><br><span class="line">        let ln = new ListNode(cur) //生成当前结点</span><br><span class="line">    </span><br><span class="line">        ln.next = ori //将当前结点的next指向之前生成的链表的第一个结点</span><br><span class="line">    </span><br><span class="line">        return ln //返回新的链表（赋值给了 ori ）</span><br><span class="line">    </span><br><span class="line">    &#125;,listNode)// listNode是初始值。即链表末端的第一个值，我们之所以从最后一个开始创建链表也是因为方便。因为我们要操作结点的next，所以将新结点的next指向原来的链表，要比找到链表的最后一个结点的next指向新结点要方便一些。</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+      
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title"><a href="/2019/08/27/ES6 对象数组查找某一个对象 findIndex/">ES6 对象数组查找某一个对象 findIndex</a></h1>
+  
+
+      
+        <time datetime="2019-08-27T09:50:34.000Z">2019-08-27</time>
+      
+    </header>
+    <div class="entry">
+      
+        <blockquote>
+<p> 查找数组特定元素需要用到的方法就是<strong>findIndex()</strong>。</p>
+</blockquote>
+<h2 id="用法与定义"><a href="#用法与定义" class="headerlink" title="用法与定义"></a>用法与定义</h2><ul>
+<li>findIndex() 方法返回传入一个测试<strong>条件</strong>（函数）符合条件的数组<strong>第一个</strong>元素位置。</li>
+<li>findIndex() 方法为数组中的每个元素都调用一次函数执行：<br>  当数组中的元素在测试条件时返回 true 时, findIndex() 返回<strong>符合条件</strong>的元素的<strong>索引位置</strong>，<em>之后的值不会再调用    执行函数。</em><br>如果没有符合条件的元素返回 <strong>-1</strong></li>
+</ul>
+<p>以上是比较官方的对于findIndex()的定义</p>
+<hr>
+<p><strong>接下来我结合实例来进行自己的解释.</strong></p>
+<ol>
+<li>第一条的意思如下:<br>当条件函数返回<strong>true</strong>的时候，findindex会跳出，然后返回当前元素的下标。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">//首先是普通数组</span><br><span class="line"></span><br><span class="line">var dataArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];</span><br><span class="line"></span><br><span class="line">function fn(num, numIndex, nums)&#123;</span><br><span class="line">	//该函数的三个参数，num代表当前项，numIndex代表当前项下标，nums代表该数组。</span><br><span class="line">	return num &gt; 5;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dataArr.findIndex(fn);//值为5(即6的下标)</span><br><span class="line"></span><br><span class="line">------------------------分割线-----------------------------</span><br><span class="line"></span><br><span class="line">//同样的假如你的数组是个对象数组：</span><br><span class="line">var objArr = [&#123;</span><br><span class="line">	name: &apos;小王&apos;,</span><br><span class="line">	age: 14</span><br><span class="line">&#125;,&#123;</span><br><span class="line">	name: &apos;大王&apos;,</span><br><span class="line">	age: 41</span><br><span class="line">&#125;,&#123;</span><br><span class="line">	name: &apos;老王&apos;,</span><br><span class="line">	age: 61</span><br><span class="line">&#125;]					</span><br><span class="line">				</span><br><span class="line">function objFn(obj, objIndex, objs)&#123;</span><br><span class="line">	return num.age &gt; 20;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">objArr .findIndex(objFn);//值为1(即大王的下标)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="2">
+<li>第二条的意思就更好理解了，因为findindex只返回第一个符合条件的元素下标，所以在找到第一个符合条件的元素之后，他会跳出该函数，之后的数组内的元素将不再调用，相当于加了个break；</li>
+</ol>
+<p><strong>实际用法举例</strong></p>
+<p>假如我们要在所有人里面挑选队友，但是不想重复。在我们通过id查找的时候，就可以这么写<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">var allPeple = [&#123;</span><br><span class="line">	name: &apos;小王&apos;,</span><br><span class="line">	id: 14</span><br><span class="line">&#125;,&#123;</span><br><span class="line">	name: &apos;大王&apos;,</span><br><span class="line">	id: 41</span><br><span class="line">&#125;,&#123;</span><br><span class="line">	name: &apos;老王&apos;,</span><br><span class="line">	id: 61</span><br><span class="line">&#125;]</span><br><span class="line">				</span><br><span class="line">var myTeamArr = [&#123;</span><br><span class="line">	name: &apos;小王&apos;,</span><br><span class="line">	id: 14</span><br><span class="line">&#125;]</span><br><span class="line">				</span><br><span class="line">var PId = 14; //假如这个是要添加的人的ID</span><br><span class="line"></span><br><span class="line">function pFn(p)&#123;return p.id == PId ;&#125;</span><br><span class="line"></span><br><span class="line">//判断myteam里是不是有这个队员，如果==-1 代表没有，在allPeople中找到他，添加入我的队伍</span><br><span class="line"></span><br><span class="line">myTeamArr.findIndex(pFn) == -1 ? myTeamArr.push(allPeple.find(pFn)) : alert(&apos;已存在该人员&apos;);</span><br><span class="line"></span><br><span class="line">//这样写可以将两个for循环直接总结成一行代码</span><br></pre></td></tr></table></figure></p>
+<p><strong>另外需要补充的一点</strong></p>
+<blockquote>
+<p>与其相对应的有<strong>find</strong>()函数，用法一致，只不过返回的是<strong>元素本身</strong>，而不是元素的下标。</p>
+</blockquote>
+<p><strong>兼容性</strong></p>
+<blockquote>
+<p>因为是es6的所以使用的时候要注意兼容性问题，<strong>ie11</strong>及之前的版本都<strong>不可兼容。</strong></p>
+</blockquote>
+
+      
+    </div>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+      
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  <div class="post-content">
+    <header>
+      
+  
     <h1 class="title"><a href="/2019/08/27/hello-world/">Hello World</a></h1>
   
 
       
-        <time datetime="2019-08-27T09:06:11.374Z">2019-08-27</time>
+        <time datetime="2019-08-27T09:42:34.663Z">2019-08-27</time>
       
     </header>
     <div class="entry">
@@ -438,6 +538,14 @@
 <div class="widget tag">
   <h3 class="title">Recent Posts</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/2019/08/27/leetcode_2. 两数相加/">leetcode_2. 两数相加</a>
+      </li>
+    
+      <li>
+        <a href="/2019/08/27/ES6 对象数组查找某一个对象 findIndex/">ES6 对象数组查找某一个对象 findIndex</a>
+      </li>
     
       <li>
         <a href="/2019/08/27/hello-world/">Hello World</a>
