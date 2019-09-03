@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="keywords" content="font-family, 字体, 中文字体, 表格, 列表">
+    <style>
+        .demo {
+            max-width: 600px;
+            margin: 10px auto;
+            font-family: sans-serif;
+        }
+        
+        .table {
+            width: 100%;
+            line-height: 21px;
+            table-layout: fixed;
+            border-spacing: 0;
+            border-collapse: collapse;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        
+        .table thead td,
+        .table th {
+            line-height: 20px;
+            background-color: #f7f9fa;
+            text-align: left;
+            margin: 0;
+        }
+        
+        .table tbody td {
+            background-color: #fff;
+            border-bottom: 1px solid #ededed;
+        }
+        
+        .table td,
+        .table th {
+            padding: 14px 10px;
+        }
+        
+        .table tr:last-child td {
+            border-bottom: 0;
+        }
+        
+        .table td p {
+            display: inline-block;
+            margin: 0 5px 0 0;
+        }
+        
+        .red {
+            color: red;
+        }
+        
+        input:disabled,
+        input:disabled+label {
+            opacity: 0;
+        }
+    </style>
+
+    <body>
+        <div id="header">
+            <div id="main">
+                <div id="body" class="light">
+                    <div id="content" class="show">
+                        <div class="demo">
+                            <h4>windows常见内置中文字体</h4>
+                            <table class="table" data-type="windows">
+                                <thead>
+                                    <tr>
+                                        <th width="100">字体中文名</th>
+                                        <th width="150">字体英文名</th>
+                                        <th>字体应用</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="font-family:&#39;SimSun&#39;;">
+                                        <td>宋体</td>
+                                        <td>SimSun</td>
+                                        <td>
+                                            <p><input type="radio" id="windows01" name="windows0" value="宋体"><label for="windows01">中文名</label></p>
+                                            <p><input type="radio" id="windows02" name="windows0" value="SimSun" checked=""><label for="windows02">英文名</label></p>
+                                            <p><input type="radio" id="windows03" name="windows0" value=""><label for="windows03">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;SimHei&#39;;">
+                                        <td>黑体</td>
+                                        <td>SimHei</td>
+                                        <td>
+                                            <p><input type="radio" id="windows11" name="windows1" value="黑体"><label for="windows11">中文名</label></p>
+                                            <p><input type="radio" id="windows12" name="windows1" value="SimHei" checked=""><label for="windows12">英文名</label></p>
+                                            <p><input type="radio" id="windows13" name="windows1" value=""><label for="windows13">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;Microsoft Yahei&#39;;">
+                                        <td>微软雅黑</td>
+                                        <td>Microsoft Yahei</td>
+                                        <td>
+                                            <p><input type="radio" id="windows21" name="windows2" value="微软雅黑"><label for="windows21">中文名</label></p>
+                                            <p><input type="radio" id="windows22" name="windows2" value="Microsoft Yahei" checked=""><label for="windows22">英文名</label></p>
+                                            <p><input type="radio" id="windows23" name="windows2" value=""><label for="windows23">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;Microsoft JhengHei&#39;;">
+                                        <td>微软正黑体</td>
+                                        <td>Microsoft JhengHei</td>
+                                        <td>
+                                            <p><input type="radio" id="windows31" name="windows3" value="微软正黑体"><label for="windows31">中文名</label></p>
+                                            <p><input type="radio" id="windows32" name="windows3" value="Microsoft JhengHei" checked=""><label for="windows32">英文名</label></p>
+                                            <p><input type="radio" id="windows33" name="windows3" value=""><label for="windows33">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;KaiTi&#39;;">
+                                        <td>楷体</td>
+                                        <td>KaiTi</td>
+                                        <td>
+                                            <p><input type="radio" id="windows41" name="windows4" value="楷体"><label for="windows41">中文名</label></p>
+                                            <p><input type="radio" id="windows42" name="windows4" value="KaiTi" checked=""><label for="windows42">英文名</label></p>
+                                            <p><input type="radio" id="windows43" name="windows4" value=""><label for="windows43">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;NSimSun&#39;;">
+                                        <td>新宋体</td>
+                                        <td>NSimSun</td>
+                                        <td>
+                                            <p><input type="radio" id="windows51" name="windows5" value="新宋体"><label for="windows51">中文名</label></p>
+                                            <p><input type="radio" id="windows52" name="windows5" value="NSimSun" checked=""><label for="windows52">英文名</label></p>
+                                            <p><input type="radio" id="windows53" name="windows5" value=""><label for="windows53">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FangSong&#39;;">
+                                        <td>仿宋</td>
+                                        <td>FangSong</td>
+                                        <td>
+                                            <p><input type="radio" id="windows61" name="windows6" value="仿宋"><label for="windows61">中文名</label></p>
+                                            <p><input type="radio" id="windows62" name="windows6" value="FangSong" checked=""><label for="windows62">英文名</label></p>
+                                            <p><input type="radio" id="windows63" name="windows6" value=""><label for="windows63">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h4>OS X常见内置中文字体</h4>
+                            <table class="table" data-type="OS X">
+                                <thead>
+                                    <tr>
+                                        <th width="100">字体中文名</th>
+                                        <th width="150">字体英文名</th>
+                                        <th>字体应用</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="font-family:&#39;PingFang SC&#39;;">
+                                        <td>苹方</td>
+                                        <td>PingFang SC</td>
+                                        <td>
+                                            <p><input type="radio" id="OS X01" name="OS X0" value="苹方"><label for="OS X01">中文名</label></p>
+                                            <p><input type="radio" id="OS X02" name="OS X0" value="PingFang SC" checked=""><label for="OS X02">英文名</label></p>
+                                            <p><input type="radio" id="OS X03" name="OS X0" value=""><label for="OS X03">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;STHeiti&#39;;">
+                                        <td>华文黑体</td>
+                                        <td>STHeiti</td>
+                                        <td>
+                                            <p><input type="radio" id="OS X11" name="OS X1" value="华文黑体"><label for="OS X11">中文名</label></p>
+                                            <p><input type="radio" id="OS X12" name="OS X1" value="STHeiti" checked=""><label for="OS X12">英文名</label></p>
+                                            <p><input type="radio" id="OS X13" name="OS X1" value=""><label for="OS X13">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;STKaiti&#39;;">
+                                        <td>华文楷体</td>
+                                        <td>STKaiti</td>
+                                        <td>
+                                            <p><input type="radio" id="OS X21" name="OS X2" value="华文楷体"><label for="OS X21">中文名</label></p>
+                                            <p><input type="radio" id="OS X22" name="OS X2" value="STKaiti" checked=""><label for="OS X22">英文名</label></p>
+                                            <p><input type="radio" id="OS X23" name="OS X2" value=""><label for="OS X23">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;STSong&#39;;">
+                                        <td>华文宋体</td>
+                                        <td>STSong</td>
+                                        <td>
+                                            <p><input type="radio" id="OS X31" name="OS X3" value="华文宋体"><label for="OS X31">中文名</label></p>
+                                            <p><input type="radio" id="OS X32" name="OS X3" value="STSong" checked=""><label for="OS X32">英文名</label></p>
+                                            <p><input type="radio" id="OS X33" name="OS X3" value=""><label for="OS X33">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;STFangsong&#39;;">
+                                        <td>华文仿宋</td>
+                                        <td>STFangsong</td>
+                                        <td>
+                                            <p><input type="radio" id="OS X41" name="OS X4" value="华文仿宋"><label for="OS X41">中文名</label></p>
+                                            <p><input type="radio" id="OS X42" name="OS X4" value="STFangsong" checked=""><label for="OS X42">英文名</label></p>
+                                            <p><input type="radio" id="OS X43" name="OS X4" value=""><label for="OS X43">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;STZhongsong&#39;;">
+                                        <td>华文中宋</td>
+                                        <td>STZhongsong</td>
+                                        <td>
+                                            <p><input type="radio" id="OS X51" name="OS X5" value="华文中宋"><label for="OS X51">中文名</label></p>
+                                            <p><input type="radio" id="OS X52" name="OS X5" value="STZhongsong" checked=""><label for="OS X52">英文名</label></p>
+                                            <p><input type="radio" id="OS X53" name="OS X5" value=""><label for="OS X53">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;STHupo&#39;;">
+                                        <td>华文琥珀</td>
+                                        <td>STHupo</td>
+                                        <td>
+                                            <p><input type="radio" id="OS X61" name="OS X6" value="华文琥珀"><label for="OS X61">中文名</label></p>
+                                            <p><input type="radio" id="OS X62" name="OS X6" value="STHupo" checked=""><label for="OS X62">英文名</label></p>
+                                            <p><input type="radio" id="OS X63" name="OS X6" value=""><label for="OS X63">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;STXinwei&#39;;">
+                                        <td>华文新魏</td>
+                                        <td>STXinwei</td>
+                                        <td>
+                                            <p><input type="radio" id="OS X71" name="OS X7" value="华文新魏"><label for="OS X71">中文名</label></p>
+                                            <p><input type="radio" id="OS X72" name="OS X7" value="STXinwei" checked=""><label for="OS X72">英文名</label></p>
+                                            <p><input type="radio" id="OS X73" name="OS X7" value=""><label for="OS X73">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;STLiti&#39;;">
+                                        <td>华文隶书</td>
+                                        <td>STLiti</td>
+                                        <td>
+                                            <p><input type="radio" id="OS X81" name="OS X8" value="华文隶书"><label for="OS X81">中文名</label></p>
+                                            <p><input type="radio" id="OS X82" name="OS X8" value="STLiti" checked=""><label for="OS X82">英文名</label></p>
+                                            <p><input type="radio" id="OS X83" name="OS X8" value=""><label for="OS X83">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;STXingkai&#39;;">
+                                        <td>华文行楷</td>
+                                        <td>STXingkai</td>
+                                        <td>
+                                            <p><input type="radio" id="OS X91" name="OS X9" value="华文行楷"><label for="OS X91">中文名</label></p>
+                                            <p><input type="radio" id="OS X92" name="OS X9" value="STXingkai" checked=""><label for="OS X92">英文名</label></p>
+                                            <p><input type="radio" id="OS X93" name="OS X9" value=""><label for="OS X93">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;Hiragino Sans GB&#39;;">
+                                        <td>冬青黑体简</td>
+                                        <td>Hiragino Sans GB</td>
+                                        <td>
+                                            <p><input type="radio" id="OS X101" name="OS X10" value="冬青黑体简" disabled=""><label for="OS X101">中文名</label></p>
+                                            <p><input type="radio" id="OS X102" name="OS X10" value="Hiragino Sans GB" checked=""><label for="OS X102">英文名</label></p>
+                                            <p><input type="radio" id="OS X103" name="OS X10" value=""><label for="OS X103">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;Lantinghei SC&#39;;">
+                                        <td>兰亭黑-简</td>
+                                        <td>Lantinghei SC</td>
+                                        <td>
+                                            <p><input type="radio" id="OS X111" name="OS X11" value="兰亭黑-简" disabled=""><label for="OS X111">中文名</label></p>
+                                            <p><input type="radio" id="OS X112" name="OS X11" value="Lantinghei SC" checked=""><label for="OS X112">英文名</label></p>
+                                            <p><input type="radio" id="OS X113" name="OS X11" value=""><label for="OS X113">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;Hanzipen SC&#39;;">
+                                        <td>翩翩体-简</td>
+                                        <td>Hanzipen SC</td>
+                                        <td>
+                                            <p><input type="radio" id="OS X121" name="OS X12" value="翩翩体-简" disabled=""><label for="OS X121">中文名</label></p>
+                                            <p><input type="radio" id="OS X122" name="OS X12" value="Hanzipen SC" checked=""><label for="OS X122">英文名</label></p>
+                                            <p><input type="radio" id="OS X123" name="OS X12" value=""><label for="OS X123">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;Hannotate SC&#39;;">
+                                        <td>手札体-简</td>
+                                        <td>Hannotate SC</td>
+                                        <td>
+                                            <p><input type="radio" id="OS X131" name="OS X13" value="手札体-简" disabled=""><label for="OS X131">中文名</label></p>
+                                            <p><input type="radio" id="OS X132" name="OS X13" value="Hannotate SC" checked=""><label for="OS X132">英文名</label></p>
+                                            <p><input type="radio" id="OS X133" name="OS X13" value=""><label for="OS X133">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;Songti SC&#39;;">
+                                        <td>宋体-简</td>
+                                        <td>Songti SC</td>
+                                        <td>
+                                            <p><input type="radio" id="OS X141" name="OS X14" value="宋体-简" disabled=""><label for="OS X141">中文名</label></p>
+                                            <p><input type="radio" id="OS X142" name="OS X14" value="Songti SC" checked=""><label for="OS X142">英文名</label></p>
+                                            <p><input type="radio" id="OS X143" name="OS X14" value=""><label for="OS X143">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;Wawati SC&#39;;">
+                                        <td>娃娃体-简</td>
+                                        <td>Wawati SC</td>
+                                        <td>
+                                            <p><input type="radio" id="OS X151" name="OS X15" value="娃娃体-简" disabled=""><label for="OS X151">中文名</label></p>
+                                            <p><input type="radio" id="OS X152" name="OS X15" value="Wawati SC" checked=""><label for="OS X152">英文名</label></p>
+                                            <p><input type="radio" id="OS X153" name="OS X15" value=""><label for="OS X153">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;Weibei SC&#39;;">
+                                        <td>魏碑-简</td>
+                                        <td>Weibei SC</td>
+                                        <td>
+                                            <p><input type="radio" id="OS X161" name="OS X16" value="魏碑-简" disabled=""><label for="OS X161">中文名</label></p>
+                                            <p><input type="radio" id="OS X162" name="OS X16" value="Weibei SC" checked=""><label for="OS X162">英文名</label></p>
+                                            <p><input type="radio" id="OS X163" name="OS X16" value=""><label for="OS X163">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;Xingkai SC&#39;;">
+                                        <td>行楷-简</td>
+                                        <td>Xingkai SC</td>
+                                        <td>
+                                            <p><input type="radio" id="OS X171" name="OS X17" value="行楷-简" disabled=""><label for="OS X171">中文名</label></p>
+                                            <p><input type="radio" id="OS X172" name="OS X17" value="Xingkai SC" checked=""><label for="OS X172">英文名</label></p>
+                                            <p><input type="radio" id="OS X173" name="OS X17" value=""><label for="OS X173">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;Yapi SC&#39;;">
+                                        <td>雅痞-简</td>
+                                        <td>Yapi SC</td>
+                                        <td>
+                                            <p><input type="radio" id="OS X181" name="OS X18" value="雅痞-简" disabled=""><label for="OS X181">中文名</label></p>
+                                            <p><input type="radio" id="OS X182" name="OS X18" value="Yapi SC" checked=""><label for="OS X182">英文名</label></p>
+                                            <p><input type="radio" id="OS X183" name="OS X18" value=""><label for="OS X183">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;Yuanti SC&#39;;">
+                                        <td>圆体-简</td>
+                                        <td>Yuanti SC</td>
+                                        <td>
+                                            <p><input type="radio" id="OS X191" name="OS X19" value="圆体-简" disabled=""><label for="OS X191">中文名</label></p>
+                                            <p><input type="radio" id="OS X192" name="OS X19" value="Yuanti SC" checked=""><label for="OS X192">英文名</label></p>
+                                            <p><input type="radio" id="OS X193" name="OS X19" value=""><label for="OS X193">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h4>office安装后新增字体</h4>
+                            <table class="table" data-type="office">
+                                <thead>
+                                    <tr>
+                                        <th width="100">字体中文名</th>
+                                        <th width="150">字体英文名</th>
+                                        <th>字体应用</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="font-family:&#39;YouYuan&#39;;">
+                                        <td>幼圆</td>
+                                        <td>YouYuan</td>
+                                        <td>
+                                            <p><input type="radio" id="office01" name="office0" value="幼圆"><label for="office01">中文名</label></p>
+                                            <p><input type="radio" id="office02" name="office0" value="YouYuan" checked=""><label for="office02">英文名</label></p>
+                                            <p><input type="radio" id="office03" name="office0" value=""><label for="office03">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;LiSu&#39;;">
+                                        <td>隶书</td>
+                                        <td>LiSu</td>
+                                        <td>
+                                            <p><input type="radio" id="office11" name="office1" value="隶书"><label for="office11">中文名</label></p>
+                                            <p><input type="radio" id="office12" name="office1" value="LiSu" checked=""><label for="office12">英文名</label></p>
+                                            <p><input type="radio" id="office13" name="office1" value=""><label for="office13">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;STXihei&#39;;">
+                                        <td>华文细黑</td>
+                                        <td>STXihei</td>
+                                        <td>
+                                            <p><input type="radio" id="office21" name="office2" value="华文细黑"><label for="office21">中文名</label></p>
+                                            <p><input type="radio" id="office22" name="office2" value="STXihei" checked=""><label for="office22">英文名</label></p>
+                                            <p><input type="radio" id="office23" name="office2" value=""><label for="office23">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;STKaiti&#39;;">
+                                        <td>华文楷体</td>
+                                        <td>STKaiti</td>
+                                        <td>
+                                            <p><input type="radio" id="office31" name="office3" value="华文楷体"><label for="office31">中文名</label></p>
+                                            <p><input type="radio" id="office32" name="office3" value="STKaiti" checked=""><label for="office32">英文名</label></p>
+                                            <p><input type="radio" id="office33" name="office3" value=""><label for="office33">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;STSong&#39;;">
+                                        <td>华文宋体</td>
+                                        <td>STSong</td>
+                                        <td>
+                                            <p><input type="radio" id="office41" name="office4" value="华文宋体"><label for="office41">中文名</label></p>
+                                            <p><input type="radio" id="office42" name="office4" value="STSong" checked=""><label for="office42">英文名</label></p>
+                                            <p><input type="radio" id="office43" name="office4" value=""><label for="office43">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;STFangsong&#39;;">
+                                        <td>华文仿宋</td>
+                                        <td>STFangsong</td>
+                                        <td>
+                                            <p><input type="radio" id="office51" name="office5" value="华文仿宋"><label for="office51">中文名</label></p>
+                                            <p><input type="radio" id="office52" name="office5" value="STFangsong" checked=""><label for="office52">英文名</label></p>
+                                            <p><input type="radio" id="office53" name="office5" value=""><label for="office53">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;STZhongsong&#39;;">
+                                        <td>华文中宋</td>
+                                        <td>STZhongsong</td>
+                                        <td>
+                                            <p><input type="radio" id="office61" name="office6" value="华文中宋"><label for="office61">中文名</label></p>
+                                            <p><input type="radio" id="office62" name="office6" value="STZhongsong" checked=""><label for="office62">英文名</label></p>
+                                            <p><input type="radio" id="office63" name="office6" value=""><label for="office63">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;STCaiyun&#39;;">
+                                        <td>华文彩云</td>
+                                        <td>STCaiyun</td>
+                                        <td>
+                                            <p><input type="radio" id="office71" name="office7" value="华文彩云"><label for="office71">中文名</label></p>
+                                            <p><input type="radio" id="office72" name="office7" value="STCaiyun" checked=""><label for="office72">英文名</label></p>
+                                            <p><input type="radio" id="office73" name="office7" value=""><label for="office73">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;STHupo&#39;;">
+                                        <td>华文琥珀</td>
+                                        <td>STHupo</td>
+                                        <td>
+                                            <p><input type="radio" id="office81" name="office8" value="华文琥珀"><label for="office81">中文名</label></p>
+                                            <p><input type="radio" id="office82" name="office8" value="STHupo" checked=""><label for="office82">英文名</label></p>
+                                            <p><input type="radio" id="office83" name="office8" value=""><label for="office83">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;STXinwei&#39;;">
+                                        <td>华文新魏</td>
+                                        <td>STXinwei</td>
+                                        <td>
+                                            <p><input type="radio" id="office91" name="office9" value="华文新魏"><label for="office91">中文名</label></p>
+                                            <p><input type="radio" id="office92" name="office9" value="STXinwei" checked=""><label for="office92">英文名</label></p>
+                                            <p><input type="radio" id="office93" name="office9" value=""><label for="office93">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;STLiti&#39;;">
+                                        <td>华文隶书</td>
+                                        <td>STLiti</td>
+                                        <td>
+                                            <p><input type="radio" id="office101" name="office10" value="华文隶书"><label for="office101">中文名</label></p>
+                                            <p><input type="radio" id="office102" name="office10" value="STLiti" checked=""><label for="office102">英文名</label></p>
+                                            <p><input type="radio" id="office103" name="office10" value=""><label for="office103">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;STXingkai&#39;;">
+                                        <td>华文行楷</td>
+                                        <td>STXingkai</td>
+                                        <td>
+                                            <p><input type="radio" id="office111" name="office11" value="华文行楷"><label for="office111">中文名</label></p>
+                                            <p><input type="radio" id="office112" name="office11" value="STXingkai" checked=""><label for="office112">英文名</label></p>
+                                            <p><input type="radio" id="office113" name="office11" value=""><label for="office113">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZShuTi&#39;;">
+                                        <td>方正舒体</td>
+                                        <td>FZShuTi</td>
+                                        <td>
+                                            <p><input type="radio" id="office121" name="office12" value="方正舒体" disabled=""><label for="office121">中文名</label></p>
+                                            <p><input type="radio" id="office122" name="office12" value="FZShuTi" checked=""><label for="office122">英文名</label></p>
+                                            <p><input type="radio" id="office123" name="office12" value=""><label for="office123">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZYaoti&#39;;">
+                                        <td>方正姚体</td>
+                                        <td>FZYaoti</td>
+                                        <td>
+                                            <p><input type="radio" id="office131" name="office13" value="方正姚体" disabled=""><label for="office131">中文名</label></p>
+                                            <p><input type="radio" id="office132" name="office13" value="FZYaoti" checked=""><label for="office132">英文名</label></p>
+                                            <p><input type="radio" id="office133" name="office13" value=""><label for="office133">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h4>开源字体</h4>
+                            <table class="table" data-type="open">
+                                <thead>
+                                    <tr>
+                                        <th width="100">字体中文名</th>
+                                        <th width="150">字体英文名</th>
+                                        <th>字体应用</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="font-family:&#39;Source Han Sans CN&#39;;">
+                                        <td>思源黑体</td>
+                                        <td>Source Han Sans CN</td>
+                                        <td>
+                                            <p><input type="radio" id="open01" name="open0" value="思源黑体"><label for="open01">中文名</label></p>
+                                            <p><input type="radio" id="open02" name="open0" value="Source Han Sans CN" checked=""><label for="open02">英文名</label></p>
+                                            <p><input type="radio" id="open03" name="open0" value=""><label for="open03">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;Source Han Serif SC&#39;;">
+                                        <td>思源宋体</td>
+                                        <td>Source Han Serif SC</td>
+                                        <td>
+                                            <p><input type="radio" id="open11" name="open1" value="思源宋体"><label for="open11">中文名</label></p>
+                                            <p><input type="radio" id="open12" name="open1" value="Source Han Serif SC" checked=""><label for="open12">英文名</label></p>
+                                            <p><input type="radio" id="open13" name="open1" value=""><label for="open13">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;WenQuanYi Micro Hei&#39;;">
+                                        <td>文泉驿微米黑</td>
+                                        <td>WenQuanYi Micro Hei</td>
+                                        <td>
+                                            <p><input type="radio" id="open21" name="open2" value="文泉驿微米黑"><label for="open21">中文名</label></p>
+                                            <p><input type="radio" id="open22" name="open2" value="WenQuanYi Micro Hei" checked=""><label for="open22">英文名</label></p>
+                                            <p><input type="radio" id="open23" name="open2" value=""><label for="open23">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h4>版权字体（汉仪）</h4>
+                            <table class="table" data-type="hanyi">
+                                <thead>
+                                    <tr>
+                                        <th width="100">字体中文名</th>
+                                        <th width="150">字体英文名</th>
+                                        <th>字体应用</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="font-family:&#39;HYQihei 40S&#39;;">
+                                        <td>汉仪旗黑</td>
+                                        <td>HYQihei 40S</td>
+                                        <td>
+                                            <p><input type="radio" id="hanyi01" name="hanyi0" value="汉仪旗黑" disabled=""><label for="hanyi01">中文名</label></p>
+                                            <p><input type="radio" id="hanyi02" name="hanyi0" value="HYQihei 40S" checked=""><label for="hanyi02">英文名</label></p>
+                                            <p><input type="radio" id="hanyi03" name="hanyi0" value=""><label for="hanyi03">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;HYQihei 50S&#39;;">
+                                        <td>汉仪旗黑</td>
+                                        <td>HYQihei 50S</td>
+                                        <td>
+                                            <p><input type="radio" id="hanyi11" name="hanyi1" value="汉仪旗黑" disabled=""><label for="hanyi11">中文名</label></p>
+                                            <p><input type="radio" id="hanyi12" name="hanyi1" value="HYQihei 50S" checked=""><label for="hanyi12">英文名</label></p>
+                                            <p><input type="radio" id="hanyi13" name="hanyi1" value=""><label for="hanyi13">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;HYQihei 60S&#39;;">
+                                        <td>汉仪旗黑</td>
+                                        <td>HYQihei 60S</td>
+                                        <td>
+                                            <p><input type="radio" id="hanyi21" name="hanyi2" value="汉仪旗黑" disabled=""><label for="hanyi21">中文名</label></p>
+                                            <p><input type="radio" id="hanyi22" name="hanyi2" value="HYQihei 60S" checked=""><label for="hanyi22">英文名</label></p>
+                                            <p><input type="radio" id="hanyi23" name="hanyi2" value=""><label for="hanyi23">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;HYDaSongJ&#39;;">
+                                        <td>汉仪大宋简</td>
+                                        <td>HYDaSongJ</td>
+                                        <td>
+                                            <p><input type="radio" id="hanyi31" name="hanyi3" value="汉仪大宋简" disabled=""><label for="hanyi31">中文名</label></p>
+                                            <p><input type="radio" id="hanyi32" name="hanyi3" value="HYDaSongJ" checked=""><label for="hanyi32">英文名</label></p>
+                                            <p><input type="radio" id="hanyi33" name="hanyi3" value=""><label for="hanyi33">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;HYKaiti&#39;;">
+                                        <td>汉仪楷体</td>
+                                        <td>HYKaiti</td>
+                                        <td>
+                                            <p><input type="radio" id="hanyi41" name="hanyi4" value="汉仪楷体" disabled=""><label for="hanyi41">中文名</label></p>
+                                            <p><input type="radio" id="hanyi42" name="hanyi4" value="HYKaiti" checked=""><label for="hanyi42">英文名</label></p>
+                                            <p><input type="radio" id="hanyi43" name="hanyi4" value=""><label for="hanyi43">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;HYJiaShuJ&#39;;">
+                                        <td>汉仪家书简</td>
+                                        <td>HYJiaShuJ</td>
+                                        <td>
+                                            <p><input type="radio" id="hanyi51" name="hanyi5" value="汉仪家书简" disabled=""><label for="hanyi51">中文名</label></p>
+                                            <p><input type="radio" id="hanyi52" name="hanyi5" value="HYJiaShuJ" checked=""><label for="hanyi52">英文名</label></p>
+                                            <p><input type="radio" id="hanyi53" name="hanyi5" value=""><label for="hanyi53">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;HYPPTiJ&#39;;">
+                                        <td>汉仪PP体简</td>
+                                        <td>HYPPTiJ</td>
+                                        <td>
+                                            <p><input type="radio" id="hanyi61" name="hanyi6" value="汉仪PP体简" disabled=""><label for="hanyi61">中文名</label></p>
+                                            <p><input type="radio" id="hanyi62" name="hanyi6" value="HYPPTiJ" checked=""><label for="hanyi62">英文名</label></p>
+                                            <p><input type="radio" id="hanyi63" name="hanyi6" value=""><label for="hanyi63">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;HYLeMiaoTi&#39;;">
+                                        <td>汉仪乐喵体简</td>
+                                        <td>HYLeMiaoTi</td>
+                                        <td>
+                                            <p><input type="radio" id="hanyi71" name="hanyi7" value="汉仪乐喵体简" disabled=""><label for="hanyi71">中文名</label></p>
+                                            <p><input type="radio" id="hanyi72" name="hanyi7" value="HYLeMiaoTi" checked=""><label for="hanyi72">英文名</label></p>
+                                            <p><input type="radio" id="hanyi73" name="hanyi7" value=""><label for="hanyi73">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;HYXiaoMaiTiJ&#39;;">
+                                        <td>汉仪小麦体</td>
+                                        <td>HYXiaoMaiTiJ</td>
+                                        <td>
+                                            <p><input type="radio" id="hanyi81" name="hanyi8" value="汉仪小麦体" disabled=""><label for="hanyi81">中文名</label></p>
+                                            <p><input type="radio" id="hanyi82" name="hanyi8" value="HYXiaoMaiTiJ" checked=""><label for="hanyi82">英文名</label></p>
+                                            <p><input type="radio" id="hanyi83" name="hanyi8" value=""><label for="hanyi83">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;HYChengXingJ&#39;;">
+                                        <td>汉仪程行体</td>
+                                        <td>HYChengXingJ</td>
+                                        <td>
+                                            <p><input type="radio" id="hanyi91" name="hanyi9" value="汉仪程行体" disabled=""><label for="hanyi91">中文名</label></p>
+                                            <p><input type="radio" id="hanyi92" name="hanyi9" value="HYChengXingJ" checked=""><label for="hanyi92">英文名</label></p>
+                                            <p><input type="radio" id="hanyi93" name="hanyi9" value=""><label for="hanyi93">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;HYHeiLiZhiTiJ&#39;;">
+                                        <td>汉仪黑荔枝</td>
+                                        <td>HYHeiLiZhiTiJ</td>
+                                        <td>
+                                            <p><input type="radio" id="hanyi101" name="hanyi10" value="汉仪黑荔枝" disabled=""><label for="hanyi101">中文名</label></p>
+                                            <p><input type="radio" id="hanyi102" name="hanyi10" value="HYHeiLiZhiTiJ" checked=""><label for="hanyi102">英文名</label></p>
+                                            <p><input type="radio" id="hanyi103" name="hanyi10" value=""><label for="hanyi103">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;HYYaKuHeiW&#39;;">
+                                        <td>汉仪雅酷黑W</td>
+                                        <td>HYYaKuHeiW</td>
+                                        <td>
+                                            <p><input type="radio" id="hanyi111" name="hanyi11" value="汉仪雅酷黑W" disabled=""><label for="hanyi111">中文名</label></p>
+                                            <p><input type="radio" id="hanyi112" name="hanyi11" value="HYYaKuHeiW" checked=""><label for="hanyi112">英文名</label></p>
+                                            <p><input type="radio" id="hanyi113" name="hanyi11" value=""><label for="hanyi113">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;HYDaHeiJ&#39;;">
+                                        <td>汉仪大黑简</td>
+                                        <td>HYDaHeiJ</td>
+                                        <td>
+                                            <p><input type="radio" id="hanyi121" name="hanyi12" value="汉仪大黑简" disabled=""><label for="hanyi121">中文名</label></p>
+                                            <p><input type="radio" id="hanyi122" name="hanyi12" value="HYDaHeiJ" checked=""><label for="hanyi122">英文名</label></p>
+                                            <p><input type="radio" id="hanyi123" name="hanyi12" value=""><label for="hanyi123">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;HYShangWeiShouShuW&#39;;">
+                                        <td>汉仪尚魏手书W</td>
+                                        <td>HYShangWeiShouShuW</td>
+                                        <td>
+                                            <p><input type="radio" id="hanyi131" name="hanyi13" value="汉仪尚魏手书W" disabled=""><label for="hanyi131">中文名</label></p>
+                                            <p><input type="radio" id="hanyi132" name="hanyi13" value="HYShangWeiShouShuW" checked=""><label for="hanyi132">英文名</label></p>
+                                            <p><input type="radio" id="hanyi133" name="hanyi13" value=""><label for="hanyi133">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h4>版权字体（方正）</h4>
+                            <table class="table" data-type="fangzheng">
+                                <thead>
+                                    <tr>
+                                        <th width="100">字体中文名</th>
+                                        <th width="150">字体英文名</th>
+                                        <th>字体应用</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="font-family:&#39;FZYaSongS-B-GB&#39;;">
+                                        <td>方正粗雅宋简体</td>
+                                        <td>FZYaSongS-B-GB</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng01" name="fangzheng0" value="方正粗雅宋简体" disabled=""><label for="fangzheng01">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng02" name="fangzheng0" value="FZYaSongS-B-GB" checked=""><label for="fangzheng02">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng03" name="fangzheng0" value=""><label for="fangzheng03">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZBaoSong-Z04S&#39;;">
+                                        <td>方正报宋简体</td>
+                                        <td>FZBaoSong-Z04S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng11" name="fangzheng1" value="方正报宋简体" disabled=""><label for="fangzheng11">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng12" name="fangzheng1" value="FZBaoSong-Z04S" checked=""><label for="fangzheng12">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng13" name="fangzheng1" value=""><label for="fangzheng13">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZCuYuan-M03S&#39;;">
+                                        <td>方正粗圆简体</td>
+                                        <td>FZCuYuan-M03S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng21" name="fangzheng2" value="方正粗圆简体" disabled=""><label for="fangzheng21">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng22" name="fangzheng2" value="FZCuYuan-M03S" checked=""><label for="fangzheng22">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng23" name="fangzheng2" value=""><label for="fangzheng23">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZDaBiaoSong-B06S&#39;;">
+                                        <td>方正大标宋简体</td>
+                                        <td>FZDaBiaoSong-B06S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng31" name="fangzheng3" value="方正大标宋简体" disabled=""><label for="fangzheng31">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng32" name="fangzheng3" value="FZDaBiaoSong-B06S" checked=""><label for="fangzheng32">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng33" name="fangzheng3" value=""><label for="fangzheng33">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZDaHei-B02S&#39;;">
+                                        <td>方正大黑简体</td>
+                                        <td>FZDaHei-B02S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng41" name="fangzheng4" value="方正大黑简体" disabled=""><label for="fangzheng41">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng42" name="fangzheng4" value="FZDaHei-B02S" checked=""><label for="fangzheng42">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng43" name="fangzheng4" value=""><label for="fangzheng43">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZFangSong-Z02S&#39;;">
+                                        <td>方正仿宋简体</td>
+                                        <td>FZFangSong-Z02S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng51" name="fangzheng5" value="方正仿宋简体" disabled=""><label for="fangzheng51">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng52" name="fangzheng5" value="FZFangSong-Z02S" checked=""><label for="fangzheng52">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng53" name="fangzheng5" value=""><label for="fangzheng53">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZHei-B01S&#39;;">
+                                        <td>方正黑体简体</td>
+                                        <td>FZHei-B01S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng61" name="fangzheng6" value="方正黑体简体" disabled=""><label for="fangzheng61">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng62" name="fangzheng6" value="FZHei-B01S" checked=""><label for="fangzheng62">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng63" name="fangzheng6" value=""><label for="fangzheng63">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZHuPo-M04S&#39;;">
+                                        <td>方正琥珀简体</td>
+                                        <td>FZHuPo-M04S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng71" name="fangzheng7" value="方正琥珀简体" disabled=""><label for="fangzheng71">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng72" name="fangzheng7" value="FZHuPo-M04S" checked=""><label for="fangzheng72">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng73" name="fangzheng7" value=""><label for="fangzheng73">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZKai-Z03S&#39;;">
+                                        <td>方正楷体简体</td>
+                                        <td>FZKai-Z03S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng81" name="fangzheng8" value="方正楷体简体" disabled=""><label for="fangzheng81">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng82" name="fangzheng8" value="FZKai-Z03S" checked=""><label for="fangzheng82">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng83" name="fangzheng8" value=""><label for="fangzheng83">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZLiBian-S02S&#39;;">
+                                        <td>方正隶变简体</td>
+                                        <td>FZLiBian-S02S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng91" name="fangzheng9" value="方正隶变简体" disabled=""><label for="fangzheng91">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng92" name="fangzheng9" value="FZLiBian-S02S" checked=""><label for="fangzheng92">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng93" name="fangzheng9" value=""><label for="fangzheng93">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZLiShu-S01S&#39;;">
+                                        <td>方正隶书简体</td>
+                                        <td>FZLiShu-S01S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng101" name="fangzheng10" value="方正隶书简体" disabled=""><label for="fangzheng101">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng102" name="fangzheng10" value="FZLiShu-S01S" checked=""><label for="fangzheng102">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng103" name="fangzheng10" value=""><label for="fangzheng103">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZMeiHei-M07S&#39;;">
+                                        <td>方正美黑简体</td>
+                                        <td>FZMeiHei-M07S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng111" name="fangzheng11" value="方正美黑简体" disabled=""><label for="fangzheng111">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng112" name="fangzheng11" value="FZMeiHei-M07S" checked=""><label for="fangzheng112">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng113" name="fangzheng11" value=""><label for="fangzheng113">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZShuSong-Z01S&#39;;">
+                                        <td>方正书宋简体</td>
+                                        <td>FZShuSong-Z01S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng121" name="fangzheng12" value="方正书宋简体" disabled=""><label for="fangzheng121">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng122" name="fangzheng12" value="FZShuSong-Z01S" checked=""><label for="fangzheng122">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng123" name="fangzheng12" value=""><label for="fangzheng123">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZShuTi-S05S&#39;;">
+                                        <td>方正舒体简体</td>
+                                        <td>FZShuTi-S05S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng131" name="fangzheng13" value="方正舒体简体" disabled=""><label for="fangzheng131">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng132" name="fangzheng13" value="FZShuTi-S05S" checked=""><label for="fangzheng132">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng133" name="fangzheng13" value=""><label for="fangzheng133">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZShuiZhu-M08S&#39;;">
+                                        <td>方正水柱简体</td>
+                                        <td>FZShuiZhu-M08S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng141" name="fangzheng14" value="方正水柱简体" disabled=""><label for="fangzheng141">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng142" name="fangzheng14" value="FZShuiZhu-M08S" checked=""><label for="fangzheng142">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng143" name="fangzheng14" value=""><label for="fangzheng143">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZSongHei-B07S&#39;;">
+                                        <td>方正宋黑简体</td>
+                                        <td>FZSongHei-B07S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng151" name="fangzheng15" value="方正宋黑简体" disabled=""><label for="fangzheng151">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng152" name="fangzheng15" value="FZSongHei-B07S" checked=""><label for="fangzheng152">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng153" name="fangzheng15" value=""><label for="fangzheng153">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZSong&#39;;">
+                                        <td>方正宋三简体</td>
+                                        <td>FZSong</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng161" name="fangzheng16" value="方正宋三简体" disabled=""><label for="fangzheng161">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng162" name="fangzheng16" value="FZSong" checked=""><label for="fangzheng162">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng163" name="fangzheng16" value=""><label for="fangzheng163">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZWeiBei-S03S&#39;;">
+                                        <td>方正魏碑简体</td>
+                                        <td>FZWeiBei-S03S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng171" name="fangzheng17" value="方正魏碑简体" disabled=""><label for="fangzheng171">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng172" name="fangzheng17" value="FZWeiBei-S03S" checked=""><label for="fangzheng172">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng173" name="fangzheng17" value=""><label for="fangzheng173">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZXiDengXian-Z06S&#39;;">
+                                        <td>方正细等线简体</td>
+                                        <td>FZXiDengXian-Z06S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng181" name="fangzheng18" value="方正细等线简体" disabled=""><label for="fangzheng181">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng182" name="fangzheng18" value="FZXiDengXian-Z06S" checked=""><label for="fangzheng182">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng183" name="fangzheng18" value=""><label for="fangzheng183">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZXiHei I-Z08S&#39;;">
+                                        <td>方正细黑一简体</td>
+                                        <td>FZXiHei I-Z08S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng191" name="fangzheng19" value="方正细黑一简体" disabled=""><label for="fangzheng191">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng192" name="fangzheng19" value="FZXiHei I-Z08S" checked=""><label for="fangzheng192">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng193" name="fangzheng19" value=""><label for="fangzheng193">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZXiYuan-M01S&#39;;">
+                                        <td>方正细圆简体</td>
+                                        <td>FZXiYuan-M01S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng201" name="fangzheng20" value="方正细圆简体" disabled=""><label for="fangzheng201">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng202" name="fangzheng20" value="FZXiYuan-M01S" checked=""><label for="fangzheng202">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng203" name="fangzheng20" value=""><label for="fangzheng203">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZXiaoBiaoSong-B05S&#39;;">
+                                        <td>方正小标宋简体</td>
+                                        <td>FZXiaoBiaoSong-B05S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng211" name="fangzheng21" value="方正小标宋简体" disabled=""><label for="fangzheng211">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng212" name="fangzheng21" value="FZXiaoBiaoSong-B05S" checked=""><label for="fangzheng212">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng213" name="fangzheng21" value=""><label for="fangzheng213">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZXingKai-S04S&#39;;">
+                                        <td>方正行楷简体</td>
+                                        <td>FZXingKai-S04S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng221" name="fangzheng22" value="方正行楷简体" disabled=""><label for="fangzheng221">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng222" name="fangzheng22" value="FZXingKai-S04S" checked=""><label for="fangzheng222">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng223" name="fangzheng22" value=""><label for="fangzheng223">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZYaoTi-M06S&#39;;">
+                                        <td>方正姚体简体</td>
+                                        <td>FZYaoTi-M06S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng231" name="fangzheng23" value="方正姚体简体" disabled=""><label for="fangzheng231">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng232" name="fangzheng23" value="FZYaoTi-M06S" checked=""><label for="fangzheng232">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng233" name="fangzheng23" value=""><label for="fangzheng233">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZZhongDengXian-Z07S&#39;;">
+                                        <td>方正中等线简体</td>
+                                        <td>FZZhongDengXian-Z07S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng241" name="fangzheng24" value="方正中等线简体" disabled=""><label for="fangzheng241">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng242" name="fangzheng24" value="FZZhongDengXian-Z07S" checked=""><label for="fangzheng242">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng243" name="fangzheng24" value=""><label for="fangzheng243">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZZhunYuan-M02S&#39;;">
+                                        <td>方正准圆简体</td>
+                                        <td>FZZhunYuan-M02S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng251" name="fangzheng25" value="方正准圆简体" disabled=""><label for="fangzheng251">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng252" name="fangzheng25" value="FZZhunYuan-M02S" checked=""><label for="fangzheng252">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng253" name="fangzheng25" value=""><label for="fangzheng253">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZZongYi-M05S&#39;;">
+                                        <td>方正综艺简体</td>
+                                        <td>FZZongYi-M05S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng261" name="fangzheng26" value="方正综艺简体" disabled=""><label for="fangzheng261">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng262" name="fangzheng26" value="FZZongYi-M05S" checked=""><label for="fangzheng262">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng263" name="fangzheng26" value=""><label for="fangzheng263">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZCaiYun-M09S&#39;;">
+                                        <td>方正彩云简体</td>
+                                        <td>FZCaiYun-M09S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng271" name="fangzheng27" value="方正彩云简体" disabled=""><label for="fangzheng271">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng272" name="fangzheng27" value="FZCaiYun-M09S" checked=""><label for="fangzheng272">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng273" name="fangzheng27" value=""><label for="fangzheng273">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZLiShu II-S06S&#39;;">
+                                        <td>方正隶二简体</td>
+                                        <td>FZLiShu II-S06S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng281" name="fangzheng28" value="方正隶二简体" disabled=""><label for="fangzheng281">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng282" name="fangzheng28" value="FZLiShu II-S06S" checked=""><label for="fangzheng282">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng283" name="fangzheng28" value=""><label for="fangzheng283">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZKangTi-S07S&#39;;">
+                                        <td>方正康体简体</td>
+                                        <td>FZKangTi-S07S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng291" name="fangzheng29" value="方正康体简体" disabled=""><label for="fangzheng291">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng292" name="fangzheng29" value="FZKangTi-S07S" checked=""><label for="fangzheng292">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng293" name="fangzheng29" value=""><label for="fangzheng293">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZChaoCuHei-M10S&#39;;">
+                                        <td>方正超粗黑简体</td>
+                                        <td>FZChaoCuHei-M10S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng301" name="fangzheng30" value="方正超粗黑简体" disabled=""><label for="fangzheng301">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng302" name="fangzheng30" value="FZChaoCuHei-M10S" checked=""><label for="fangzheng302">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng303" name="fangzheng30" value=""><label for="fangzheng303">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZNew BaoSong-Z12S&#39;;">
+                                        <td>方正新报宋简体</td>
+                                        <td>FZNew BaoSong-Z12S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng311" name="fangzheng31" value="方正新报宋简体" disabled=""><label for="fangzheng311">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng312" name="fangzheng31" value="FZNew BaoSong-Z12S" checked=""><label for="fangzheng312">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng313" name="fangzheng31" value=""><label for="fangzheng313">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZNew ShuTi-S08S&#39;;">
+                                        <td>方正新舒体简体</td>
+                                        <td>FZNew ShuTi-S08S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng321" name="fangzheng32" value="方正新舒体简体" disabled=""><label for="fangzheng321">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng322" name="fangzheng32" value="FZNew ShuTi-S08S" checked=""><label for="fangzheng322">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng323" name="fangzheng32" value=""><label for="fangzheng323">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZHuangCao-S09S&#39;;">
+                                        <td>方正黄草简体</td>
+                                        <td>FZHuangCao-S09S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng331" name="fangzheng33" value="方正黄草简体" disabled=""><label for="fangzheng331">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng332" name="fangzheng33" value="FZHuangCao-S09S" checked=""><label for="fangzheng332">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng333" name="fangzheng33" value=""><label for="fangzheng333">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZShaoEr-M11S&#39;;">
+                                        <td>方正少儿简体</td>
+                                        <td>FZShaoEr-M11S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng341" name="fangzheng34" value="方正少儿简体" disabled=""><label for="fangzheng341">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng342" name="fangzheng34" value="FZShaoEr-M11S" checked=""><label for="fangzheng342">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng343" name="fangzheng34" value=""><label for="fangzheng343">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZZhiYi-M12S&#39;;">
+                                        <td>方正稚艺简体</td>
+                                        <td>FZZhiYi-M12S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng351" name="fangzheng35" value="方正稚艺简体" disabled=""><label for="fangzheng351">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng352" name="fangzheng35" value="FZZhiYi-M12S" checked=""><label for="fangzheng352">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng353" name="fangzheng35" value=""><label for="fangzheng353">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZXiShanHu-M13S&#39;;">
+                                        <td>方正细珊瑚简体</td>
+                                        <td>FZXiShanHu-M13S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng361" name="fangzheng36" value="方正细珊瑚简体" disabled=""><label for="fangzheng361">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng362" name="fangzheng36" value="FZXiShanHu-M13S" checked=""><label for="fangzheng362">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng363" name="fangzheng36" value=""><label for="fangzheng363">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZCuSong-B09S&#39;;">
+                                        <td>方正粗宋简体</td>
+                                        <td>FZCuSong-B09S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng371" name="fangzheng37" value="方正粗宋简体" disabled=""><label for="fangzheng371">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng372" name="fangzheng37" value="FZCuSong-B09S" checked=""><label for="fangzheng372">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng373" name="fangzheng37" value=""><label for="fangzheng373">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZPingHe-S11S&#39;;">
+                                        <td>方正平和简体</td>
+                                        <td>FZPingHe-S11S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng381" name="fangzheng38" value="方正平和简体" disabled=""><label for="fangzheng381">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng382" name="fangzheng38" value="FZPingHe-S11S" checked=""><label for="fangzheng382">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng383" name="fangzheng38" value=""><label for="fangzheng383">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZHuaLi-M14S&#39;;">
+                                        <td>方正华隶简体</td>
+                                        <td>FZHuaLi-M14S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng391" name="fangzheng39" value="方正华隶简体" disabled=""><label for="fangzheng391">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng392" name="fangzheng39" value="FZHuaLi-M14S" checked=""><label for="fangzheng392">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng393" name="fangzheng39" value=""><label for="fangzheng393">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZShouJinShu-S10S&#39;;">
+                                        <td>方正瘦金书简体</td>
+                                        <td>FZShouJinShu-S10S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng401" name="fangzheng40" value="方正瘦金书简体" disabled=""><label for="fangzheng401">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng402" name="fangzheng40" value="FZShouJinShu-S10S" checked=""><label for="fangzheng402">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng403" name="fangzheng40" value=""><label for="fangzheng403">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZXiQian-M15S&#39;;">
+                                        <td>方正细倩简体</td>
+                                        <td>FZXiQian-M15S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng411" name="fangzheng41" value="方正细倩简体" disabled=""><label for="fangzheng411">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng412" name="fangzheng41" value="FZXiQian-M15S" checked=""><label for="fangzheng412">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng413" name="fangzheng41" value=""><label for="fangzheng413">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZZhongQian-M16S&#39;;">
+                                        <td>方正中倩简体</td>
+                                        <td>FZZhongQian-M16S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng421" name="fangzheng42" value="方正中倩简体" disabled=""><label for="fangzheng421">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng422" name="fangzheng42" value="FZZhongQian-M16S" checked=""><label for="fangzheng422">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng423" name="fangzheng42" value=""><label for="fangzheng423">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZCuQian-M17S&#39;;">
+                                        <td>方正粗倩简体</td>
+                                        <td>FZCuQian-M17S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng431" name="fangzheng43" value="方正粗倩简体" disabled=""><label for="fangzheng431">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng432" name="fangzheng43" value="FZCuQian-M17S" checked=""><label for="fangzheng432">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng433" name="fangzheng43" value=""><label for="fangzheng433">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZPangWa-M18S&#39;;">
+                                        <td>方正胖娃简体</td>
+                                        <td>FZPangWa-M18S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng441" name="fangzheng44" value="方正胖娃简体" disabled=""><label for="fangzheng441">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng442" name="fangzheng44" value="FZPangWa-M18S" checked=""><label for="fangzheng442">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng443" name="fangzheng44" value=""><label for="fangzheng443">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZSongYi-Z13S&#39;;">
+                                        <td>方正宋一简体</td>
+                                        <td>FZSongYi-Z13S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng451" name="fangzheng45" value="方正宋一简体" disabled=""><label for="fangzheng451">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng452" name="fangzheng45" value="FZSongYi-Z13S" checked=""><label for="fangzheng452">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng453" name="fangzheng45" value=""><label for="fangzheng453">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZJianZhi-M23S&#39;;">
+                                        <td>方正剪纸简体</td>
+                                        <td>FZJianZhi-M23S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng461" name="fangzheng46" value="方正剪纸简体" disabled=""><label for="fangzheng461">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng462" name="fangzheng46" value="FZJianZhi-M23S" checked=""><label for="fangzheng462">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng463" name="fangzheng46" value=""><label for="fangzheng463">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZLiuXingTi-M26S&#39;;">
+                                        <td>方正流行体简体</td>
+                                        <td>FZLiuXingTi-M26S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng471" name="fangzheng47" value="方正流行体简体" disabled=""><label for="fangzheng471">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng472" name="fangzheng47" value="FZLiuXingTi-M26S" checked=""><label for="fangzheng472">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng473" name="fangzheng47" value=""><label for="fangzheng473">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZXiangLi-S17S&#39;;">
+                                        <td>方正祥隶简体</td>
+                                        <td>FZXiangLi-S17S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng481" name="fangzheng48" value="方正祥隶简体" disabled=""><label for="fangzheng481">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng482" name="fangzheng48" value="FZXiangLi-S17S" checked=""><label for="fangzheng482">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng483" name="fangzheng48" value=""><label for="fangzheng483">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZCuHuoYi-M25S&#39;;">
+                                        <td>方正粗活意简体</td>
+                                        <td>FZCuHuoYi-M25S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng491" name="fangzheng49" value="方正粗活意简体" disabled=""><label for="fangzheng491">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng492" name="fangzheng49" value="FZCuHuoYi-M25S" checked=""><label for="fangzheng492">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng493" name="fangzheng49" value=""><label for="fangzheng493">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZPangTouYu-M24S&#39;;">
+                                        <td>方正胖头鱼简体</td>
+                                        <td>FZPangTouYu-M24S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng501" name="fangzheng50" value="方正胖头鱼简体" disabled=""><label for="fangzheng501">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng502" name="fangzheng50" value="FZPangTouYu-M24S" checked=""><label for="fangzheng502">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng503" name="fangzheng50" value=""><label for="fangzheng503">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZKaTong-M19S&#39;;">
+                                        <td>方正卡通简体</td>
+                                        <td>FZKaTong-M19S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng511" name="fangzheng51" value="方正卡通简体" disabled=""><label for="fangzheng511">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng512" name="fangzheng51" value="FZKaTong-M19S" checked=""><label for="fangzheng512">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng513" name="fangzheng51" value=""><label for="fangzheng513">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZYiHei-M20S&#39;;">
+                                        <td>方正艺黑简体</td>
+                                        <td>FZYiHei-M20S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng521" name="fangzheng52" value="方正艺黑简体" disabled=""><label for="fangzheng521">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng522" name="fangzheng52" value="FZYiHei-M20S" checked=""><label for="fangzheng522">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng523" name="fangzheng52" value=""><label for="fangzheng523">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZShuiHei-M21S&#39;;">
+                                        <td>方正水黑简体</td>
+                                        <td>FZShuiHei-M21S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng531" name="fangzheng53" value="方正水黑简体" disabled=""><label for="fangzheng531">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng532" name="fangzheng53" value="FZShuiHei-M21S" checked=""><label for="fangzheng532">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng533" name="fangzheng53" value=""><label for="fangzheng533">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZGuLi-S12S&#39;;">
+                                        <td>方正古隶简体</td>
+                                        <td>FZGuLi-S12S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng541" name="fangzheng54" value="方正古隶简体" disabled=""><label for="fangzheng541">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng542" name="fangzheng54" value="FZGuLi-S12S" checked=""><label for="fangzheng542">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng543" name="fangzheng54" value=""><label for="fangzheng543">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZYouXian-Z09S&#39;;">
+                                        <td>方正幼线简体</td>
+                                        <td>FZYouXian-Z09S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng551" name="fangzheng55" value="方正幼线简体" disabled=""><label for="fangzheng551">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng552" name="fangzheng55" value="FZYouXian-Z09S" checked=""><label for="fangzheng552">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng553" name="fangzheng55" value=""><label for="fangzheng553">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZQiTi-S14S&#39;;">
+                                        <td>方正启体简体</td>
+                                        <td>FZQiTi-S14S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng561" name="fangzheng56" value="方正启体简体" disabled=""><label for="fangzheng561">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng562" name="fangzheng56" value="FZQiTi-S14S" checked=""><label for="fangzheng562">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng563" name="fangzheng56" value=""><label for="fangzheng563">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZXiaoZhuanTi-S13T&#39;;">
+                                        <td>方正小篆体</td>
+                                        <td>FZXiaoZhuanTi-S13T</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng571" name="fangzheng57" value="方正小篆体" disabled=""><label for="fangzheng571">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng572" name="fangzheng57" value="FZXiaoZhuanTi-S13T" checked=""><label for="fangzheng572">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng573" name="fangzheng57" value=""><label for="fangzheng573">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZYingBiKaiShu-S15S&#39;;">
+                                        <td>方正硬笔楷书简体</td>
+                                        <td>FZYingBiKaiShu-S15S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng581" name="fangzheng58" value="方正硬笔楷书简体" disabled=""><label for="fangzheng581">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng582" name="fangzheng58" value="FZYingBiKaiShu-S15S" checked=""><label for="fangzheng582">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng583" name="fangzheng58" value=""><label for="fangzheng583">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZZhanBiHei-M22S&#39;;">
+                                        <td>方正毡笔黑简体</td>
+                                        <td>FZZhanBiHei-M22S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng591" name="fangzheng59" value="方正毡笔黑简体" disabled=""><label for="fangzheng591">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng592" name="fangzheng59" value="FZZhanBiHei-M22S" checked=""><label for="fangzheng592">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng593" name="fangzheng59" value=""><label for="fangzheng593">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family:&#39;FZYingBiXingShu-S16S&#39;;">
+                                        <td>方正硬笔行书简体</td>
+                                        <td>FZYingBiXingShu-S16S</td>
+                                        <td>
+                                            <p><input type="radio" id="fangzheng601" name="fangzheng60" value="方正硬笔行书简体" disabled=""><label for="fangzheng601">中文名</label></p>
+                                            <p><input type="radio" id="fangzheng602" name="fangzheng60" value="FZYingBiXingShu-S16S" checked=""><label for="fangzheng602">英文名</label></p>
+                                            <p><input type="radio" id="fangzheng603" name="fangzheng60" value=""><label for="fangzheng603">浏览器默认</label></p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                var dataFont = {
+                    windows: [{
+                        ch: '宋体',
+                        en: 'SimSun'
+                    }, {
+                        ch: '黑体',
+                        en: 'SimHei'
+                    }, {
+                        ch: '微软雅黑',
+                        en: 'Microsoft Yahei'
+                    }, {
+                        ch: '微软正黑体',
+                        en: 'Microsoft JhengHei'
+                    }, {
+                        ch: '楷体',
+                        en: 'KaiTi'
+                    }, {
+                        ch: '新宋体',
+                        en: 'NSimSun'
+                    }, {
+                        ch: '仿宋',
+                        en: 'FangSong'
+                    }],
+                    'OS X': [{
+                        ch: '苹方',
+                        en: 'PingFang SC'
+                    }, {
+                        ch: '华文黑体',
+                        en: 'STHeiti'
+                    }, {
+                        ch: '华文楷体',
+                        en: 'STKaiti'
+                    }, {
+                        ch: '华文宋体',
+                        en: 'STSong'
+                    }, {
+                        ch: '华文仿宋',
+                        en: 'STFangsong'
+                    }, {
+                        ch: '华文中宋',
+                        en: 'STZhongsong'
+                    }, {
+                        ch: '华文琥珀',
+                        en: 'STHupo'
+                    }, {
+                        ch: '华文新魏',
+                        en: 'STXinwei'
+                    }, {
+                        ch: '华文隶书',
+                        en: 'STLiti'
+                    }, {
+                        ch: '华文行楷',
+                        en: 'STXingkai'
+                    }, {
+                        ch: '冬青黑体简',
+                        en: 'Hiragino Sans GB'
+                    }, {
+                        ch: '兰亭黑-简',
+                        en: 'Lantinghei SC'
+                    }, {
+                        ch: '翩翩体-简',
+                        en: 'Hanzipen SC'
+                    }, {
+                        ch: '手札体-简',
+                        en: 'Hannotate SC'
+                    }, {
+                        ch: '宋体-简',
+                        en: 'Songti SC'
+                    }, {
+                        ch: '娃娃体-简',
+                        en: 'Wawati SC'
+                    }, {
+                        ch: '魏碑-简',
+                        en: 'Weibei SC'
+                    }, {
+                        ch: '行楷-简',
+                        en: 'Xingkai SC'
+                    }, {
+                        ch: '雅痞-简',
+                        en: 'Yapi SC'
+                    }, {
+                        ch: '圆体-简',
+                        en: 'Yuanti SC'
+                    }],
+                    'office': [{
+                        ch: '幼圆',
+                        en: 'YouYuan'
+                    }, {
+                        ch: '隶书',
+                        en: 'LiSu'
+                    }, {
+                        ch: '华文细黑',
+                        en: 'STXihei'
+                    }, {
+                        ch: '华文楷体',
+                        en: 'STKaiti'
+                    }, {
+                        ch: '华文宋体',
+                        en: 'STSong'
+                    }, {
+                        ch: '华文仿宋',
+                        en: 'STFangsong'
+                    }, {
+                        ch: '华文中宋',
+                        en: 'STZhongsong'
+                    }, {
+                        ch: '华文彩云',
+                        en: 'STCaiyun'
+                    }, {
+                        ch: '华文琥珀',
+                        en: 'STHupo'
+                    }, {
+                        ch: '华文新魏',
+                        en: 'STXinwei'
+                    }, {
+                        ch: '华文隶书',
+                        en: 'STLiti'
+                    }, {
+                        ch: '华文行楷',
+                        en: 'STXingkai'
+                    }, {
+                        ch: '方正舒体',
+                        en: 'FZShuTi'
+                    }, {
+                        ch: '方正姚体',
+                        en: 'FZYaoti'
+                    }],
+                    'open': [{
+                        ch: '思源黑体',
+                        en: 'Source Han Sans CN'
+                    }, {
+                        ch: '思源宋体',
+                        en: 'Source Han Serif SC'
+                    }, {
+                        ch: '文泉驿微米黑',
+                        en: 'WenQuanYi Micro Hei'
+                    }],
+                    'hanyi': [{
+                        ch: '汉仪旗黑',
+                        en: 'HYQihei 40S'
+                    }, {
+                        ch: '汉仪旗黑',
+                        en: 'HYQihei 50S'
+                    }, {
+                        ch: '汉仪旗黑',
+                        en: 'HYQihei 60S'
+                    }, {
+                        ch: '汉仪大宋简',
+                        en: 'HYDaSongJ'
+                    }, {
+                        ch: '汉仪楷体',
+                        en: 'HYKaiti'
+                    }, {
+                        ch: '汉仪家书简',
+                        en: 'HYJiaShuJ'
+                    }, {
+                        ch: '汉仪PP体简',
+                        en: 'HYPPTiJ'
+                    }, {
+                        ch: '汉仪乐喵体简',
+                        en: 'HYLeMiaoTi'
+                    }, {
+                        ch: '汉仪小麦体',
+                        en: 'HYXiaoMaiTiJ'
+                    }, {
+                        ch: '汉仪程行体',
+                        en: 'HYChengXingJ'
+                    }, {
+                        ch: '汉仪黑荔枝',
+                        en: 'HYHeiLiZhiTiJ'
+                    }, {
+                        ch: '汉仪雅酷黑W',
+                        en: 'HYYaKuHeiW'
+                    }, {
+                        ch: '汉仪大黑简',
+                        en: 'HYDaHeiJ'
+                    }, {
+                        ch: '汉仪尚魏手书W',
+                        en: 'HYShangWeiShouShuW'
+                    }],
+                    'fangzheng': [{
+                        "ch": "方正粗雅宋简体",
+                        "en": "FZYaSongS-B-GB"
+                    }, {
+                        "ch": "方正报宋简体",
+                        "en": "FZBaoSong-Z04S"
+                    }, {
+                        "ch": "方正粗圆简体",
+                        "en": "FZCuYuan-M03S"
+                    }, {
+                        "ch": "方正大标宋简体",
+                        "en": "FZDaBiaoSong-B06S"
+                    }, {
+                        "ch": "方正大黑简体",
+                        "en": "FZDaHei-B02S"
+                    }, {
+                        "ch": "方正仿宋简体",
+                        "en": "FZFangSong-Z02S"
+                    }, {
+                        "ch": "方正黑体简体",
+                        "en": "FZHei-B01S"
+                    }, {
+                        "ch": "方正琥珀简体",
+                        "en": "FZHuPo-M04S"
+                    }, {
+                        "ch": "方正楷体简体",
+                        "en": "FZKai-Z03S"
+                    }, {
+                        "ch": "方正隶变简体",
+                        "en": "FZLiBian-S02S"
+                    }, {
+                        "ch": "方正隶书简体",
+                        "en": "FZLiShu-S01S"
+                    }, {
+                        "ch": "方正美黑简体",
+                        "en": "FZMeiHei-M07S"
+                    }, {
+                        "ch": "方正书宋简体",
+                        "en": "FZShuSong-Z01S"
+                    }, {
+                        "ch": "方正舒体简体",
+                        "en": "FZShuTi-S05S"
+                    }, {
+                        "ch": "方正水柱简体",
+                        "en": "FZShuiZhu-M08S"
+                    }, {
+                        "ch": "方正宋黑简体",
+                        "en": "FZSongHei-B07S"
+                    }, {
+                        "ch": "方正宋三简体",
+                        "en": "FZSong"
+                    }, {
+                        "ch": "方正魏碑简体",
+                        "en": "FZWeiBei-S03S"
+                    }, {
+                        "ch": "方正细等线简体",
+                        "en": "FZXiDengXian-Z06S"
+                    }, {
+                        "ch": "方正细黑一简体",
+                        "en": "FZXiHei I-Z08S"
+                    }, {
+                        "ch": "方正细圆简体",
+                        "en": "FZXiYuan-M01S"
+                    }, {
+                        "ch": "方正小标宋简体",
+                        "en": "FZXiaoBiaoSong-B05S"
+                    }, {
+                        "ch": "方正行楷简体",
+                        "en": "FZXingKai-S04S"
+                    }, {
+                        "ch": "方正姚体简体",
+                        "en": "FZYaoTi-M06S"
+                    }, {
+                        "ch": "方正中等线简体",
+                        "en": "FZZhongDengXian-Z07S"
+                    }, {
+                        "ch": "方正准圆简体",
+                        "en": "FZZhunYuan-M02S"
+                    }, {
+                        "ch": "方正综艺简体",
+                        "en": "FZZongYi-M05S"
+                    }, {
+                        "ch": "方正彩云简体",
+                        "en": "FZCaiYun-M09S"
+                    }, {
+                        "ch": "方正隶二简体",
+                        "en": "FZLiShu II-S06S"
+                    }, {
+                        "ch": "方正康体简体",
+                        "en": "FZKangTi-S07S"
+                    }, {
+                        "ch": "方正超粗黑简体",
+                        "en": "FZChaoCuHei-M10S"
+                    }, {
+                        "ch": "方正新报宋简体",
+                        "en": "FZNew BaoSong-Z12S"
+                    }, {
+                        "ch": "方正新舒体简体",
+                        "en": "FZNew ShuTi-S08S"
+                    }, {
+                        "ch": "方正黄草简体",
+                        "en": "FZHuangCao-S09S"
+                    }, {
+                        "ch": "方正少儿简体",
+                        "en": "FZShaoEr-M11S"
+                    }, {
+                        "ch": "方正稚艺简体",
+                        "en": "FZZhiYi-M12S"
+                    }, {
+                        "ch": "方正细珊瑚简体",
+                        "en": "FZXiShanHu-M13S"
+                    }, {
+                        "ch": "方正粗宋简体",
+                        "en": "FZCuSong-B09S"
+                    }, {
+                        "ch": "方正平和简体",
+                        "en": "FZPingHe-S11S"
+                    }, {
+                        "ch": "方正华隶简体",
+                        "en": "FZHuaLi-M14S"
+                    }, {
+                        "ch": "方正瘦金书简体",
+                        "en": "FZShouJinShu-S10S"
+                    }, {
+                        "ch": "方正细倩简体",
+                        "en": "FZXiQian-M15S"
+                    }, {
+                        "ch": "方正中倩简体",
+                        "en": "FZZhongQian-M16S"
+                    }, {
+                        "ch": "方正粗倩简体",
+                        "en": "FZCuQian-M17S"
+                    }, {
+                        "ch": "方正胖娃简体",
+                        "en": "FZPangWa-M18S"
+                    }, {
+                        "ch": "方正宋一简体",
+                        "en": "FZSongYi-Z13S"
+                    }, {
+                        "ch": "方正剪纸简体",
+                        "en": "FZJianZhi-M23S"
+                    }, {
+                        "ch": "方正流行体简体",
+                        "en": "FZLiuXingTi-M26S"
+                    }, {
+                        "ch": "方正祥隶简体",
+                        "en": "FZXiangLi-S17S"
+                    }, {
+                        "ch": "方正粗活意简体",
+                        "en": "FZCuHuoYi-M25S"
+                    }, {
+                        "ch": "方正胖头鱼简体",
+                        "en": "FZPangTouYu-M24S"
+                    }, /*{"ch":"方正铁筋隶书简体","en":"FZTieJinLiShu-Z14S"},{"ch":"方正北魏楷书简体","en":"FZBeiWeiKaiShu-Z15S"},*/ {
+                        "ch": "方正卡通简体",
+                        "en": "FZKaTong-M19S"
+                    }, {
+                        "ch": "方正艺黑简体",
+                        "en": "FZYiHei-M20S"
+                    }, {
+                        "ch": "方正水黑简体",
+                        "en": "FZShuiHei-M21S"
+                    }, {
+                        "ch": "方正古隶简体",
+                        "en": "FZGuLi-S12S"
+                    }, {
+                        "ch": "方正幼线简体",
+                        "en": "FZYouXian-Z09S"
+                    }, {
+                        "ch": "方正启体简体",
+                        "en": "FZQiTi-S14S"
+                    }, {
+                        "ch": "方正小篆体",
+                        "en": "FZXiaoZhuanTi-S13T"
+                    }, {
+                        "ch": "方正硬笔楷书简体",
+                        "en": "FZYingBiKaiShu-S15S"
+                    }, {
+                        "ch": "方正毡笔黑简体",
+                        "en": "FZZhanBiHei-M22S"
+                    }, {
+                        "ch": "方正硬笔行书简体",
+                        "en": "FZYingBiXingShu-S16S"
+                    }]
+                };
+
+                // 系统默认字体
+                var rootFontFamily = (document.documentElement.currentStyle ? document.documentElement.currentStyle : window.getComputedStyle(document.documentElement)).fontFamily;
+
+                var eleTables = document.getElementsByTagName('table');
+                var lenTables = eleTables.length;
+
+                for (var index = 0; index < lenTables; index++) {
+                    var typeFont = eleTables[index].getAttribute('data-type');
+                    var arrDataFont = dataFont[typeFont];
+                    if (arrDataFont && arrDataFont.length) {
+                        var html = '';
+                        for (var start = 0; start < arrDataFont.length; start++) {
+                            var name = typeFont + start;
+                            var fontEn = arrDataFont[start].en,
+                                fontCh = arrDataFont[start].ch;
+                            // 是否标记为默认字体的处理
+                            var htmlFontEn = fontEn,
+                                htmlFontCh = fontCh;
+                            if (fontEn.toLowerCase() === rootFontFamily.toLowerCase()) {
+                                htmlFontEn += '<span class="red">（浏览器默认）</span>';
+                            } else if (fontCh.toLowerCase() === rootFontFamily.toLowerCase()) {
+                                htmlFontCh += '<span class="red">（浏览器默认）</span>';
+                            }
+
+                            html = html + '<tr style="font-family:\'' + fontEn + '\';"><td>' + htmlFontCh + '</td><td>' + htmlFontEn + '</td><td>' +
+                                '<p><input type="radio" id="' + name + '1" name="' + name + '" value="' + fontCh + '"' + (/简|汉仪|方正/.test(fontCh) || typeFont == 'other' ? ' disabled' : '') + '><label for="' + name + '1">中文名</label></p>' +
+                                '<p><input type="radio" id="' + name + '2" name="' + name + '" value="' + fontEn + '" checked><label for="' + name + '2">英文名</label></p>' +
+                                '<p><input type="radio" id="' + name + '3" name="' + name + '" value=""><label for="' + name + '3">浏览器默认</label></p>' +
+                                '</td></tr>';
+                        }
+
+                        eleTables[index].getElementsByTagName('tbody')[0].innerHTML = html;
+
+                        // 复选框事件
+                        eleTables[index].onclick = function(event) {
+                            event = event || window.event;
+                            var target = event.target;
+
+                            if (target && target.type == 'radio') {
+                                target.parentNode.parentNode.parentNode.style.fontFamily = target.value;
+                            }
+                        };
+                    }
+                } // JavaScript Document
+            </script>
+
+</html>
