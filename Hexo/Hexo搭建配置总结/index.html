@@ -6,7 +6,7 @@
   
   <title>Hexo搭建配置总结 | Eighteen Blog</title>
   
-  <meta name="keywords" content="前端, JavaScript, Vue, Angular, LH_ZSF, Eighteen Blog, 赵少飞, zhaoshaofei, 赵十八">
+  <meta name="keywords" content="hexo, 搭建, 配置, 前端, LH_ZSF, Eighteen Blog, zhaoshaofei, 赵十八">
   
   
   <meta name="description" content="好学力行，明德任责。一起分享芝士。">
@@ -319,8 +319,12 @@
 <ul>
 <li>根目录为public的时候,图片放在source下面的img里面就可以，没有的话创建个img文件夹。</li>
 </ul>
-<figure class="highlight plain"><figcaption><span>https://www.xxx.com/img/favicon.ico ```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### Hexo 添加百度统计</span><br><span class="line"></span><br><span class="line">1. 首先肯定是要去百度统计注册一下了。。[百度统计](https://tongji.baidu.com/web/)注册完成之后生成统计代码，备用。</span><br><span class="line">2. 在**主题配置文件_config.yml**里面添加一行</span><br><span class="line">``` </span><br><span class="line">    # Analytics</span><br><span class="line">    cnzz: true</span><br></pre></td></tr></table></figure>
-<ol start="3">
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">favicon: https://www.xxx.com/img/favicon.ico</span><br></pre></td></tr></table></figure>
+<h3 id="Hexo-添加百度统计"><a href="#Hexo-添加百度统计" class="headerlink" title="Hexo 添加百度统计"></a>Hexo 添加百度统计</h3><ol>
+<li>首先肯定是要去百度统计注册一下了。。<a href="https://tongji.baidu.com/web/" target="_blank" rel="noopener">百度统计</a>注册完成之后生成统计代码，备用。</li>
+<li><p>在<strong>主题配置文件_config.yml</strong>里面添加一行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Analytics</span><br><span class="line">cnzz: true</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>找到 <strong>\hexo\themes\pacman\layout_partial</strong>,在这个文件夹中创建一个cnzz.ejs的文件然后将下面内容复制进去，记得替换中间的script</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line">&lt;% if (theme.cnzz)&#123; %&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 将中间这一块script替换成你的统计代码 --&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    var cnzz_protocol = ((&quot;https:&quot; == document.location.protocol) ? &quot; https://&quot;: &quot; http://&quot;);</span><br><span class="line">    document.write(unescape(&quot;%3Cspan id=&apos;cnzz_stat_icon_1000543074&apos;%3E%3C/span%3E%3Cscript src=&apos;&quot; + cnzz_protocol + &quot;s19.cnzz.com/z_stat.php%3Fid%3D1000543074%26show%3Dpic&apos; type=&apos;text/javascript&apos;%3E%3C/script%3E&quot;));</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
 </li>
@@ -415,10 +419,10 @@
     <div class="new-meta-box">
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-09-06T17:02:39+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-09-23T17:44:30+08:00">
   <a class="notlink">
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>最后更新于 2019年9月6日</p>
+    <p>最后更新于 2019年9月23日</p>
   </a>
 </div>
 
@@ -663,7 +667,7 @@ Hexo 评论系统 gitalk
 </header>
 
     <div class="content pure">
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo-添加Favicon"><span class="toc-text">Hexo 添加Favicon</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo-RSS订阅"><span class="toc-text">Hexo RSS订阅</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo-添加看板娘"><span class="toc-text">Hexo 添加看板娘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo-网站地图"><span class="toc-text">Hexo 网站地图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo-评论系统-gitalk"><span class="toc-text">Hexo 评论系统 gitalk</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo-添加Favicon"><span class="toc-text">Hexo 添加Favicon</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo-添加百度统计"><span class="toc-text">Hexo 添加百度统计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo-RSS订阅"><span class="toc-text">Hexo RSS订阅</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo-添加看板娘"><span class="toc-text">Hexo 添加看板娘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo-网站地图"><span class="toc-text">Hexo 网站地图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo-评论系统-gitalk"><span class="toc-text">Hexo 评论系统 gitalk</span></a></li></ol>
     </div>
   </section>
 
@@ -736,7 +740,9 @@ Hexo 评论系统 gitalk
     <div class="content pure">
       <ul class="entry">
         
-          <li><a class="flat-box" title="/categories/Algorithm/" href="/categories/Algorithm/"><div class="name">Algorithm</div><div class="badge">(3)</div></a></li>
+          <li><a class="flat-box" title="/categories/Algorithm/" href="/categories/Algorithm/"><div class="name">Algorithm</div><div class="badge">(7)</div></a></li>
+        
+          <li><a class="flat-box child" title="/categories/Algorithm/每日一题/" href="/categories/Algorithm/每日一题/"><div class="name">每日一题</div><div class="badge">(6)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Angular/" href="/categories/Angular/"><div class="name">Angular</div><div class="badge">(3)</div></a></li>
         
@@ -773,7 +779,7 @@ Hexo 评论系统 gitalk
 </header>
 
     <div class="content pure">
-      <a href="/tags/Algorithm/" style="font-size: 17.33px; color: #828282">Algorithm</a> <a href="/tags/Angular/" style="font-size: 17.33px; color: #828282">Angular</a> <a href="/tags/Css/" style="font-size: 24px; color: #555">Css</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 20.67px; color: #6c6c6c">JavaScript</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a>
+      <a href="/tags/Algorithm/" style="font-size: 24px; color: #555">Algorithm</a> <a href="/tags/Angular/" style="font-size: 17.33px; color: #828282">Angular</a> <a href="/tags/Css/" style="font-size: 24px; color: #555">Css</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 20.67px; color: #6c6c6c">JavaScript</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a>
     </div>
   </section>
 
