@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>Opacity引发的元素层级变化 | Eighteen Blog</title>
+  <title>Leetcode_26. 删除排序数组中的重复项 | Eighteen Blog</title>
   
-  <meta name="keywords" content="opacity, 层级, 前端, LH_ZSF, Eighteen Blog, zhaoshaofei, 赵十八">
+  <meta name="keywords" content="leetcode_26, 删除排序数组中的重复项, 前端, LH_ZSF, Eighteen Blog, zhaoshaofei, 赵十八">
   
   
   <meta name="description" content="好学力行，明德任责。一起分享芝士。">
@@ -222,8 +222,8 @@
         
   
     <h1 class="title">
-      <a href="/Css/Opcity引发的元素层级变化/">
-        Opacity引发的元素层级变化
+      <a href="/Algorithm/每日一题/leetcode_26. 删除排序数组中的重复项/">
+        Leetcode_26. 删除排序数组中的重复项
       </a>
     </h1>
   
@@ -252,7 +252,7 @@
             <div class="new-meta-item date">
   <a class="notlink">
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2018-06-29</p>
+    <p>2019-09-27</p>
   </a>
 </div>
 
@@ -262,9 +262,9 @@
             
   
   <div class="new-meta-item category">
-    <a href="/categories/Css/" rel="nofollow">
+    <a href="/categories/Algorithm/每日一题/" rel="nofollow">
       <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>Css</p>
+      <p>Algorithm&nbsp;/&nbsp;每日一题</p>
     </a>
   </div>
 
@@ -304,23 +304,32 @@
 
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
-          <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><blockquote>
-<p> 发现这个问题是在图片上定位了一个删除按钮，当我用opacity属性对图片进行透明化处理的时候，发现删除按钮不管用了，最后发现删除按钮是被图片覆盖了，究其原因是因为opacity这个属性造成的层级变化。</p>
-</blockquote>
-<ol>
-<li>我发现含有opacity属性的元素层级会比其他元素的层级高，这时候z-index是不起作用的，opacity会一直高于其他元素的层级。</li>
-<li>给其他元素加上position属性，会使该元素跟opacity处在同一层级之上，这时候你再给元素附加z-index就可以起作用了。</li>
-</ol>
+          <h3 id="题目解析："><a href="#题目解析：" class="headerlink" title="题目解析："></a>题目解析：</h3><p>给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。</p>
+<p>不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>示例 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">给定数组 nums = [1,1,2], </span><br><span class="line"></span><br><span class="line">函数应该返回新的长度 2, 并且原数组 nums 的前两个元素被修改为 1, 2。 </span><br><span class="line"></span><br><span class="line">你不需要考虑数组中超出新长度后面的元素。</span><br></pre></td></tr></table></figure></p>
+<p>示例 2:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">给定 nums = [0,0,1,1,1,2,2,3,3,4],</span><br><span class="line"></span><br><span class="line">函数应该返回新的长度 5, 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4。</span><br><span class="line"></span><br><span class="line">你不需要考虑数组中超出新长度后面的元素。</span><br></pre></td></tr></table></figure></p>
+<p>提示：</p>
+<p>为什么返回数值是整数，但输出的答案是数组呢?</p>
+<p>请注意，输入数组是以“引用”方式传递的，这意味着在函数里修改输入数组对于调用者是可见的。</p>
+<p>你可以想象内部操作如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// nums 是以“引用”方式传递的。也就是说，不对实参做任何拷贝</span><br><span class="line">int len = removeDuplicates(nums);</span><br><span class="line"></span><br><span class="line">// 在函数里修改输入数组对于调用者是可见的。</span><br><span class="line">// 根据你的函数返回的长度, 它会打印出数组中该长度范围内的所有元素。</span><br><span class="line">for (int i = 0; i &lt; len; i++) &#123;</span><br><span class="line">    print(nums[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
-<h3 id="总结和解决方案"><a href="#总结和解决方案" class="headerlink" title="总结和解决方案"></a>总结和解决方案</h3><ul>
-<li><p>总结：当你使用opacity的时候会对元素层级造成影响</p>
-</li>
-<li><p>解决办法：加上position和z-index可以对opacity元素进行覆盖</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">.box&#123;</span><br><span class="line">            width: 200px;</span><br><span class="line">            height: 200px;</span><br><span class="line">            background-color: red;</span><br><span class="line">            color: #fff;</span><br><span class="line">            cursor: pointer;</span><br><span class="line">        &#125;</span><br><span class="line">        .box1&#123;</span><br><span class="line">            opacity: 0.8;</span><br><span class="line">        &#125;</span><br><span class="line">        .box2&#123;</span><br><span class="line">            background-color: blue;</span><br><span class="line">            margin-left: 30px;</span><br><span class="line">            margin-top: -160px;</span><br><span class="line">            position: relative;</span><br><span class="line">            z-index: 100;</span><br><span class="line">        &#125;</span><br><span class="line">        .box3&#123;</span><br><span class="line">            background-color: green;</span><br><span class="line">            margin-left: 60px;</span><br><span class="line">            margin-top: -160px;</span><br><span class="line">            opacity: 0.7;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<p>如上：box2的层级是最高的。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><pre><code>题目中原地的意思大概就是要在原数组中操作不能开辟新的数组空间。
+题目简单，就是去除数组中的重复元素。
+首先想到的是删除数组中的重复元素，用到了splice。
+</code></pre><h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var removeDuplicates = function(nums) &#123;</span><br><span class="line">    for (var i = 0; i &lt; nums.length; i++) &#123;</span><br><span class="line">        if (nums.includes(nums[i], i + 1)) &#123;</span><br><span class="line">            nums.splice(i, 1);</span><br><span class="line">            i--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return nums.length;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="解题思路二"><a href="#解题思路二" class="headerlink" title="解题思路二"></a>解题思路二</h3><pre><code>由于第一种方法用到了splice，所以其实时空间复杂度还是比较高的。
+所以，根据题目要求我们其实只需要保证数组的前面排列的是我们需要的就可以了。超过的部分我可以忽略不计。
+那其实就是依次从头填充数组就可以了！直到遍历完数组的最后一位。
+双指针就解决了。一个用来遍历数组，一个用来从头修改数组。
 
+由于题目告诉为排序数组，所以我们可以用i，i+1判断。
+</code></pre><h3 id="解答二"><a href="#解答二" class="headerlink" title="解答二"></a>解答二</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var removeDuplicates = function(nums) &#123;</span><br><span class="line">    var next = 0;</span><br><span class="line">    for (var i = 0; i &lt; nums.length; i++) &#123;</span><br><span class="line">        if (nums[i] != nums[i+1]) &#123;</span><br><span class="line">            nums[next] = nums[i];</span><br><span class="line">            next++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return next;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="解题思路三"><a href="#解题思路三" class="headerlink" title="解题思路三"></a>解题思路三</h3><pre><code>了解一下ES6的array.includes(searchEle, fromIndex);
+判断数组种是否含有searchEle。(true / false);
+searchEle为搜索的元素（必填），fromIndex为从数组的哪一位开始搜索。
+
+使用includes同时可以判断非排序的数组
+</code></pre><h3 id="解答三"><a href="#解答三" class="headerlink" title="解答三"></a>解答三</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var removeDuplicates = function(nums) &#123;</span><br><span class="line">    var j = 0;</span><br><span class="line">    for (var i = 0; i &lt; nums.length; i++) &#123;</span><br><span class="line">        if (!nums.includes(nums[i], i + 1)) &#123;</span><br><span class="line">            nums[j] = nums[i];</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return j;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
         </div>
         
           
@@ -331,10 +340,10 @@
     <div class="new-meta-box">
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-09-20T15:42:49+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-09-27T15:12:55+08:00">
   <a class="notlink">
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>最后更新于 2019年9月20日</p>
+    <p>最后更新于 2019年9月27日</p>
   </a>
 </div>
 
@@ -343,7 +352,7 @@
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Css/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>Css</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>Algorithm</p></a></div>
 
 
         
@@ -354,13 +363,14 @@
   <div class="-mob-share-list share-body">
     
       
-        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.zsfmyz.top/Css/Opcity引发的元素层级变化/&title=Opacity引发的元素层级变化 | Eighteen Blog&summary=背景
- 发现这个问题是在图片上定位了一个删除按钮，当我用opacity属性对图片进行透明化处理的时候，发现删除按钮不管用了，最后发现删除按钮是被图片覆盖了，究其原因是因为opacity这个属性造成的层级变化。
-
-
-我发现含有opacity属性的元素层级会比其他元素的层级高，这时候z-index是不起作用的，opacity会一直高于其他元素的层级。
-给其他元素加上position属性，会使该元素跟opacity处在同一层级之上，这时候你再给元素附加z-index就可以起作用了。
-">
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.zsfmyz.top/Algorithm/每日一题/leetcode_26. 删除排序数组中的重复项/&title=Leetcode_26. 删除排序数组中的重复项 | Eighteen Blog&summary=题目解析：给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。
+不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。
+示例示例 1:12345给定数组 nums = [1,1,2], 函数应该返回新的长度 2, 并且原数组 nums 的前两个元素被修改为 1, 2。 你不需要考虑数组中超出新长度后面的元素。
+示例 2:12345给定 nums = [0,0,1,1,1,2,2,3,3,4],函数应该返回新的长度 5, 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4。你不需要考虑数组中超出新长度后面的元素。
+提示：
+为什么返回数值是整数，但输出的答案是数组呢?
+请注意，输入数组是以“引用”方式传递的，这意味着在函数里修改输入数组对于调用者是可见的。
+你可以想象内部操作如下:12345678// nums 是以“引用”方式传递的。也就是说，不对实参做任何拷贝int len = removeDuplicates(nums);// 在函数里修改输入数组对于调用者是可见的。// 根据你的函数返回的长度, 它会打印出数组中该长度范围内的所有元素。for (int i = 0; i &lt; len; i++) &#123;    print(nums[i]);&#125;">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
           
@@ -368,13 +378,14 @@
       
     
       
-        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://www.zsfmyz.top/Css/Opcity引发的元素层级变化/&title=Opacity引发的元素层级变化 | Eighteen Blog&summary=背景
- 发现这个问题是在图片上定位了一个删除按钮，当我用opacity属性对图片进行透明化处理的时候，发现删除按钮不管用了，最后发现删除按钮是被图片覆盖了，究其原因是因为opacity这个属性造成的层级变化。
-
-
-我发现含有opacity属性的元素层级会比其他元素的层级高，这时候z-index是不起作用的，opacity会一直高于其他元素的层级。
-给其他元素加上position属性，会使该元素跟opacity处在同一层级之上，这时候你再给元素附加z-index就可以起作用了。
-">
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://www.zsfmyz.top/Algorithm/每日一题/leetcode_26. 删除排序数组中的重复项/&title=Leetcode_26. 删除排序数组中的重复项 | Eighteen Blog&summary=题目解析：给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。
+不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。
+示例示例 1:12345给定数组 nums = [1,1,2], 函数应该返回新的长度 2, 并且原数组 nums 的前两个元素被修改为 1, 2。 你不需要考虑数组中超出新长度后面的元素。
+示例 2:12345给定 nums = [0,0,1,1,1,2,2,3,3,4],函数应该返回新的长度 5, 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4。你不需要考虑数组中超出新长度后面的元素。
+提示：
+为什么返回数值是整数，但输出的答案是数组呢?
+请注意，输入数组是以“引用”方式传递的，这意味着在函数里修改输入数组对于调用者是可见的。
+你可以想象内部操作如下:12345678// nums 是以“引用”方式传递的。也就是说，不对实参做任何拷贝int len = removeDuplicates(nums);// 在函数里修改输入数组对于调用者是可见的。// 根据你的函数返回的长度, 它会打印出数组中该长度范围内的所有元素。for (int i = 0; i &lt; len; i++) &#123;    print(nums[i]);&#125;">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
           
@@ -382,7 +393,7 @@
       
     
       
-        <a class="qrcode" rel="external nofollow noopener noreferrer" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvElEQVR42u3aS24jMQwFwNz/0hMgqwESy48f2V5Ur4Jxu1ulAUSa5NdXfP37uc5/J3f+f53f8vvfH326cOHh4eG1lv7oOi80WdZ5oecnn791XjMeHh7ebV4SDPLDPWecn5k87YkFDw8P7628PDAkKfjWc/Dw8PA+mZcc3FshJKfi4eHhvYuXFCOSQur5nqSwm9+zXGvBw8PDq53SCw2wV/79hv4eHh4eXjEh7h3Wvbf0ir9/PAEPDw/vAi8pnibDT5P7q82w6vgCHh4e3g1eTs1b+70Rq0nbbOF/Eg8PDy94TrVtnweGXl0kKQHn242Hh4d3g5cctUn7P0mj83GEasiJihF4eHh4S7w8Fe4VEaqtrF7r68nvAzw8PLxVXl6EzQ/x3vDB7jgXHh4e3mt41RZUr0CQjxqsDWPh4eHhXeBV0+h5WWErhCQbhIeHh7fLmwwK5OWJSTGiWi7Bw8PD+wTefAwrHyxIku9yGo2Hh4d3mZcHgLyFNg8VzTEvPDw8vAu8yYOqY1iTlL26Nc1aCx4eHl6L1wsMvcN9Xg5OyhZ4eHh493jzMYLJmFRe+BgNb+Hh4eGt8pKl5K2vaoDZHR3Aw8PDu8eblx56iy40sVpvjEYH8PDw8Aa8vDGflwN2h7GqownRcvHw8PDGvCQJ7qW/+TUfTcDDw8N7Da+awualgWRZ1U1MyhAPfzHg4eHhjXmToYHqovPvVlPzJ4EEDw8Pb5WX98fmA1iT1le1pIuHh4f3Sl5v6Cr/NB9QqKbjf3yKh4eHd4HXa9XnDapJIJncj4eHh3eb12tK9XYrCSG7gwt4eHh493iFH/mtkYJJWXYSivDw8PDey+sVWychZ7J9eHh4eJ/Gm3yrl6wnheNRSo2Hh4dX5FVntc4vyIut+Wad34KHh4f3St6k/Fo91vPtu9Gcw8PDwxvzvgGnObtgi0JaRwAAAABJRU5ErkJggg==">
+        <a class="qrcode" rel="external nofollow noopener noreferrer" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADLUlEQVR42u3aQXKjUAwFQN//0s4BEuBJwlVGaVZTLgd+44VGenq94ut9ev3+5tHfHn1y/sTkJK9PXNjY2NgPYSek/BC/8eevJvnmOe/onBd/i42Njb2Ondzu/DG9o7/jKylgiQUbGxsbO28MkkOf3z9/OjY2Njb259gJLHkp83NiY2Nj72b3AO/W1QsD8hHVzbM0bGxs7K9n56no9//7I/k2NjY29heze4WnGvdWg958FNVUYGNjYy9i98Y9yUCqOn5KXmjSihTOj42Njb2CnQ/c58Upj2l7IUHhR8LGxsZex87bj/lSTvVFV9d0ovtgY2NjL2LfW0jmI6p8kJSMtC6KKDY2NvZS9mR1prfcUx1ITcokNjY29j72vcFqr5xUX01SzC7GW9jY2Nir2b3hez4ASkY/SWkcrY1iY2Njr2P3Wog8Krjr9eXNxsX3sbGxsRexe0s2eYm6t7A1G48jFzY2NvY6dnX4nn8+b2yqbdJtKzvY2NjYD2FXb9ErPL0yOYmfR7k3NjY29kPY1eNWj5U3M9WgN1/ljHovbGxs7BXs3nHzFiI/bnLCXvPzRwHDxsbGXsGexLo5OA8J8pP0fgxsbGzs/8auxq7V1Z/qDCynHj4RGxsbex373rg3bxuq4UFvPaicBmNjY2M/ip2Ae+1BXlRet16FAoyNjY29gl2NdaslsLqs0yts1Z8KGxsbexM7D1l7w6a8aOWDpEmkUciQsbGxsR/Izgf3eaGatxyTeODih8HGxsZexO79h75a0iaxcVL2RhECNjY29sPZeVmapKV5QbqtLCVDJWxsbOxF7MkSTN665Os+ectRfTo2Njb2VnZ1WJM3HvkR81c/CQ+wsbGxd7PzUVFhOaYVM/Si5cIYCxsbG3sF+1288sCgXE6CxaD5SyxkHdjY2NgPYfdWZxJMEtNWw4ZeWzLCY2NjYz+E3Rvf5zHtJ8LdyefY2NjYW9l5YZi3B/k9k7WhavyMjY2NjZ2XmWqp6xXIZr+FjY2NjT0e9EwC496g6o+hEjY2NvYi9r0BQDWI/URlubgzNjY29iJ2dUBTKBLBEauRcO+bo3wbGxsb+3vZP/aAh/MHWwClAAAAAElFTkSuQmCC">
         
           <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/wechat.png">
         
@@ -390,13 +401,14 @@
       
     
       
-        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer" href="http://service.weibo.com/share/share.php?url=http://www.zsfmyz.top/Css/Opcity引发的元素层级变化/&title=Opacity引发的元素层级变化 | Eighteen Blog&summary=背景
- 发现这个问题是在图片上定位了一个删除按钮，当我用opacity属性对图片进行透明化处理的时候，发现删除按钮不管用了，最后发现删除按钮是被图片覆盖了，究其原因是因为opacity这个属性造成的层级变化。
-
-
-我发现含有opacity属性的元素层级会比其他元素的层级高，这时候z-index是不起作用的，opacity会一直高于其他元素的层级。
-给其他元素加上position属性，会使该元素跟opacity处在同一层级之上，这时候你再给元素附加z-index就可以起作用了。
-">
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer" href="http://service.weibo.com/share/share.php?url=http://www.zsfmyz.top/Algorithm/每日一题/leetcode_26. 删除排序数组中的重复项/&title=Leetcode_26. 删除排序数组中的重复项 | Eighteen Blog&summary=题目解析：给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。
+不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。
+示例示例 1:12345给定数组 nums = [1,1,2], 函数应该返回新的长度 2, 并且原数组 nums 的前两个元素被修改为 1, 2。 你不需要考虑数组中超出新长度后面的元素。
+示例 2:12345给定 nums = [0,0,1,1,1,2,2,3,3,4],函数应该返回新的长度 5, 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4。你不需要考虑数组中超出新长度后面的元素。
+提示：
+为什么返回数值是整数，但输出的答案是数组呢?
+请注意，输入数组是以“引用”方式传递的，这意味着在函数里修改输入数组对于调用者是可见的。
+你可以想象内部操作如下:12345678// nums 是以“引用”方式传递的。也就是说，不对实参做任何拷贝int len = removeDuplicates(nums);// 在函数里修改输入数组对于调用者是可见的。// 根据你的函数返回的长度, 它会打印出数组中该长度范围内的所有元素。for (int i = 0; i &lt; len; i++) &#123;    print(nums[i]);&#125;">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
           
@@ -404,7 +416,7 @@
       
     
       
-        <a class="qrcode" rel="external nofollow noopener noreferrer" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvElEQVR42u3aS24jMQwFwNz/0hMgqwESy48f2V5Ur4Jxu1ulAUSa5NdXfP37uc5/J3f+f53f8vvfH326cOHh4eG1lv7oOi80WdZ5oecnn791XjMeHh7ebV4SDPLDPWecn5k87YkFDw8P7628PDAkKfjWc/Dw8PA+mZcc3FshJKfi4eHhvYuXFCOSQur5nqSwm9+zXGvBw8PDq53SCw2wV/79hv4eHh4eXjEh7h3Wvbf0ir9/PAEPDw/vAi8pnibDT5P7q82w6vgCHh4e3g1eTs1b+70Rq0nbbOF/Eg8PDy94TrVtnweGXl0kKQHn242Hh4d3g5cctUn7P0mj83GEasiJihF4eHh4S7w8Fe4VEaqtrF7r68nvAzw8PLxVXl6EzQ/x3vDB7jgXHh4e3mt41RZUr0CQjxqsDWPh4eHhXeBV0+h5WWErhCQbhIeHh7fLmwwK5OWJSTGiWi7Bw8PD+wTefAwrHyxIku9yGo2Hh4d3mZcHgLyFNg8VzTEvPDw8vAu8yYOqY1iTlL26Nc1aCx4eHl6L1wsMvcN9Xg5OyhZ4eHh493jzMYLJmFRe+BgNb+Hh4eGt8pKl5K2vaoDZHR3Aw8PDu8eblx56iy40sVpvjEYH8PDw8Aa8vDGflwN2h7GqownRcvHw8PDGvCQJ7qW/+TUfTcDDw8N7Da+awualgWRZ1U1MyhAPfzHg4eHhjXmToYHqovPvVlPzJ4EEDw8Pb5WX98fmA1iT1le1pIuHh4f3Sl5v6Cr/NB9QqKbjf3yKh4eHd4HXa9XnDapJIJncj4eHh3eb12tK9XYrCSG7gwt4eHh493iFH/mtkYJJWXYSivDw8PDey+sVWychZ7J9eHh4eJ/Gm3yrl6wnheNRSo2Hh4dX5FVntc4vyIut+Wad34KHh4f3St6k/Fo91vPtu9Gcw8PDwxvzvgGnObtgi0JaRwAAAABJRU5ErkJggg==">
+        <a class="qrcode" rel="external nofollow noopener noreferrer" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADLUlEQVR42u3aQXKjUAwFQN//0s4BEuBJwlVGaVZTLgd+44VGenq94ut9ev3+5tHfHn1y/sTkJK9PXNjY2NgPYSek/BC/8eevJvnmOe/onBd/i42Njb2Ondzu/DG9o7/jKylgiQUbGxsbO28MkkOf3z9/OjY2Njb259gJLHkp83NiY2Nj72b3AO/W1QsD8hHVzbM0bGxs7K9n56no9//7I/k2NjY29heze4WnGvdWg958FNVUYGNjYy9i98Y9yUCqOn5KXmjSihTOj42Njb2CnQ/c58Upj2l7IUHhR8LGxsZex87bj/lSTvVFV9d0ovtgY2NjL2LfW0jmI6p8kJSMtC6KKDY2NvZS9mR1prfcUx1ITcokNjY29j72vcFqr5xUX01SzC7GW9jY2Nir2b3hez4ASkY/SWkcrY1iY2Njr2P3Wog8Krjr9eXNxsX3sbGxsRexe0s2eYm6t7A1G48jFzY2NvY6dnX4nn8+b2yqbdJtKzvY2NjYD2FXb9ErPL0yOYmfR7k3NjY29kPY1eNWj5U3M9WgN1/ljHovbGxs7BXs3nHzFiI/bnLCXvPzRwHDxsbGXsGexLo5OA8J8pP0fgxsbGzs/8auxq7V1Z/qDCynHj4RGxsbex373rg3bxuq4UFvPaicBmNjY2M/ip2Ae+1BXlRet16FAoyNjY29gl2NdaslsLqs0yts1Z8KGxsbexM7D1l7w6a8aOWDpEmkUciQsbGxsR/Izgf3eaGatxyTeODih8HGxsZexO79h75a0iaxcVL2RhECNjY29sPZeVmapKV5QbqtLCVDJWxsbOxF7MkSTN665Os+ectRfTo2Njb2VnZ1WJM3HvkR81c/CQ+wsbGxd7PzUVFhOaYVM/Si5cIYCxsbG3sF+1288sCgXE6CxaD5SyxkHdjY2NgPYfdWZxJMEtNWw4ZeWzLCY2NjYz+E3Rvf5zHtJ8LdyefY2NjYW9l5YZi3B/k9k7WhavyMjY2NjZ2XmWqp6xXIZr+FjY2NjT0e9EwC496g6o+hEjY2NvYi9r0BQDWI/URlubgzNjY29iJ2dUBTKBLBEauRcO+bo3wbGxsb+3vZP/aAh/MHWwClAAAAAElFTkSuQmCC">
         
           <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qrcode.png">
         
@@ -426,40 +438,21 @@
         
             <div class="prev-next">
                 
-                    <section class="prev">
-                        <span class="art-item-left">
-                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
-                            <h4>
-                                <a href="/JavaScript/call，apply，bind的区别及实现/" rel="prev" title="Call，apply，bind的区别及实现">
-                                  
-                                      Call，apply，bind的区别及实现
-                                  
-                                </a>
-                            </h4>
-                            
-                                
-                                <h6 class="tags">
-                                    <a class="tag" href="/tags/JavaScript/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>JavaScript</a>
-                                </h6>
-                            
-                        </span>
-                    </section>
-                
                 
                     <section class="next">
                         <span class="art-item-right" aria-hidden="true">
                             <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                             <h4>
-                                <a href="/Linux/linux压缩命令常用：tar，tgz，gzip，zip/" rel="prev" title="Linux压缩命令常用：tar，tgz，gzip，zip">
+                                <a href="/Algorithm/每日一题/leetcode_5198. 丑数 III/" rel="prev" title="Leetcode_5198. 丑数 III">
                                     
-                                        Linux压缩命令常用：tar，tgz，gzip，zip
+                                        Leetcode_5198. 丑数 III
                                     
                                 </a>
                             </h4>
                             
                                 
                                 <h6 class="tags">
-                                    <a class="tag" href="/tags/Linux/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Linux</a>
+                                    <a class="tag" href="/tags/Algorithm/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Algorithm</a>
                                 </h6>
                             
                         </span>
@@ -502,7 +495,7 @@
 
   <script>
     window.subData = {
-      title: 'Opacity引发的元素层级变化',
+      title: 'Leetcode_26. 删除排序数组中的重复项',
       tools: true
     }
   </script>
@@ -570,7 +563,7 @@
 </header>
 
     <div class="content pure">
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结和解决方案"><span class="toc-text">总结和解决方案</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目解析："><span class="toc-text">题目解析：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解题思路"><span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解答"><span class="toc-text">解答</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解题思路二"><span class="toc-text">解题思路二</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解答二"><span class="toc-text">解答二</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解题思路三"><span class="toc-text">解题思路三</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解答三"><span class="toc-text">解答三</span></a></li></ol>
     </div>
   </section>
 

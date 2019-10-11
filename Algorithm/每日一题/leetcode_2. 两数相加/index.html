@@ -307,17 +307,14 @@
           <p>给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。</p>
 <p>如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。</p>
 <p>您可以假设除了数字 0 之外，这两个数都不会以 0 开头。</p>
-<p>示例：</p>
-<pre><code>输入：(2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)
-输出：7 -&gt; 0 -&gt; 8
-原因：342 + 465 = 807
-</code></pre><a id="more"></a>
+<p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：(2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)</span><br><span class="line">输出：7 -&gt; 0 -&gt; 8</span><br><span class="line">原因：342 + 465 = 807</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <p>题目解析：<br>    该题给出两个链表，求出两个链表各个结点的和，那首先我们需要知道链表是什么样子。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * function ListNode(val) &#123;</span><br><span class="line"> *     this.val = val;</span><br><span class="line"> *     this.next = null;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br></pre></td></tr></table></figure>
 <p>如上，链表的每个结点就是这个样子，next指向下一个结点，当然这是在js中简单的实现了链表。</p>
-<p>然后知道了链表，那么就开始各位相加吧~，这个题唯一的难点就是在于各个结点相加的时候可能会产生进位。比如9+2=11，那么就需要进一位，本位取10的余数为值，然后我们就需要在下一个结点相加时把前两位可能产生的进位也算进去。</p>
+<p>然后知道了链表，那么就开始各位相加吧~，这个题唯一的难点就是在于各个结点相加的时候可能会产生进位。<br>比如9+2=11，那么就需要进一位，本位取10的余数为值，然后我们就需要在下一个结点相加时把前两位可能产生的进位也算进去。</p>
 <p>如下是我的js解答：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * function ListNode(val) &#123;</span><br><span class="line"> *     this.val = val;</span><br><span class="line"> *     this.next = null;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @param &#123;ListNode&#125; l1</span><br><span class="line"> * @param &#123;ListNode&#125; l2</span><br><span class="line"> * @return &#123;ListNode&#125;</span><br><span class="line"> * y 为进位值</span><br><span class="line"> * i 代表和的位</span><br><span class="line"> * n 代表了和的每一位的值</span><br><span class="line"> * arr 代表和（我们用数组表示更方便一点）</span><br><span class="line"> */</span><br><span class="line">var addTwoNumbers = function(l1, l2) &#123;</span><br><span class="line">    var arr = [], i = 0, n = 0, y = 0;   //初始化</span><br><span class="line">    </span><br><span class="line">    //因为链表不一定同样长的，所以只要有一个链表的结点不为空，我们都需要继续计算；同时我们也要考虑进位，即使两个链表结束了，如果有进位的话，那我们还是需要再计算一次的。</span><br><span class="line">    </span><br><span class="line">    while (l1 !==  null || l2 !== null || y !== 0) &#123;  </span><br><span class="line">        l1 = l1 ? l1 : new ListNode(0); //判断链表l1的该结点是否为null，如果为null初始化成值为0的结点，方便运算。</span><br><span class="line">        </span><br><span class="line">        l2 = l2 ? l2 : new ListNode(0); // 同理</span><br><span class="line">       	var num = l1.val + l2.val + y; // 计算该位的两个结点的和，同时要加上前两位的进位。</span><br><span class="line">        </span><br><span class="line">        num &gt; 9 ? (y = 1, n = num - 10) : (n = num, y = 0); // 判断该位是否需要进位，需要进位的话就该位取10的余数，然后进一位（y = 1），反之初始化进位值为0。</span><br><span class="line">        </span><br><span class="line">        arr[i] = n; //给和的每一位赋值</span><br><span class="line">        </span><br><span class="line">        i++; //进入下一次循环</span><br><span class="line">        </span><br><span class="line">        l1 = l1.next;  // 进入l1下一个结点</span><br><span class="line">        </span><br><span class="line">        l2 = l2.next; // 进入l2下一个结点</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    arr = arr.reverse(); //这里反转一下，原本是[7, 0, 8]反转为[8, 0, 7],方便后面生成链表。</span><br><span class="line">    </span><br><span class="line">    let listNode = new ListNode(arr.shift()) //取第一个值创建第一个结点（是最终链表的最后一个结点）</span><br><span class="line">    </span><br><span class="line">    return arr.reduce((ori,cur)=&gt;&#123;</span><br><span class="line">    </span><br><span class="line">        let ln = new ListNode(cur) //生成当前结点</span><br><span class="line">    </span><br><span class="line">        ln.next = ori //将当前结点的next指向之前生成的链表的第一个结点</span><br><span class="line">    </span><br><span class="line">        return ln //返回新的链表（赋值给了 ori ）</span><br><span class="line">    </span><br><span class="line">    &#125;,listNode)// listNode是初始值。即链表末端的第一个值，我们之所以从最后一个开始创建链表也是因为方便。因为我们要操作结点的next，所以将新结点的next指向原来的链表，要比找到链表的最后一个结点的next指向新结点要方便一些。</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * function ListNode(val) &#123;</span><br><span class="line"> *     this.val = val;</span><br><span class="line"> *     this.next = null;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @param &#123;ListNode&#125; l1</span><br><span class="line"> * @param &#123;ListNode&#125; l2</span><br><span class="line"> * @return &#123;ListNode&#125;</span><br><span class="line"> * y 为进位值</span><br><span class="line"> * i 代表和的位</span><br><span class="line"> * n 代表了和的每一位的值</span><br><span class="line"> * arr 代表和（我们用数组表示更方便一点）</span><br><span class="line"> */</span><br><span class="line">var addTwoNumbers = function(l1, l2) &#123;</span><br><span class="line">    var arr = [], i = 0, n = 0, y = 0;   //初始化</span><br><span class="line">    </span><br><span class="line">    //因为链表不一定同样长的，所以只要有一个链表的结点不为空，我们都需要继续计算；</span><br><span class="line">    //同时我们也要考虑进位，即使两个链表结束了，如果有进位的话，那我们还是需要再计算一次的。</span><br><span class="line">    </span><br><span class="line">    while (l1 !==  null || l2 !== null || y !== 0) &#123;  </span><br><span class="line"></span><br><span class="line">        //判断链表l1的该结点是否为null，如果为null初始化成值为0的结点，方便运算。</span><br><span class="line">        l1 = l1 ? l1 : new ListNode(0); </span><br><span class="line"></span><br><span class="line">         // 同理 l2</span><br><span class="line">        l2 = l2 ? l2 : new ListNode(0);</span><br><span class="line"></span><br><span class="line">         // 计算该位的两个结点的和，同时要加上前两位的进位。</span><br><span class="line">       	var num = l1.val + l2.val + y;</span><br><span class="line">       </span><br><span class="line">        // 判断该位是否需要进位，需要进位的话就该位取10的余数，然后进一位（y = 1），反之初始化进位值为0。</span><br><span class="line">        num &gt; 9 ? (y = 1, n = num - 10) : (n = num, y = 0); </span><br><span class="line">        </span><br><span class="line">        arr[i] = n; //给和的每一位赋值</span><br><span class="line">        </span><br><span class="line">        i++; //进入下一次循环</span><br><span class="line">        </span><br><span class="line">        l1 = l1.next;  // 进入l1下一个结点</span><br><span class="line">        </span><br><span class="line">        l2 = l2.next; // 进入l2下一个结点</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //这里反转一下，原本是[7, 0, 8]反转为[8, 0, 7],方便后面生成链表。</span><br><span class="line">    arr = arr.reverse(); </span><br><span class="line"></span><br><span class="line">    //取第一个值创建第一个结点（也是最终链表的最后一个结点）</span><br><span class="line">    let listNode = new ListNode(arr.shift()) //取第一个值创建第一个结点（也是最终链表的最后一个结点）</span><br><span class="line">    </span><br><span class="line">    return arr.reduce((ori,cur)=&gt;&#123;</span><br><span class="line">    </span><br><span class="line">        let ln = new ListNode(cur) //生成当前结点</span><br><span class="line">    </span><br><span class="line">        ln.next = ori //将当前结点的next指向之前生成的链表的第一个结点</span><br><span class="line">    </span><br><span class="line">        return ln //返回新的链表（赋值给了 ori ）</span><br><span class="line">    </span><br><span class="line">    &#125;, listNode)</span><br><span class="line">    // listNode是初始值。</span><br><span class="line">    // 即链表末端的第一个值，我们之所以从最后一个开始创建链表也是因为方便。</span><br><span class="line">    // 因为我们要操作结点的next，所以用新结点的next指向原来的链表，要比找到链表的最后一个结点的next指向新结点要方便一些。</span><br><span class="line">    // 即从后往前生成链。</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
         </div>
         
@@ -329,10 +326,10 @@
     <div class="new-meta-box">
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-09-25T15:45:45+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-09-30T17:58:51+08:00">
   <a class="notlink">
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>最后更新于 2019年9月25日</p>
+    <p>最后更新于 2019年9月30日</p>
   </a>
 </div>
 
@@ -355,11 +352,7 @@
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.zsfmyz.top/Algorithm/每日一题/leetcode_2. 两数相加/&title=Leetcode_2. 两数相加 | Eighteen Blog&summary=给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。
 如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。
 您可以假设除了数字 0 之外，这两个数都不会以 0 开头。
-示例：
-输入：(2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)
-输出：7 -&gt; 0 -&gt; 8
-原因：342 + 465 = 807
-">
+示例：123输入：(2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)输出：7 -&gt; 0 -&gt; 8原因：342 + 465 = 807">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
           
@@ -370,11 +363,7 @@
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://www.zsfmyz.top/Algorithm/每日一题/leetcode_2. 两数相加/&title=Leetcode_2. 两数相加 | Eighteen Blog&summary=给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。
 如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。
 您可以假设除了数字 0 之外，这两个数都不会以 0 开头。
-示例：
-输入：(2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)
-输出：7 -&gt; 0 -&gt; 8
-原因：342 + 465 = 807
-">
+示例：123输入：(2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)输出：7 -&gt; 0 -&gt; 8原因：342 + 465 = 807">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
           
@@ -393,11 +382,7 @@
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer" href="http://service.weibo.com/share/share.php?url=http://www.zsfmyz.top/Algorithm/每日一题/leetcode_2. 两数相加/&title=Leetcode_2. 两数相加 | Eighteen Blog&summary=给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。
 如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。
 您可以假设除了数字 0 之外，这两个数都不会以 0 开头。
-示例：
-输入：(2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)
-输出：7 -&gt; 0 -&gt; 8
-原因：342 + 465 = 807
-">
+示例：123输入：(2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)输出：7 -&gt; 0 -&gt; 8原因：342 + 465 = 807">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
           
@@ -630,9 +615,9 @@
     <div class="content pure">
       <ul class="entry">
         
-          <li><a class="flat-box" title="/categories/Algorithm/" href="/categories/Algorithm/"><div class="name">Algorithm</div><div class="badge">(7)</div></a></li>
+          <li><a class="flat-box" title="/categories/Algorithm/" href="/categories/Algorithm/"><div class="name">Algorithm</div><div class="badge">(8)</div></a></li>
         
-          <li><a class="flat-box child" title="/categories/Algorithm/每日一题/" href="/categories/Algorithm/每日一题/"><div class="name">每日一题</div><div class="badge">(6)</div></a></li>
+          <li><a class="flat-box child" title="/categories/Algorithm/每日一题/" href="/categories/Algorithm/每日一题/"><div class="name">每日一题</div><div class="badge">(7)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Angular/" href="/categories/Angular/"><div class="name">Angular</div><div class="badge">(3)</div></a></li>
         
@@ -669,7 +654,7 @@
 </header>
 
     <div class="content pure">
-      <a href="/tags/Algorithm/" style="font-size: 24px; color: #555">Algorithm</a> <a href="/tags/Angular/" style="font-size: 17.33px; color: #828282">Angular</a> <a href="/tags/Css/" style="font-size: 24px; color: #555">Css</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 20.67px; color: #6c6c6c">JavaScript</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a>
+      <a href="/tags/Algorithm/" style="font-size: 24px; color: #555">Algorithm</a> <a href="/tags/Angular/" style="font-size: 16.5px; color: #888">Angular</a> <a href="/tags/Css/" style="font-size: 21.5px; color: #666">Css</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 19px; color: #777">JavaScript</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Vue/" style="font-size: 14px; color: #999">Vue</a>
     </div>
   </section>
 
@@ -742,12 +727,12 @@
     </div>
   
   <br>
-  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+  <div><p>© 2018-2019 zsfmyz.top 版权所有 ICP证：京ICP备18047643号   博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
 </div>
   <div>
-    本站使用
-    <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Eighteen Z</a>
-    作为主题
+    footer.use
+    <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">material-x</a>
+    footer.theme
     
       ，
       总访问量为
