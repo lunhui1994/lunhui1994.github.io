@@ -4,6 +4,60 @@
   
     
     <entry>
+      <title>Leetcode_145. 二叉树的后序遍历</title>
+      <link href="/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/leetcode_145.%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86/"/>
+      <url>/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/leetcode_145.%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86/</url>
+      
+        <content type="html"><![CDATA[<h3 id="题目解析："><a href="#题目解析：" class="headerlink" title="题目解析："></a>题目解析：</h3><p>给定一个二叉树，返回它的 后序 遍历。</p><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>示例 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入: [1,null,2,3]  </span><br><span class="line">   1</span><br><span class="line">    \</span><br><span class="line">     2</span><br><span class="line">    /</span><br><span class="line">   3 </span><br><span class="line"></span><br><span class="line">输出: [3,2,1]</span><br></pre></td></tr></table></figure></p><p>说明&amp;&amp;进阶:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> 递归算法很简单，你可以通过迭代算法完成吗？</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">前序排列的顺序是左，右，父。</span><br></pre></td></tr></table></figure></p><a id="more"></a><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><pre><code>递归，递归判断条件，该节点左右节点是否为null，递归时先左后右。跟前序遍历唯一的差别是最后再push。</code></pre><h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * function TreeNode(val) &#123;</span><br><span class="line"> *     this.val = val;</span><br><span class="line"> *     this.left = this.right = null;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">/**</span><br><span class="line"> * @param &#123;TreeNode&#125; root</span><br><span class="line"> * @return &#123;number[]&#125;</span><br><span class="line"> */</span><br><span class="line"> let postorderArr = [];</span><br><span class="line"> let addNode = (root) =&gt; &#123;</span><br><span class="line">     root.left &amp;&amp; addNode(root.left);</span><br><span class="line">     root.right &amp;&amp; addNode(root.right);</span><br><span class="line">     postorderArr.push(root.val) // 唯一的差别</span><br><span class="line"> &#125;</span><br><span class="line"> let postorderTraversal  = (root) =&gt; &#123;</span><br><span class="line">     postorderArr = [];</span><br><span class="line">     if (!root) &#123;</span><br><span class="line">         return postorderArr;</span><br><span class="line">    &#125;</span><br><span class="line">     addNode(root);</span><br><span class="line">     return postorderArr;</span><br><span class="line"> &#125;;</span><br></pre></td></tr></table></figure><h3 id="解题思路二"><a href="#解题思路二" class="headerlink" title="解题思路二"></a>解题思路二</h3><p>   迭代法，基于栈的特性将递推出来的节点压进栈中。然后遵循先进后出的原则，直至将栈排空。</p><p>   后序遍历的迭代法比较前序遍历要复杂一些。</p><p>   我的思路是打表，已经遍历过的节点需要标记（截断）。</p><h3 id="解答二"><a href="#解答二" class="headerlink" title="解答二"></a>解答二</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * function TreeNode(val) &#123;</span><br><span class="line"> *     this.val = val;</span><br><span class="line"> *     this.left = this.right = null;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">/**</span><br><span class="line"> * @param &#123;TreeNode&#125; root</span><br><span class="line"> * @return &#123;number[]&#125;</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">let postorderArr = [], nodeList = [], nowNode;</span><br><span class="line">let postorderTraversal  = (root) =&gt; &#123;</span><br><span class="line">    postorderArr = [];</span><br><span class="line">    if (!root) &#123;</span><br><span class="line">        return postorderArr;</span><br><span class="line">    &#125;</span><br><span class="line">    nodeList = [], nowNode = root;</span><br><span class="line">     while(nodeList.length &gt; 0 || nowNode) &#123;</span><br><span class="line">        while (nowNode) &#123;</span><br><span class="line">            nowNode.flag = true; // 标记该节点已经进入过数组</span><br><span class="line">            nodeList.push(nowNode);</span><br><span class="line">            </span><br><span class="line">            //如果该节点的左节点已经遍历过了就不需要遍历了  先左</span><br><span class="line">            </span><br><span class="line">            if (nowNode.left &amp;&amp; !nowNode.left.flag) &#123; </span><br><span class="line">                nowNode = nowNode.left;</span><br><span class="line">            </span><br><span class="line">            //如果该节点的右节点已经遍历过了就不需要遍历了  后右</span><br><span class="line"></span><br><span class="line">            &#125; else if (nowNode.right &amp;&amp; !nowNode.right.flag) &#123; </span><br><span class="line">                nowNode = nowNode.right;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">            </span><br><span class="line">                //左右节点都遍历过的相当于叶节点（度为0，没有子节点）</span><br><span class="line">            </span><br><span class="line">                nowNode = null; </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        // 从栈中取值</span><br><span class="line">        nowNode = nodeList.pop(); </span><br><span class="line"></span><br><span class="line">        // 用来区分是否为叶节点 若为叶则赋值null，遍历下一轮。</span><br><span class="line">        </span><br><span class="line">        if (!nowNode.right || nowNode.right.flag) &#123;</span><br><span class="line">            postorderArr.push(nowNode.val);</span><br><span class="line">            nowNode = null;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return postorderArr;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Algorithm </category>
+          
+          <category> 每日一题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Algorithm </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Leetcode_94. 二叉树的中序遍历</title>
+      <link href="/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/leetcode_94.%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/"/>
+      <url>/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/leetcode_94.%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/</url>
+      
+        <content type="html"><![CDATA[<h3 id="题目解析："><a href="#题目解析：" class="headerlink" title="题目解析："></a>题目解析：</h3><p>给定一个二叉树，返回它的 中序 遍历。</p><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>示例 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入: [1,null,2,3]  </span><br><span class="line">   1</span><br><span class="line">    \</span><br><span class="line">     2</span><br><span class="line">    /</span><br><span class="line">   3 </span><br><span class="line"></span><br><span class="line">输出: [1,3,2]</span><br></pre></td></tr></table></figure></p><p>说明&amp;&amp;进阶:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> 递归算法很简单，你可以通过迭代算法完成吗？</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">前序排列的顺序是左，父，右。</span><br></pre></td></tr></table></figure></p><a id="more"></a><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><pre><code>递归，递归判断条件，该节点左右节点是否为null，递归时先左后右。</code></pre><h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * function TreeNode(val) &#123;</span><br><span class="line"> *     this.val = val;</span><br><span class="line"> *     this.left = this.right = null;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">/**</span><br><span class="line"> * @param &#123;TreeNode&#125; root</span><br><span class="line"> * @return &#123;number[]&#125;</span><br><span class="line"> */</span><br><span class="line">var addNode = function (root) &#123;</span><br><span class="line">    root.left &amp;&amp; addNode(root.left);</span><br><span class="line">    inorderArr.push(root.val); // 前，中序遍历唯一区别 </span><br><span class="line">    root.right &amp;&amp; addNode(root.right);</span><br><span class="line">&#125;</span><br><span class="line">let inorderArr = [];</span><br><span class="line">var inorderTraversal = function(root) &#123;</span><br><span class="line">    inorderArr = [];</span><br><span class="line">    if (!root) &#123;</span><br><span class="line">        return inorderArr;</span><br><span class="line">    &#125;</span><br><span class="line">    addNode(root);</span><br><span class="line">    return inorderArr</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><h3 id="解题思路二"><a href="#解题思路二" class="headerlink" title="解题思路二"></a>解题思路二</h3><p>   迭代法，基于栈的特性将递推出来的节点压进栈中。然后遵循先进后出的原则，直至将栈排空。</p><h3 id="解答二"><a href="#解答二" class="headerlink" title="解答二"></a>解答二</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * function TreeNode(val) &#123;</span><br><span class="line"> *     this.val = val;</span><br><span class="line"> *     this.left = this.right = null;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">/**</span><br><span class="line"> * @param &#123;TreeNode&#125; root</span><br><span class="line"> * @return &#123;number[]&#125;</span><br><span class="line"> */</span><br><span class="line">let inorderArr = [], nodeList = [], nowNode;</span><br><span class="line">var inorderTraversal = function(root) &#123;</span><br><span class="line">    inorderArr = [], nodeList = [], nowNode = root;</span><br><span class="line">    if (!root) &#123;</span><br><span class="line">        return inorderArr;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    while(nodeList.length &gt; 0 || nowNode) &#123;</span><br><span class="line">        while (nowNode) &#123;</span><br><span class="line">            nodeList.push(nowNode);</span><br><span class="line">            nowNode = nowNode.left;</span><br><span class="line">        &#125;</span><br><span class="line">        nowNode = nodeList.pop();</span><br><span class="line">        inorderArr.push(nowNode.val);</span><br><span class="line">        nowNode = nowNode.right;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    return inorderArr</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Algorithm </category>
+          
+          <category> 每日一题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Algorithm </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Leetcode_144. 二叉树的前序遍历</title>
       <link href="/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/leetcode_144.%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86/"/>
       <url>/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/leetcode_144.%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86/</url>
@@ -218,31 +272,6 @@
     
     
     <entry>
-      <title>Video截图功能实现</title>
-      <link href="/JavaScript/Video%E6%88%AA%E5%9B%BE%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/"/>
-      <url>/JavaScript/Video%E6%88%AA%E5%9B%BE%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/</url>
-      
-        <content type="html"><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><blockquote><p>因为所在公司业务为视频编解码，所以项目大多数是围绕视频展开的，之前做了一个快编项目，可以当作一个web端的小型视频编辑器。当中就需要对视频当前帧图进行截取，然后后续当作视频的封面或者海报图。 那么我就需要实现这么一个视频截图的功能。</p></blockquote><a id="more"></a><h3 id="API简介"><a href="#API简介" class="headerlink" title="API简介"></a>API简介</h3><ol><li><p>首先视频截图在我们大前端实现，就要借助canvas的drawImage()这个api了。</p><ul><li>drawImage 该api的功能简单讲就是将一张图片(Source image)绘制在canvas(Destination canvas)上. </li><li><p>语法：</p><blockquote><p>void ctx.drawImage(image, dx, dy);<br>void ctx.drawImage(image, dx, dy, dWidth, dHeight);<br>void ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);</p></blockquote></li><li><p>image： 原图片Element.</p></li><li>sx, sy, sWidth, sHeight : 需要在原图取起点x，y，宽，高；</li><li>dx, dy, dWidth, dHeight：在目标canvas上绘制的起点x，y，宽，高。</li><li>image，dx，dy为必填</li></ul></li><li><p>当我们截取并绘制完图片之后，就需要将在canvas上绘制的图片转化为图片了，那就需要 toDataURL(‘image/png’) 将其转换。</p><ul><li>该方法返回一个用作展示的图片地址。 </li><li><p>语法：</p><blockquote><p>canvas.toDataURL(type, encoderOptions); </p></blockquote></li><li><p>type: 默认为 image/png， 可选 image/jpeg或者image/webp </p></li><li>encoderOptions：当type为 jpeg或者webp 时，可以选择0-1区间内的值作为输出的图片质量。</li></ul></li></ol><p> <strong>MDN</strong></p><ul><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLCanvasElement/toDataURL" target="_blank" rel="noopener">HTMLCanvasElement.toDataURL()</a> </li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLCanvasElement/toDataURL" target="_blank" rel="noopener">CanvasRenderingContext2D.drawImage()</a></li></ul><hr><p>回到正题，函数实现</p><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p><strong>HTML</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;video id=&quot;video&quot; controls=&quot;controls&quot;&gt;</span><br><span class="line">    &lt;source src=&quot;../videos/xxx.mp4&quot; /&gt;</span><br><span class="line">&lt;/video&gt;</span><br><span class="line">&lt;button id=&quot;capture&quot;&gt;Capture&lt;/button&gt;</span><br><span class="line">&lt;div id=&quot;output&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure></p><p><strong>Script</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">(function() &#123;</span><br><span class="line">    var video, $output;</span><br><span class="line">    var scale = 0.25;</span><br><span class="line">    var initialize = function() &#123;</span><br><span class="line">        $output = $(&quot;#output&quot;);</span><br><span class="line">        video = $(&quot;#video&quot;).get(0);</span><br><span class="line">        $(&quot;#capture&quot;).click(captureImage);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    var captureImage = function() &#123;</span><br><span class="line">        var canvas = document.createElement(&quot;canvas&quot;);</span><br><span class="line">        canvas.width = video.videoWidth * scale;</span><br><span class="line">        canvas.height = video.videoHeight * scale;</span><br><span class="line"></span><br><span class="line">        canvas.getContext(&apos;2d&apos;).drawImage(video, 0, 0, canvas.width, canvas.height);</span><br><span class="line">        </span><br><span class="line">        var img = document.createElement(&quot;img&quot;);</span><br><span class="line"></span><br><span class="line">        img.src = canvas.toDataURL(&apos;image/png&apos;);</span><br><span class="line">        </span><br><span class="line">        $output.prepend(img);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    $(initialize);</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure></p><h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><p><a href="http://www.zsfmyz.top/demo/1/">demo演示地址</a></p><p>大家可以用webstrom内置的服务器进行测试。</p><p>使用chrome浏览器需要一个服务器环境，否则canvas的toDataURL方法会报错。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> JavaScript </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> JavaScript </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Font-Family字体对照表及效果展示</title>
       <link href="/Css/font-family%E5%AD%97%E4%BD%93%E5%AF%B9%E7%85%A7%E8%A1%A8%E5%8F%8A%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA/"/>
       <url>/Css/font-family%E5%AD%97%E4%BD%93%E5%AF%B9%E7%85%A7%E8%A1%A8%E5%8F%8A%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA/</url>
@@ -260,6 +289,31 @@
         <tags>
             
             <tag> Css </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Video截图功能实现</title>
+      <link href="/JavaScript/Video%E6%88%AA%E5%9B%BE%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/"/>
+      <url>/JavaScript/Video%E6%88%AA%E5%9B%BE%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/</url>
+      
+        <content type="html"><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><blockquote><p>因为所在公司业务为视频编解码，所以项目大多数是围绕视频展开的，之前做了一个快编项目，可以当作一个web端的小型视频编辑器。当中就需要对视频当前帧图进行截取，然后后续当作视频的封面或者海报图。 那么我就需要实现这么一个视频截图的功能。</p></blockquote><a id="more"></a><h3 id="API简介"><a href="#API简介" class="headerlink" title="API简介"></a>API简介</h3><ol><li><p>首先视频截图在我们大前端实现，就要借助canvas的drawImage()这个api了。</p><ul><li>drawImage 该api的功能简单讲就是将一张图片(Source image)绘制在canvas(Destination canvas)上. </li><li><p>语法：</p><blockquote><p>void ctx.drawImage(image, dx, dy);<br>void ctx.drawImage(image, dx, dy, dWidth, dHeight);<br>void ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);</p></blockquote></li><li><p>image： 原图片Element.</p></li><li>sx, sy, sWidth, sHeight : 需要在原图取起点x，y，宽，高；</li><li>dx, dy, dWidth, dHeight：在目标canvas上绘制的起点x，y，宽，高。</li><li>image，dx，dy为必填</li></ul></li><li><p>当我们截取并绘制完图片之后，就需要将在canvas上绘制的图片转化为图片了，那就需要 toDataURL(‘image/png’) 将其转换。</p><ul><li>该方法返回一个用作展示的图片地址。 </li><li><p>语法：</p><blockquote><p>canvas.toDataURL(type, encoderOptions); </p></blockquote></li><li><p>type: 默认为 image/png， 可选 image/jpeg或者image/webp </p></li><li>encoderOptions：当type为 jpeg或者webp 时，可以选择0-1区间内的值作为输出的图片质量。</li></ul></li></ol><p> <strong>MDN</strong></p><ul><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLCanvasElement/toDataURL" target="_blank" rel="noopener">HTMLCanvasElement.toDataURL()</a> </li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLCanvasElement/toDataURL" target="_blank" rel="noopener">CanvasRenderingContext2D.drawImage()</a></li></ul><hr><p>回到正题，函数实现</p><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p><strong>HTML</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;video id=&quot;video&quot; controls=&quot;controls&quot;&gt;</span><br><span class="line">    &lt;source src=&quot;../videos/xxx.mp4&quot; /&gt;</span><br><span class="line">&lt;/video&gt;</span><br><span class="line">&lt;button id=&quot;capture&quot;&gt;Capture&lt;/button&gt;</span><br><span class="line">&lt;div id=&quot;output&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure></p><p><strong>Script</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">(function() &#123;</span><br><span class="line">    var video, $output;</span><br><span class="line">    var scale = 0.25;</span><br><span class="line">    var initialize = function() &#123;</span><br><span class="line">        $output = $(&quot;#output&quot;);</span><br><span class="line">        video = $(&quot;#video&quot;).get(0);</span><br><span class="line">        $(&quot;#capture&quot;).click(captureImage);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    var captureImage = function() &#123;</span><br><span class="line">        var canvas = document.createElement(&quot;canvas&quot;);</span><br><span class="line">        canvas.width = video.videoWidth * scale;</span><br><span class="line">        canvas.height = video.videoHeight * scale;</span><br><span class="line"></span><br><span class="line">        canvas.getContext(&apos;2d&apos;).drawImage(video, 0, 0, canvas.width, canvas.height);</span><br><span class="line">        </span><br><span class="line">        var img = document.createElement(&quot;img&quot;);</span><br><span class="line"></span><br><span class="line">        img.src = canvas.toDataURL(&apos;image/png&apos;);</span><br><span class="line">        </span><br><span class="line">        $output.prepend(img);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    $(initialize);</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure></p><h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><p><a href="http://www.zsfmyz.top/demo/1/">demo演示地址</a></p><p>大家可以用webstrom内置的服务器进行测试。</p><p>使用chrome浏览器需要一个服务器环境，否则canvas的toDataURL方法会报错。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> JavaScript </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> JavaScript </tag>
             
         </tags>
       
@@ -489,6 +543,31 @@
         <tags>
             
             <tag> JavaScript </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Git入门篇</title>
+      <link href="/Git/Git%E5%85%A5%E9%97%A8%E7%AF%87/"/>
+      <url>/Git/Git%E5%85%A5%E9%97%A8%E7%AF%87/</url>
+      
+        <content type="html"><![CDATA[<h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><ul><li>首先我们需要去github官网申请git账号。<a href="https://github.com/" target="_blank" rel="noopener">git官网</a></li><li>申请之后，我们进入自己的linux服务器</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 生成key</span><br><span class="line">ssh-keygen</span><br><span class="line">//查看公钥  </span><br><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure><ul><li>然后在GitHub上加入这个公钥 <a href="https://github.com/settings/keys" target="_blank" rel="noopener">配置公钥</a> </li></ul><p><img src="../img/github-key.jpg" alt="github-key"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Git </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Git </tag>
             
         </tags>
       
