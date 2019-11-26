@@ -312,7 +312,61 @@
 <ul>
 <li>然后在GitHub上加入这个公钥 <a href="https://github.com/settings/keys" target="_blank" rel="noopener">配置公钥</a> </li>
 </ul>
-<p><img src="../img/github-key.jpg" alt="github-key"></p>
+<p><img src="/img/github-key.jpg" alt="github-key"></p>
+<ul>
+<li>设置git命令的简写模式（alias）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git config --global alias.co checkout</span><br><span class="line">git config --global alias.br branch</span><br><span class="line">git config --global alias.ci commit</span><br><span class="line">git config --global alias.st status</span><br></pre></td></tr></table></figure>
+<ul>
+<li>设置自己的名字和邮箱</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;your name&quot;</span><br><span class="line">git config --global user.email &quot;your email @.com&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="开始-1"><a href="#开始-1" class="headerlink" title="开始"></a>开始</h3><ul>
+<li><h5 id="fork"><a href="#fork" class="headerlink" title="fork"></a>fork</h5></li>
+</ul>
+<p>如果你想使用别人的项目，就需要fork。<br><img src="/img/github-fork.jpg" alt="github-fork"></p>
+<ul>
+<li><h5 id="clone"><a href="#clone" class="headerlink" title="clone"></a>clone</h5></li>
+</ul>
+<p>进入一个你想存放项目的文件夹。<br><img src="/img/github-clone.jpg" alt="github-clone"><br>如图复制ssh地址。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.com:xxx/xxx.git</span><br></pre></td></tr></table></figure></p>
+<p>然后就可以对代码进行修改和提交了。</p>
+<ul>
+<li><h5 id="checkout"><a href="#checkout" class="headerlink" title="checkout"></a>checkout</h5></li>
+</ul>
+<p>项目有不同的分支。<br>一般本地主分支为master。<br>自己的远程分支为 origin/master<br>如果是合作项目，可能还会有一个公共仓库 xxx/master</p>
+<p>可以用以下命令查看。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git br -va</span><br></pre></td></tr></table></figure></p>
+<p>创建本地新分支: new_master 为你创建的新分支名，xxx/master为你要以哪条分支为基准创建new_master<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git co -b new_master xxx/master</span><br></pre></td></tr></table></figure></p>
+<p>将新分支推送至自己的远程分支。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin new_master</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h5 id="commit"><a href="#commit" class="headerlink" title="commit"></a>commit</h5></li>
+</ul>
+<p>当我们修改某个文件，使用git st就可以看到哪些文件被修改了。<br>然后使用 git add 可以将我们修改过的文件添加进暂存区<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git st</span><br><span class="line"></span><br><span class="line">git add xxx.html</span><br></pre></td></tr></table></figure></p>
+<p>commit为某次修改的描述，是阶段性的。<br>我们每完成一个功能，或者每修复一个bug，最好都进行一次提交。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git ci -m &apos;描述&apos;</span><br></pre></td></tr></table></figure>
+<p>最后将代码push到我们的远程分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin master(分支名)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h5 id="reset"><a href="#reset" class="headerlink" title="reset"></a>reset</h5>有时候我们会后悔添加了文件。那么可以用reset 返回</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset xxx.html</span><br></pre></td></tr></table></figure>
+<p>这样就可以返回add之前的文件状态。</p>
+<p>同样的我们如果已经push到远程分支了</p>
+<p>想要回到我们push之前的状态，或者再之前的某个版本。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reflog</span><br><span class="line">git reset --hard 版本号</span><br></pre></td></tr></table></figure>
+<p>以上两个步骤，第一步是查看我们这个分支的所有版本号。</p>
+<p>复制你想要回退的版本号，然后执行第二步，就可以了。</p>
+<ul>
+<li><h5 id="fetch-merge"><a href="#fetch-merge" class="headerlink" title="fetch/merge"></a>fetch/merge</h5></li>
+</ul>
+<p>push之后我们的远程分支就会和本地分支的内容一样了。</p>
+<p>但是如果我们是一个公共项目，那就需要并入公共仓库。</p>
+<p>这个就需要管理员来操作了。</p>
+<p><img src="/img/github-pull1.jpg" alt="github-pull1"></p>
+<p><img src="/img/github-pull2.jpg" alt="github-pull2"></p>
+<p>等管理员合并了之后，别人就需要fetch并且merge你的代码，以此来使大家的代码都是同步的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git fetch --all</span><br><span class="line"></span><br><span class="line">git merge xxx/master</span><br></pre></td></tr></table></figure>
+<p>每次push之前我们都应该先merge一下公共仓库的代码。<br>以免我们在旧代码上修改提交导致冲突。</p>
 
         </div>
         
@@ -324,10 +378,10 @@
     <div class="new-meta-box">
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-15T15:59:45+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-26T17:01:06+08:00">
   <a class="notlink">
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>最后更新于 2019年11月15日</p>
+    <p>最后更新于 2019年11月26日</p>
   </a>
 </div>
 
@@ -545,7 +599,7 @@
 </header>
 
     <div class="content pure">
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#开始"><span class="toc-text">开始</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#开始"><span class="toc-text">开始</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开始-1"><span class="toc-text">开始</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#fork"><span class="toc-text">fork</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#clone"><span class="toc-text">clone</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#checkout"><span class="toc-text">checkout</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#commit"><span class="toc-text">commit</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#reset"><span class="toc-text">reset</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#fetch-merge"><span class="toc-text">fetch/merge</span></a></li></ol></li></ol>
     </div>
   </section>
 
