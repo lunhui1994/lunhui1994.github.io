@@ -337,7 +337,7 @@
 <p>可以用以下命令查看。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git br -va</span><br></pre></td></tr></table></figure></p>
 <p>创建本地新分支: new_master 为你创建的新分支名，xxx/master为你要以哪条分支为基准创建new_master<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git co -b new_master xxx/master</span><br></pre></td></tr></table></figure></p>
 <p>将新分支推送至自己的远程分支。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin new_master</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin new_master</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>有时候公共仓库新创建的一条分支，我们需要在这条新分支上修改，那就用到了上面的步骤。先创建本地新分支，然后push之后远程新分支才会出现。</p>
 </blockquote>
@@ -370,6 +370,24 @@
 <p>等管理员合并了之后，别人就需要fetch并且merge你的代码，以此来使大家的代码都是同步的。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git fetch --all</span><br><span class="line"></span><br><span class="line">git merge xxx/master</span><br></pre></td></tr></table></figure>
 <p>每次push之前我们都应该先merge一下公共仓库的代码。<br>以免我们在旧代码上修改提交导致冲突。</p>
+<ul>
+<li><h5 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h5></li>
+</ul>
+<p>那么我们如何删除自己的本地分支和远程分支呢，拿new_master举例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git br -d new_master</span><br><span class="line">git push origin -d new_master</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h5 id="stash"><a href="#stash" class="headerlink" title="stash"></a>stash</h5></li>
+</ul>
+<p>有的时候，我们正在修改master分支。突然有一个紧急需求需要在new_master上修改。</p>
+<p>但是master还没有修改完，我们不能切换分支。</p>
+<p>那怎么办呢？我们可以使用stash。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git stash</span><br><span class="line"></span><br><span class="line">git co new_master</span><br><span class="line"></span><br><span class="line">git co master</span><br><span class="line"></span><br><span class="line">git stash pop</span><br></pre></td></tr></table></figure>
+<p>以上三个步骤</p>
+<p>第一步 将我们修改的内容缓存起来</p>
+<p>第二步 切换到new_master 分支,然后修改提交之后</p>
+<p>第三步 切换到master分支</p>
+<p>第四步 恢复切换到new_master之前的master分支的修改内容。</p>
+<p>以上就是常用的git命令，当然还有更多的和更深的命令，可以扩展了解一下。</p>
 
         </div>
         
@@ -381,7 +399,7 @@
     <div class="new-meta-box">
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-26T17:04:19+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-11-26T17:13:50+08:00">
   <a class="notlink">
     <i class="fas fa-clock" aria-hidden="true"></i>
     <p>最后更新于 2019年11月26日</p>
@@ -602,7 +620,7 @@
 </header>
 
     <div class="content pure">
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#开始"><span class="toc-text">开始</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开始-1"><span class="toc-text">开始</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#fork"><span class="toc-text">fork</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#clone"><span class="toc-text">clone</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#checkout"><span class="toc-text">checkout</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#commit"><span class="toc-text">commit</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#reset"><span class="toc-text">reset</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#fetch-merge"><span class="toc-text">fetch/merge</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#开始"><span class="toc-text">开始</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开始-1"><span class="toc-text">开始</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#fork"><span class="toc-text">fork</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#clone"><span class="toc-text">clone</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#checkout"><span class="toc-text">checkout</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#commit"><span class="toc-text">commit</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#reset"><span class="toc-text">reset</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#fetch-merge"><span class="toc-text">fetch/merge</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#delete"><span class="toc-text">delete</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#stash"><span class="toc-text">stash</span></a></li></ol></li></ol>
     </div>
   </section>
 
