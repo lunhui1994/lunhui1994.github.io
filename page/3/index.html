@@ -401,6 +401,9 @@
 <p>创建本地新分支: new_master 为你创建的新分支名，xxx/master为你要以哪条分支为基准创建new_master<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git co -b new_master xxx/master</span><br></pre></td></tr></table></figure></p>
 <p>将新分支推送至自己的远程分支。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin new_master</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>有时候公共仓库新创建的一条分支，我们需要在这条新分支上修改，那就用到了上面的步骤。先创建本地新分支，然后push之后远程新分支才会出现。</p>
+</blockquote>
 <ul>
 <li><h5 id="commit"><a href="#commit" class="headerlink" title="commit"></a>commit</h5></li>
 </ul>
