@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>Archives: 2019 | Eighteen Blog</title>
+  <title>Leetcode_112. 路径总和 | Eighteen Blog</title>
   
-  <meta name="keywords" content="前端, LH_ZSF, Eighteen Blog, ZSF, 赵十八, 赵少飞">
+  <meta name="keywords" content="leetcode, 112, 路径总和, 递归, 前端, LH_ZSF, Eighteen Blog, ZSF, 赵十八, 赵少飞">
   
   
   <meta name="description" content="好学力行，明德任责。一起分享芝士。">
@@ -52,7 +52,7 @@
   
   
   <div class="cover-wrapper">
-    <cover class="cover  half">
+    <cover class="cover post half">
       
         
   <h1 class="title">Eighteen Blog</h1>
@@ -207,16 +207,11 @@
   <div class="l_body">
     <div class='body-wrapper'>
       <div class="l_main">
-	
-		
-  <section class="post-list">
-    
-    
-      
-        
-          <div class="post-wrapper">
-            <article class="post reveal ">
   
+
+  
+    <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+      
 
 
   <section class="meta">
@@ -225,11 +220,13 @@
     <div class="meta" id="header-meta">
       
         
-  <h2 class="title">
-    <a href="/Vue/v-model/">
-      V-Model
-    </a>
-  </h2>
+  
+    <h1 class="title">
+      <a href="/Algorithm/每日一题/leetcode_112. 路径总和/">
+        Leetcode_112. 路径总和
+      </a>
+    </h1>
+  
 
 
       
@@ -255,115 +252,7 @@
             <div class="new-meta-item date">
   <a class="notlink">
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-08-26</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class="new-meta-item category">
-    <a href="/categories/Vue/" rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>Vue</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <p>最近学习vue，从最基础的文档看起。到目前基础已经看完。有两个问题很迷茫。</p>
-<ol>
-<li>vue的动态参数（2.6新增）。demo一直报错。分析原因是因为vue不允许动态添加根一级的变量。（不理解）</li>
-<li>组件中v-model的使用文档中说的让我有点绕。不过已经顺过来了，所以来分享一下。</li>
-</ol>
-      
-        <div class="readmore">
-          <a href="/Vue/v-model/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/Vue/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Vue</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class="post-wrapper">
-            <article class="post reveal ">
-  
-
-
-  <section class="meta">
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/Algorithm/每日一题/leetcode_7. 整数反转/">
-      Leetcode_7. 整数反转
-    </a>
-  </h2>
-
-
-      
-      <div class="new-meta-box">
-        
-          
-        
-          
-            
-  <div class="new-meta-item author">
-    <a href="http://www.zsfmyz.top" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>赵十八</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class="notlink">
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-07-27</p>
+    <p>2019-12-12</p>
   </a>
 </div>
 
@@ -384,6 +273,19 @@
         
           
             
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class="notlink">
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
+
 
           
         
@@ -400,513 +302,192 @@
   </section>
 
 
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <h3 id="题目解析："><a href="#题目解析：" class="headerlink" title="题目解析："></a>题目解析：</h3><p>给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。</p>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>示例 1:</p>
-<blockquote>
-<p>  输入: 123<br>  输出: 321</p>
-</blockquote>
-<p>示例 2:</p>
-<blockquote>
-<p>  输入: -123<br>  输出: -321<br>示例 3:</p>
-</blockquote>
-<blockquote>
-<p>  输入: 120<br>  输出: 21</p>
-</blockquote>
-<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [−231,  231 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。</p>
-      
-        <div class="readmore">
-          <a href="/Algorithm/每日一题/leetcode_7. 整数反转/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          <h3 id="题目解析："><a href="#题目解析：" class="headerlink" title="题目解析："></a>题目解析：</h3><p>给定一个二叉树和一个目标和，判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>示例 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">给定如下二叉树，以及目标和 sum = 22</span><br><span class="line">              5</span><br><span class="line">             / \</span><br><span class="line">            4   8</span><br><span class="line">           /   / \</span><br><span class="line">          11  13  4</span><br><span class="line">         /  \      \</span><br><span class="line">        7    2      1</span><br><span class="line"></span><br><span class="line">返回 true, 因为存在目标和为 22 的根节点到叶子节点的路径 5-&gt;4-&gt;11-&gt;2。</span><br></pre></td></tr></table></figure></p>
+<p>说明&amp;&amp;进阶:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">说明: 叶子节点是指没有子节点的节点。</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><pre><code>递归，递归判断条件
+1. 左右对称的节点是否相同。
+2. 递归判断直至叶节点。
+</code></pre><h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * function TreeNode(val) &#123;</span><br><span class="line"> *     this.val = val;</span><br><span class="line"> *     this.left = this.right = null;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">/**</span><br><span class="line"> * @param &#123;TreeNode&#125; root</span><br><span class="line"> * @param &#123;number&#125; sum</span><br><span class="line"> * @return &#123;boolean&#125;</span><br><span class="line"> */</span><br><span class="line">var hasPathSum = function(root, sum) &#123;</span><br><span class="line">    if (root === null) &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    return fun(root, 0, sum);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var fun = function(root, mysum, sum) &#123;</span><br><span class="line">    root.mysum = root.val + mysum;</span><br><span class="line">    if (root.left === null &amp;&amp; root.right === null)&#123;</span><br><span class="line">       return root.mysum === sum;</span><br><span class="line">    &#125;</span><br><span class="line">    return (root.left &amp;&amp; fun(root.left, root.mysum, sum)) || (root.right &amp;&amp; fun(root.right, root.mysum, sum)) || false; </span><br><span class="line">    // 或（||）会取最后一个转义为false的值。 即可能会出现0，null，undefined等结果</span><br><span class="line">    // 为避免不必要的错误，增加 || false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
         </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class="post-wrapper">
-            <article class="post reveal ">
-  
-
-
-  <section class="meta">
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/Algorithm/每日一题/leetcode_2. 两数相加/">
-      Leetcode_2. 两数相加
-    </a>
-  </h2>
-
-
-      
-      <div class="new-meta-box">
         
           
-        
-          
-            
-  <div class="new-meta-item author">
-    <a href="http://www.zsfmyz.top" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>赵十八</p>
-    </a>
-  </div>
 
 
-          
+  <section class="meta" id="footer-meta">
+    <hr>
+    <div class="new-meta-box">
+      
         
-          
-            <div class="new-meta-item date">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-13T09:43:29+08:00">
   <a class="notlink">
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-06-27</p>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>最后更新于 2019年12月13日</p>
   </a>
 </div>
 
-          
+        
+      
         
           
-            
   
-  <div class="new-meta-item category">
-    <a href="/categories/Algorithm/每日一题/" rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>Algorithm&nbsp;/&nbsp;每日一题</p>
-    </a>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>Algorithm</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.zsfmyz.top/Algorithm/每日一题/leetcode_112. 路径总和/&title=Leetcode_112. 路径总和 | Eighteen Blog&summary=题目解析：给定一个二叉树和一个目标和，判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和。
+示例示例 1:12345678910给定如下二叉树，以及目标和 sum = 22              5             / \            4   8           /   / \          11  13  4         /  \      \        7    2      1返回 true, 因为存在目标和为 22 的根节点到叶子节点的路径 5-&gt;4-&gt;11-&gt;2。
+说明&amp;&amp;进阶:1说明: 叶子节点是指没有子节点的节点。">
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://www.zsfmyz.top/Algorithm/每日一题/leetcode_112. 路径总和/&title=Leetcode_112. 路径总和 | Eighteen Blog&summary=题目解析：给定一个二叉树和一个目标和，判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和。
+示例示例 1:12345678910给定如下二叉树，以及目标和 sum = 22              5             / \            4   8           /   / \          11  13  4         /  \      \        7    2      1返回 true, 因为存在目标和为 22 的根节点到叶子节点的路径 5-&gt;4-&gt;11-&gt;2。
+说明&amp;&amp;进阶:1说明: 叶子节点是指没有子节点的节点。">
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="qrcode" rel="external nofollow noopener noreferrer" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuUlEQVR42u3aS45iMRAEQO5/aUaa9QCZVfbQLcVbIX7PYSS7yPLjEV/Pv9f7Z95/6vniyu+V3HF44eHh4Y2G/v72759PpuD9O/Ox5WPGw8PDu807tay/X9CTKWin9YMFDw8P76u85PErfL795BsDHh4e3m/htVtIHmrMCnQ8PDy8b/HyJbsNZPOlv92cDmcteHh4eDGvbYD9hMcX+3t4eHh4i6562+afFdObEPnDaPHw8PAu8GZR6SZmbdfz2UiODREPDw8vPpW0H2jSBpsFFkno8I+NAQ8PD+8obzPcpB3VFsdtCX4gzMXDw8Mrecki27bH8m0mmYL2uAAeHh7ePV4ewiZL8yaeSI4IJCHIMGPGw8PDi3ntUj6LEvJh5UFDAcbDw8M7yjtVCm+C4FnokEQneHh4ePd4+4h2Exkkm9Cs4MbDw8O7x0vaSG2MmxffbShcTBkeHh7eBd7wreUhgzwsnk1utJnh4eHhHeLtD1HlpHbbmLW7Xu57eHh4eEd5s7L17FJ+6oDCy6wFDw8P7xAv+XB+VKt9NR96G2Tg4eHh3eNtmkxJ4dvGuLPDCh9+MTw8PLwLvE1Rm5Td7SaxCSPw8PDwbvPyuKGNA2aNsbZ8x8PDw/v/vE2scOr788ltfxg8PDy8G7z8A7OJaAPZDSPaqPDw8PDWvHwQeUAwW+iTowAHGmB4eHh4R3l5K2tTNM+eaY9nRWk0Hh4e3oiXDHfWAGtbbpt2VzESPDw8vDXvWV7tAn0qesiL+PofAx4eHt7J06dXcuL2AMHmmBceHh7ePV7bptoEuHm0sfmGorDGw8PDW/DyP/lnw9lNKR+V1Hh4eHhf5eXN+3xxnx01KN6Jh4eH98N4ZyOMPCaODl3h4eHhXebNwoj90PNpnUUYeHh4eDd4m1u2za38WEA+0Y/9hYeHh5fy/gA0YDXKXHHtDwAAAABJRU5ErkJggg==">
+        
+          <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/wechat.png">
+        
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer" href="http://service.weibo.com/share/share.php?url=http://www.zsfmyz.top/Algorithm/每日一题/leetcode_112. 路径总和/&title=Leetcode_112. 路径总和 | Eighteen Blog&summary=题目解析：给定一个二叉树和一个目标和，判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和。
+示例示例 1:12345678910给定如下二叉树，以及目标和 sum = 22              5             / \            4   8           /   / \          11  13  4         /  \      \        7    2      1返回 true, 因为存在目标和为 22 的根节点到叶子节点的路径 5-&gt;4-&gt;11-&gt;2。
+说明&amp;&amp;进阶:1说明: 叶子节点是指没有子节点的节点。">
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
+          
+        </a>
+      
+    
+      
+        <a class="qrcode" rel="external nofollow noopener noreferrer" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuUlEQVR42u3aS45iMRAEQO5/aUaa9QCZVfbQLcVbIX7PYSS7yPLjEV/Pv9f7Z95/6vniyu+V3HF44eHh4Y2G/v72759PpuD9O/Ox5WPGw8PDu807tay/X9CTKWin9YMFDw8P76u85PErfL795BsDHh4e3m/htVtIHmrMCnQ8PDy8b/HyJbsNZPOlv92cDmcteHh4eDGvbYD9hMcX+3t4eHh4i6562+afFdObEPnDaPHw8PAu8GZR6SZmbdfz2UiODREPDw8vPpW0H2jSBpsFFkno8I+NAQ8PD+8obzPcpB3VFsdtCX4gzMXDw8Mrecki27bH8m0mmYL2uAAeHh7ePV4ewiZL8yaeSI4IJCHIMGPGw8PDi3ntUj6LEvJh5UFDAcbDw8M7yjtVCm+C4FnokEQneHh4ePd4+4h2Exkkm9Cs4MbDw8O7x0vaSG2MmxffbShcTBkeHh7eBd7wreUhgzwsnk1utJnh4eHhHeLtD1HlpHbbmLW7Xu57eHh4eEd5s7L17FJ+6oDCy6wFDw8P7xAv+XB+VKt9NR96G2Tg4eHh3eNtmkxJ4dvGuLPDCh9+MTw8PLwLvE1Rm5Td7SaxCSPw8PDwbvPyuKGNA2aNsbZ8x8PDw/v/vE2scOr788ltfxg8PDy8G7z8A7OJaAPZDSPaqPDw8PDWvHwQeUAwW+iTowAHGmB4eHh4R3l5K2tTNM+eaY9nRWk0Hh4e3oiXDHfWAGtbbpt2VzESPDw8vDXvWV7tAn0qesiL+PofAx4eHt7J06dXcuL2AMHmmBceHh7ePV7bptoEuHm0sfmGorDGw8PDW/DyP/lnw9lNKR+V1Hh4eHhf5eXN+3xxnx01KN6Jh4eH98N4ZyOMPCaODl3h4eHhXebNwoj90PNpnUUYeHh4eDd4m1u2za38WEA+0Y/9hYeHh5fy/gA0YDXKXHHtDwAAAABJRU5ErkJggg==">
+        
+          <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qrcode.png">
+        
+        </a>
+      
+    
   </div>
-
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <p>给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。</p>
-<p>如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。</p>
-<p>您可以假设除了数字 0 之外，这两个数都不会以 0 开头。</p>
-<p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：(2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)</span><br><span class="line">输出：7 -&gt; 0 -&gt; 8</span><br><span class="line">原因：342 + 465 = 807</span><br></pre></td></tr></table></figure></p>
-      
-        <div class="readmore">
-          <a href="/Algorithm/每日一题/leetcode_2. 两数相加/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class="post-wrapper">
-            <article class="post reveal ">
-  
-
-
-  <section class="meta">
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/Algorithm/完全背包问题/">
-      完全背包问题
-    </a>
-  </h2>
-
-
-      
-      <div class="new-meta-box">
-        
-          
-        
-          
-            
-  <div class="new-meta-item author">
-    <a href="http://www.zsfmyz.top" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>赵十八</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class="notlink">
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-04-30</p>
-  </a>
 </div>
 
-          
-        
-          
-            
-  
-  <div class="new-meta-item category">
-    <a href="/categories/Algorithm/" rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>Algorithm</p>
-    </a>
-  </div>
 
 
-          
         
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
       
     </div>
   </section>
 
 
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><blockquote>
-<p>这里借用一个题目的描述来说明要解决问题的背景。</p>
-</blockquote>
-<p>LiYuxiang是个天资聪颖的孩子，他的梦想是成为世界上最伟大的医师。为此，他想拜附近最有威望的医师为师。医师为了判断他的资质，给他出了一个难题。医师把他带到一个到处都是草药的山洞里对他说：“孩子，这个山洞里有一些不同种类的草药，采每一种都需要一些时间，每一种也有它自身的价值。我会给你一段时间，在这段时间里，你可以采到一些草药。如果你是一个聪明的孩子，你应该可以让采到的草药的总价值最大。”</p>
-<p>如果你是LiYuxiang，你能完成这个任务吗？</p>
-<p>此题和原题的不同点：</p>
-<p>1.每种草药可以无限制地疯狂采摘。</p>
-<p>2.药的种类眼花缭乱，采药时间好长好长啊！师傅等得菊花都谢了！</p>
-<h2 id="一、-什么是背包算法"><a href="#一、-什么是背包算法" class="headerlink" title="一、 什么是背包算法"></a>一、 什么是背包算法</h2><p>背包算法的基础标准描述为：当前有N件商品，每件商品都有不同的价值v和重量w。我们要把这些商品放在容量为L的背包中，实现背包中的价值最大化。（第i件商品的价值为v[i]，重量为w[i])。上面的题目中的条件之一：草药无限（每件商品可以重复放入背包）即表明了该问题是完全背包问题。</p>
-      
-        <div class="readmore">
-          <a href="/Algorithm/完全背包问题/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
         
-          <a href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
         
-      </div>
-    
-  </section>
-</article>
-
-          </div>
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                            <h4>
+                                <a href="/Algorithm/每日一题/leetcode_101. 对称二叉树/" rel="prev" title="Leetcode_101. 对称二叉树">
+                                  
+                                      Leetcode_101. 对称二叉树
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/Algorithm/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Algorithm</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/api/QQ音乐api(持续更新)/" rel="prev" title="QQ音乐api(持续更新)">
+                                    
+                                        QQ音乐api(持续更新)
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/api/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>api</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+            </div>
         
-      
-        
-          <div class="post-wrapper">
-            <article class="post reveal ">
+      </section>
+    </article>
   
 
-
-  <section class="meta">
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/JavaScript/ES6 对象数组查找某一个对象 findIndex/">
-      ES6 对象数组查找某一个对象 findIndex
-    </a>
-  </h2>
-
-
-      
-      <div class="new-meta-box">
-        
-          
-        
-          
-            
-  <div class="new-meta-item author">
-    <a href="http://www.zsfmyz.top" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>赵十八</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class="notlink">
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-01-27</p>
-  </a>
-</div>
-
-          
-        
-          
-            
   
-  <div class="new-meta-item category">
-    <a href="/categories/JavaScript/" rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>JavaScript</p>
-    </a>
-  </div>
+    <!-- 显示推荐文章和评论 -->
 
 
-          
-        
-          
-            
 
-          
-        
-          
-            
-
-          
-        
-      </div>
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
       
-        <hr>
       
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <blockquote>
-<p> 查找数组特定元素需要用到的方法就是<strong>findIndex()</strong>。</p>
-</blockquote>
-<h2 id="用法与定义"><a href="#用法与定义" class="headerlink" title="用法与定义"></a>用法与定义</h2><ul>
-<li>findIndex() 方法返回传入一个测试<strong>条件</strong>（函数）符合条件的数组<strong>第一个</strong>元素位置。</li>
-<li>findIndex() 方法为数组中的每个元素都调用一次函数执行：<br>  当数组中的元素在测试条件时返回 true 时, findIndex() 返回<strong>符合条件</strong>的元素的<strong>索引位置</strong>，<em>之后的值不会再调用    执行函数。</em><br>如果没有符合条件的元素返回 <strong>-1</strong></li>
-</ul>
       
-        <div class="readmore">
-          <a href="/JavaScript/ES6 对象数组查找某一个对象 findIndex/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
+        <section id="comments">
+          <div id="gitalk-container"></div>
+        </section>
       
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/JavaScript/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>JavaScript</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
       
-        
-          <div class="post-wrapper">
-            <article class="post reveal ">
-  
+    </section>
+  </article>
 
-
-  <section class="meta">
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/JavaScript/call，apply，bind的区别及实现/">
-      Call，apply，bind的区别及实现
-    </a>
-  </h2>
-
-
-      
-      <div class="new-meta-box">
-        
-          
-        
-          
-            
-  <div class="new-meta-item author">
-    <a href="http://www.zsfmyz.top" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>赵十八</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class="notlink">
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-01-11</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class="new-meta-item category">
-    <a href="/categories/JavaScript/" rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>JavaScript</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <blockquote>
-<p>call，apply，bind的区别<br>这三个函数的左右都是为了指定当前的this。</p>
-</blockquote>
-<p>不同点：</p>
-<ol>
-<li>call，apply 两者都是对函数的直接调用，bind的返回值仍然是一个函数。<br>  举例：<code>a.call(b)  或者  a.apply(b)   而bind需要 a.bind(b)()这样才能执行</code></li>
-<li>call和apply的传参方式不同，第一个值都是this的指向，第二个举例</li>
-</ol>
-      
-        <div class="readmore">
-          <a href="/JavaScript/call，apply，bind的区别及实现/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/JavaScript/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>JavaScript</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-      <br>
-      <div class="prev-next">
-        <div class="prev-next">
-          
-            <a class="prev" rel="prev" href="/archives/2019/page/2/">
-              <section class="post prev">
-                <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页&nbsp;
-              </section>
-            </a>
-          
-          <p class="current">
-            3 / 3
-          </p>
-          
-        </div>
-      </div>
-
-    
-    <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
-    
-    
 
   
 
 
-	
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'Leetcode_112. 路径总和',
+      tools: true
+    }
+  </script>
+
+
 </div>
 <aside class="l_side">
   
@@ -959,6 +540,20 @@
           
           
             
+  <section class="widget toc-wrapper">
+    
+<header class="pure">
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目录</div>
+  
+    <div class="wrapper"><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+  
+</header>
+
+    <div class="content pure">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目解析："><span class="toc-text">题目解析：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解题思路"><span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解答"><span class="toc-text">解答</span></a></li></ol>
+    </div>
+  </section>
+
 
           
         
@@ -1162,14 +757,6 @@
 <script>setLoadingBarProgress(80);</script>
 
 
-
-
-	<!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
-	
-
-	
-
-
       <script>setLoadingBarProgress(60);</script>
     </div>
     <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
@@ -1256,6 +843,24 @@
 
 
 
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <script src="/js/md5.js"></script>
+    <script type="text/javascript">
+        var gitalk = new Gitalk({
+            clientID: "57052046652c742e7a75",
+            clientSecret: "dc4cffe55050ef4cad3363710a11b074f1ddca98",
+            repo: "blogtalk",
+            owner: "lunhui1994",
+            admin: "lunhui1994",
+            
+            id: md5(location.pathname), // Ensure uniqueness and length less than 50
+            
+            distractionFreeMode: false // Facebook-like distraction free mode
+        });
+        gitalk.render('gitalk-container');
+    </script>
 
 
 
