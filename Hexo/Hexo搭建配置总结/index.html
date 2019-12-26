@@ -313,6 +313,10 @@
 <li><strong>Hexo 添加看板娘</strong></li>
 <li><strong>Hexo 网站地图</strong></li>
 <li><strong>Hexo 评论系统 gitalk</strong></li>
+<li><strong>常见问题</strong><ol>
+<li><strong>Hexo deploy 报错</strong></li>
+</ol>
+</li>
 </ol>
 <a id="more"></a>
 <h3 id="Hexo-添加Favicon"><a href="#Hexo-添加Favicon" class="headerlink" title="Hexo 添加Favicon"></a>Hexo 添加Favicon</h3><p><strong>根目录_config.yml</strong></p>
@@ -408,6 +412,26 @@
 </ol>
 </li>
 </ol>
+<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><h4 id="Hexo-deploy-报错"><a href="#Hexo-deploy-报错" class="headerlink" title="Hexo deploy 报错"></a>Hexo deploy 报错</h4><ol>
+<li>报错信息如下</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">remote: Weak credentials. Please Update your password to continue using GitHub.</span><br><span class="line">remote: See https://help.github.com/articles/creating-a-strong-password/.</span><br><span class="line">fatal: unable to access &apos;https://github.com/xxx/xxx.github.io.git/&apos;: The requested URL returned error: 403</span><br><span class="line">FATAL Something&apos;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span><br><span class="line">Error: Spawn failed</span><br><span class="line">    at ChildProcess.&lt;anonymous&gt; (/opt/hexo/node_modules/_hexo-util@0.6.3@hexo-util/lib/spawn.js:52:19)</span><br><span class="line">    at ChildProcess.emit (events.js:198:13)</span><br><span class="line">    at Process.ChildProcess._handle.onexit (internal/child_process.js:248:12)</span><br></pre></td></tr></table></figure>
+<ol>
+<li><strong>问题描述</strong><br>这种报错是突然出现的，一看就知道是github的问题，大概意思就是说你的密码强度太低。<br>所以造成了连接不上GitHub仓库地址的报错。刚开始还比较迷茫，不知道是哪个密码比较弱了。<br>直到我想添加ssh key的时候，GitHub官网提醒，说我的GitHub密码比较弱，需要修改，否则一个月后自动修改。</li>
+</ol>
+<p>这简直比较狗血，没想到还会影响到git提交。 但是目前只发现会影响hexo deploy的自动部署，账号上的其他clone的仓库不会影响。</p>
+<ol start="2">
+<li><p><strong>解决办法(linux)</strong></p>
+</li>
+<li><p>更改GitHub密码。</p>
+</li>
+<li><p>重新生成ssh key。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ssh-keygen -C &apos;xxx@email.com&apos; -t rsa</span><br></pre></td></tr></table></figure>
+<p> 一路 y 就可以了。</p>
+</li>
+<li><p>将重新生成的key添加到GitHub上。</p>
+</li>
+</ol>
 
         </div>
         
@@ -419,10 +443,10 @@
     <div class="new-meta-box">
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-10-18T11:19:40+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-26T14:54:18+08:00">
   <a class="notlink">
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>last updated at 2019年10月18日</p>
+    <p>last updated at 2019年12月26日</p>
   </a>
 </div>
 
@@ -451,6 +475,10 @@ Hexo RSS订阅
 Hexo 添加看板娘
 Hexo 网站地图
 Hexo 评论系统 gitalk
+常见问题
+Hexo deploy 报错
+
+
 ">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
@@ -468,6 +496,10 @@ Hexo RSS订阅
 Hexo 添加看板娘
 Hexo 网站地图
 Hexo 评论系统 gitalk
+常见问题
+Hexo deploy 报错
+
+
 ">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
@@ -493,6 +525,10 @@ Hexo RSS订阅
 Hexo 添加看板娘
 Hexo 网站地图
 Hexo 评论系统 gitalk
+常见问题
+Hexo deploy 报错
+
+
 ">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
@@ -667,7 +703,7 @@ Hexo 评论系统 gitalk
 </header>
 
     <div class="content pure">
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo-添加Favicon"><span class="toc-text">Hexo 添加Favicon</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo-添加百度统计"><span class="toc-text">Hexo 添加百度统计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo-RSS订阅"><span class="toc-text">Hexo RSS订阅</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo-添加看板娘"><span class="toc-text">Hexo 添加看板娘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo-网站地图"><span class="toc-text">Hexo 网站地图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo-评论系统-gitalk"><span class="toc-text">Hexo 评论系统 gitalk</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo-添加Favicon"><span class="toc-text">Hexo 添加Favicon</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo-添加百度统计"><span class="toc-text">Hexo 添加百度统计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo-RSS订阅"><span class="toc-text">Hexo RSS订阅</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo-添加看板娘"><span class="toc-text">Hexo 添加看板娘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo-网站地图"><span class="toc-text">Hexo 网站地图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo-评论系统-gitalk"><span class="toc-text">Hexo 评论系统 gitalk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见问题"><span class="toc-text">常见问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Hexo-deploy-报错"><span class="toc-text">Hexo deploy 报错</span></a></li></ol></li></ol>
     </div>
   </section>
 
