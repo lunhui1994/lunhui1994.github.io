@@ -412,19 +412,13 @@
 </ol>
 </li>
 </ol>
-<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><h4 id="Hexo-deploy-报错"><a href="#Hexo-deploy-报错" class="headerlink" title="Hexo deploy 报错"></a>Hexo deploy 报错</h4><ol>
-<li>报错信息如下</li>
-</ol>
+<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><h4 id="Hexo-deploy-报错"><a href="#Hexo-deploy-报错" class="headerlink" title="Hexo deploy 报错"></a>Hexo deploy 报错</h4><p><strong>报错信息一</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">remote: Weak credentials. Please Update your password to continue using GitHub.</span><br><span class="line">remote: See https://help.github.com/articles/creating-a-strong-password/.</span><br><span class="line">fatal: unable to access &apos;https://github.com/xxx/xxx.github.io.git/&apos;: The requested URL returned error: 403</span><br><span class="line">FATAL Something&apos;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span><br><span class="line">Error: Spawn failed</span><br><span class="line">    at ChildProcess.&lt;anonymous&gt; (/opt/hexo/node_modules/_hexo-util@0.6.3@hexo-util/lib/spawn.js:52:19)</span><br><span class="line">    at ChildProcess.emit (events.js:198:13)</span><br><span class="line">    at Process.ChildProcess._handle.onexit (internal/child_process.js:248:12)</span><br></pre></td></tr></table></figure>
-<ol>
-<li><strong>问题描述</strong><br>这种报错是突然出现的，一看就知道是github的问题，大概意思就是说你的密码强度太低。<br>所以造成了连接不上GitHub仓库地址的报错。刚开始还比较迷茫，不知道是哪个密码比较弱了。<br>直到我想添加ssh key的时候，GitHub官网提醒，说我的GitHub密码比较弱，需要修改，否则一个月后自动修改。</li>
-</ol>
+<p><strong>问题描述</strong><br>这种报错是突然出现的，一看就知道是github的问题，大概意思就是说你的密码强度太低。<br>所以造成了连接不上GitHub仓库地址的报错。刚开始还比较迷茫，不知道是哪个密码比较弱了。<br>直到我想添加ssh key的时候，GitHub官网提醒，说我的GitHub密码比较弱，需要修改，否则一个月后自动修改。</p>
 <p>这简直比较狗血，没想到还会影响到git提交。 但是目前只发现会影响hexo deploy的自动部署，账号上的其他clone的仓库不会影响。</p>
-<ol start="2">
-<li><p><strong>解决办法(linux)</strong></p>
-</li>
-<li><p>更改GitHub密码。</p>
-</li>
+<p><strong>解决办法(linux)</strong></p>
+<ol>
+<li>更改GitHub密码。</li>
 <li><p>重新生成ssh key。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ssh-keygen -C &apos;xxx@email.com&apos; -t rsa</span><br></pre></td></tr></table></figure>
 <p> 一路 y 就可以了。</p>
@@ -443,10 +437,10 @@
     <div class="new-meta-box">
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-12-26T15:03:20+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-02-26T15:12:03+08:00">
   <a class="notlink">
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>last updated at 2019年12月26日</p>
+    <p>last updated at 2020年2月26日</p>
   </a>
 </div>
 
