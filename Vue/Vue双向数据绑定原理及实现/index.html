@@ -315,6 +315,7 @@
 </li>
 </ul>
 <p>监察者通过 Dep 向 Watcher发布更新消息</p>
+ <a id="more"></a>
 <h4 id="简单实现"><a href="#简单实现" class="headerlink" title="简单实现"></a>简单实现</h4><p>那么首先</p>
 <ol>
 <li>通过对set和get的拦截，在get阶段进行依赖收集，在set阶段对通知该属性上所啊绑定的依赖。</li>
@@ -356,7 +357,7 @@
     <div class="new-meta-box">
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-14T14:54:39+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-14T14:59:38+08:00">
   <a class="notlink">
     <i class="fas fa-clock" aria-hidden="true"></i>
     <p>last updated at 2020年3月14日</p>
@@ -379,7 +380,17 @@
   <div class="-mob-share-list share-body">
     
       
-        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.zsfmyz.top/Vue/Vue双向数据绑定原理及实现/&title=Vue双向数据绑定原理及实现 | Eighteen Blog&summary=">
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.zsfmyz.top/Vue/Vue双向数据绑定原理及实现/&title=Vue双向数据绑定原理及实现 | Eighteen Blog&summary=说明vue实现双向绑定原理，主要是利用Object.defineProperty 来给实例data的属性添加 setter和getter.并通过发布订阅模式（一对多的依赖关系，当状态发生改变，它的所有依赖都将被通知）来实现响应。
+这个环节中包含了三个部分
+
+Observer 用来监听拦截data的属性为监察者。 
+
+Dep用来添加订阅者，为订阅器
+
+Watcher 就是订阅者
+
+
+监察者通过 Dep 向 Watcher发布更新消息">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
           
@@ -387,7 +398,17 @@
       
     
       
-        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://www.zsfmyz.top/Vue/Vue双向数据绑定原理及实现/&title=Vue双向数据绑定原理及实现 | Eighteen Blog&summary=">
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://www.zsfmyz.top/Vue/Vue双向数据绑定原理及实现/&title=Vue双向数据绑定原理及实现 | Eighteen Blog&summary=说明vue实现双向绑定原理，主要是利用Object.defineProperty 来给实例data的属性添加 setter和getter.并通过发布订阅模式（一对多的依赖关系，当状态发生改变，它的所有依赖都将被通知）来实现响应。
+这个环节中包含了三个部分
+
+Observer 用来监听拦截data的属性为监察者。 
+
+Dep用来添加订阅者，为订阅器
+
+Watcher 就是订阅者
+
+
+监察者通过 Dep 向 Watcher发布更新消息">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
           
@@ -403,7 +424,17 @@
       
     
       
-        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer" href="http://service.weibo.com/share/share.php?url=http://www.zsfmyz.top/Vue/Vue双向数据绑定原理及实现/&title=Vue双向数据绑定原理及实现 | Eighteen Blog&summary=">
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer" href="http://service.weibo.com/share/share.php?url=http://www.zsfmyz.top/Vue/Vue双向数据绑定原理及实现/&title=Vue双向数据绑定原理及实现 | Eighteen Blog&summary=说明vue实现双向绑定原理，主要是利用Object.defineProperty 来给实例data的属性添加 setter和getter.并通过发布订阅模式（一对多的依赖关系，当状态发生改变，它的所有依赖都将被通知）来实现响应。
+这个环节中包含了三个部分
+
+Observer 用来监听拦截data的属性为监察者。 
+
+Dep用来添加订阅者，为订阅器
+
+Watcher 就是订阅者
+
+
+监察者通过 Dep 向 Watcher发布更新消息">
           
             <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
           
