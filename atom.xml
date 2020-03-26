@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.zsfmyz.top/"/>
-  <updated>2020-03-14T06:59:38.019Z</updated>
+  <updated>2020-03-26T04:23:31.792Z</updated>
   <id>http://www.zsfmyz.top/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode_226. 翻转二叉树</title>
+    <link href="http://www.zsfmyz.top/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/leetcode_226.%20%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    <id>http://www.zsfmyz.top/Algorithm/每日一题/leetcode_226. 翻转二叉树/</id>
+    <published>2020-03-26T03:59:13.000Z</published>
+    <updated>2020-03-26T04:23:31.792Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="题目解析"><a href="#题目解析" class="headerlink" title="题目解析"></a>题目解析</h3><p>翻转一棵二叉树。</p><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>示例 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">     4</span><br><span class="line">   /   \</span><br><span class="line">  2     7</span><br><span class="line"> / \   / \</span><br><span class="line">1   3 6   9</span><br><span class="line"></span><br><span class="line">输出: </span><br><span class="line">     4</span><br><span class="line">   /   \</span><br><span class="line">  7     2</span><br><span class="line"> / \   / \</span><br><span class="line">9   6 3   1</span><br></pre></td></tr></table></figure></p><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><pre><code>递归，递归判断条件1. 左右节点是否为null，不为null，则翻转其左右节点</code></pre><a id="more"></a><h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * function TreeNode(val) &#123;</span><br><span class="line"> *     this.val = val;</span><br><span class="line"> *     this.left = this.right = null;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">/**</span><br><span class="line"> * @param &#123;TreeNode&#125; root</span><br><span class="line"> * @return &#123;TreeNode&#125;</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">function ex(treeNode) &#123;</span><br><span class="line">    if (treeNode == null) &#123;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">    let item = treeNode.left;</span><br><span class="line">    treeNode.left = treeNode.right;</span><br><span class="line">    treeNode.right = item;</span><br><span class="line">    treeNode.left &amp;&amp; ex(treeNode.left)</span><br><span class="line">    treeNode.right &amp;&amp; ex(treeNode.right)</span><br><span class="line">&#125;</span><br><span class="line">var invertTree = function(root) &#123;</span><br><span class="line">    ex(root)</span><br><span class="line">    return root</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;题目解析&quot;&gt;&lt;a href=&quot;#题目解析&quot; class=&quot;headerlink&quot; title=&quot;题目解析&quot;&gt;&lt;/a&gt;题目解析&lt;/h3&gt;&lt;p&gt;翻转一棵二叉树。&lt;/p&gt;
+&lt;h3 id=&quot;示例&quot;&gt;&lt;a href=&quot;#示例&quot; class=&quot;headerlink&quot; title=&quot;示例&quot;&gt;&lt;/a&gt;示例&lt;/h3&gt;&lt;p&gt;示例 1:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;输入:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   /   \&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  2     7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; / \   / \&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1   3 6   9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;输出: &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   /   \&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  7     2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; / \   / \&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9   6 3   1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;解题思路&quot;&gt;&lt;a href=&quot;#解题思路&quot; class=&quot;headerlink&quot; title=&quot;解题思路&quot;&gt;&lt;/a&gt;解题思路&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;递归，递归判断条件
+1. 左右节点是否为null，不为null，则翻转其左右节点
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="Algorithm" scheme="http://www.zsfmyz.top/categories/Algorithm/"/>
+    
+      <category term="每日一题" scheme="http://www.zsfmyz.top/categories/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/"/>
+    
+    
+      <category term="Algorithm" scheme="http://www.zsfmyz.top/tags/Algorithm/"/>
+    
+  </entry>
   
   <entry>
     <title>Vue双向数据绑定原理及实现</title>
@@ -529,32 +557,6 @@
     
     
       <category term="JavaScript" scheme="http://www.zsfmyz.top/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Font-Family字体对照表及效果展示</title>
-    <link href="http://www.zsfmyz.top/Css/font-family%E5%AD%97%E4%BD%93%E5%AF%B9%E7%85%A7%E8%A1%A8%E5%8F%8A%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA/"/>
-    <id>http://www.zsfmyz.top/Css/font-family字体对照表及效果展示/</id>
-    <published>2019-08-30T07:37:09.000Z</published>
-    <updated>2019-09-20T07:42:49.042Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><p>直接进demo演示页面查看吧。</p><p><a href="http://www.zsfmyz.top/demo/font/">demo演示地址</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;Demo&quot;&gt;&lt;a href=&quot;#Demo&quot; class=&quot;headerlink&quot; title=&quot;Demo&quot;&gt;&lt;/a&gt;Demo&lt;/h3&gt;&lt;p&gt;直接进demo演示页面查看吧。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.zsfmyz.top/demo/fon
-      
-    
-    </summary>
-    
-      <category term="Css" scheme="http://www.zsfmyz.top/categories/Css/"/>
-    
-    
-      <category term="Css" scheme="http://www.zsfmyz.top/tags/Css/"/>
     
   </entry>
   

@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Leetcode_226. 翻转二叉树</title>
+      <link href="/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/leetcode_226.%20%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+      <url>/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/leetcode_226.%20%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
+      
+        <content type="html"><![CDATA[<h3 id="题目解析"><a href="#题目解析" class="headerlink" title="题目解析"></a>题目解析</h3><p>翻转一棵二叉树。</p><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>示例 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">     4</span><br><span class="line">   /   \</span><br><span class="line">  2     7</span><br><span class="line"> / \   / \</span><br><span class="line">1   3 6   9</span><br><span class="line"></span><br><span class="line">输出: </span><br><span class="line">     4</span><br><span class="line">   /   \</span><br><span class="line">  7     2</span><br><span class="line"> / \   / \</span><br><span class="line">9   6 3   1</span><br></pre></td></tr></table></figure></p><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><pre><code>递归，递归判断条件1. 左右节点是否为null，不为null，则翻转其左右节点</code></pre><a id="more"></a><h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * function TreeNode(val) &#123;</span><br><span class="line"> *     this.val = val;</span><br><span class="line"> *     this.left = this.right = null;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">/**</span><br><span class="line"> * @param &#123;TreeNode&#125; root</span><br><span class="line"> * @return &#123;TreeNode&#125;</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">function ex(treeNode) &#123;</span><br><span class="line">    if (treeNode == null) &#123;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">    let item = treeNode.left;</span><br><span class="line">    treeNode.left = treeNode.right;</span><br><span class="line">    treeNode.right = item;</span><br><span class="line">    treeNode.left &amp;&amp; ex(treeNode.left)</span><br><span class="line">    treeNode.right &amp;&amp; ex(treeNode.right)</span><br><span class="line">&#125;</span><br><span class="line">var invertTree = function(root) &#123;</span><br><span class="line">    ex(root)</span><br><span class="line">    return root</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Algorithm </category>
+          
+          <category> 每日一题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Algorithm </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Vue双向数据绑定原理及实现</title>
       <link href="/Vue/Vue%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/"/>
       <url>/Vue/Vue%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/</url>
@@ -476,31 +503,6 @@
     
     
     <entry>
-      <title>Font-Family字体对照表及效果展示</title>
-      <link href="/Css/font-family%E5%AD%97%E4%BD%93%E5%AF%B9%E7%85%A7%E8%A1%A8%E5%8F%8A%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA/"/>
-      <url>/Css/font-family%E5%AD%97%E4%BD%93%E5%AF%B9%E7%85%A7%E8%A1%A8%E5%8F%8A%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA/</url>
-      
-        <content type="html"><![CDATA[<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><p>直接进demo演示页面查看吧。</p><p><a href="http://www.zsfmyz.top/demo/font/">demo演示地址</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Css </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Css </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>HTML5 Video截图功能实现</title>
       <link href="/JavaScript/HTML5%20Video%E6%88%AA%E5%9B%BE%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/"/>
       <url>/JavaScript/HTML5%20Video%E6%88%AA%E5%9B%BE%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/</url>
@@ -518,6 +520,31 @@
         <tags>
             
             <tag> JavaScript </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Font-Family字体对照表及效果展示</title>
+      <link href="/Css/font-family%E5%AD%97%E4%BD%93%E5%AF%B9%E7%85%A7%E8%A1%A8%E5%8F%8A%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA/"/>
+      <url>/Css/font-family%E5%AD%97%E4%BD%93%E5%AF%B9%E7%85%A7%E8%A1%A8%E5%8F%8A%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA/</url>
+      
+        <content type="html"><![CDATA[<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><p>直接进demo演示页面查看吧。</p><p><a href="http://www.zsfmyz.top/demo/font/">demo演示地址</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Css </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Css </tag>
             
         </tags>
       
