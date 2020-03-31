@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://www.zsfmyz.top/JavaScript/%E5%AE%9A%E6%97%B6%E5%99%A8%E4%B8%AD%E7%9A%84%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82%E5%A0%86%E7%A7%AF%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%EF%BC%9F/</loc>
+    <loc>http://www.zsfmyz.top/Hexo/Hexo%E6%90%AD%E5%BB%BA%E9%85%8D%E7%BD%AE%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2020-03-31</lastmod>
+  </url>  <url>
+    <loc>http://www.zsfmyz.top/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/leetcode_226.%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91/</loc>
     <lastmod>2020-03-27</lastmod>
   </url>  <url>
-    <loc>http://www.zsfmyz.top/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/leetcode_226.%20%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91/</loc>
-    <lastmod>2020-03-26</lastmod>
+    <loc>http://www.zsfmyz.top/JavaScript/%E5%AE%9A%E6%97%B6%E5%99%A8%E4%B8%AD%E7%9A%84%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82%E5%A0%86%E7%A7%AF%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%EF%BC%9F/</loc>
+    <lastmod>2020-03-27</lastmod>
   </url>  <url>
     <loc>http://www.zsfmyz.top/Vue/Vue%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/</loc>
     <lastmod>2020-03-20</lastmod>
@@ -15,9 +18,6 @@
   </url>  <url>
     <loc>http://www.zsfmyz.top/Git/Git%E5%85%A5%E9%97%A8%E7%AF%87/</loc>
     <lastmod>2020-03-02</lastmod>
-  </url>  <url>
-    <loc>http://www.zsfmyz.top/Hexo/Hexo%E6%90%AD%E5%BB%BA%E9%85%8D%E7%BD%AE%E6%80%BB%E7%BB%93/</loc>
-    <lastmod>2020-02-26</lastmod>
   </url>  <url>
     <loc>http://www.zsfmyz.top/api/QQ%E9%9F%B3%E4%B9%90api(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/</loc>
     <lastmod>2020-02-26</lastmod>
