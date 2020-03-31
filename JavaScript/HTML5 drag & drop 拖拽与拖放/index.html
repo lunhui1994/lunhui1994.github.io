@@ -350,7 +350,6 @@
 </li>
 </ul>
 <h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;span  draggable=&quot;true&quot; &gt;&lt;/span&gt;  // 所有需要被拖动的元素都要加上draggable属性，默认除了a，img等标签外不可拖动。</span><br><span class="line"></span><br><span class="line">//start drag end 中 event都是被拖拽的元素</span><br><span class="line"></span><br><span class="line">document.addEventListener(&quot;dragstart&quot;, function (event) &#123; </span><br><span class="line">    var id = $(event.target).prop(&apos;id&apos;); </span><br><span class="line">    event.dataTransfer.dropEffect = &apos;move&apos; //设置拖动样式</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">//dragover dragleave   dragenter drop 中event都代表拖放的容器元素  </span><br><span class="line"></span><br><span class="line">document.addEventListener(&quot;dragover&quot;, function(event) &#123;  </span><br><span class="line">    // drop 阻止浏览器默认事件</span><br><span class="line">    event.preventDefault();</span><br><span class="line">    console.log(&quot;容器内&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>下一章：</p>
 
         </div>
         
@@ -362,10 +361,10 @@
     <div class="new-meta-box">
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-09-20T15:42:48+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-31T10:33:41+08:00">
   <a class="notlink">
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>最后更新于 2019年9月20日</p>
+    <p>最后更新于 2020年3月31日</p>
   </a>
 </div>
 
@@ -455,9 +454,9 @@ drop &amp; drag 是html5自带的拖拽与拖放的api
                         <span class="art-item-left">
                             <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
                             <h4>
-                                <a href="/Algorithm/每日一题/leetcode_35. 搜索插入位置/" rel="prev" title="Leetcode_35. 搜索插入位置">
+                                <a href="/Algorithm/每日一题/leetcode_14. 最长公共前缀/" rel="prev" title="Leetcode_14. 最长公共前缀">
                                   
-                                      Leetcode_35. 搜索插入位置
+                                      Leetcode_14. 最长公共前缀
                                   
                                 </a>
                             </h4>

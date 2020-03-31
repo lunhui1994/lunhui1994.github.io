@@ -400,6 +400,8 @@
           
         
           
+        
+          
             
               <div class="post-wrapper">
                 <article class="post reveal ">
@@ -747,7 +749,7 @@
       <blockquote>
 <p> 前两篇文介绍了css3的过滤器filter用来实现图片的高斯模糊效果，还有js拖拽的功能。<br> 要实现局部模糊就要把两者结合起来，计算位移就可以了。</p>
 </blockquote>
-<h3 id="实现原理"><a href="#实现原理" class="headerlink" title="*实现原理**"></a>*实现原理**</h3><blockquote>
+<h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a><strong>实现原理</strong></h3><blockquote>
 <p>原理其实很简单，就是两张图的叠加。底部一张<strong>清晰</strong>的图，上面一个<strong>高斯模糊</strong>过的图，将<strong>高斯模糊</strong>的图当作上层元素的背景，利用背景定位使其只显示一部分，然后把这个高斯模糊的窗口放置在高清图的上层，背景图片的位置与下面的图片位置一致，这样看起来就像一张高清的图片打上了马赛克一样。讲起来不是很清楚，大家可以看一下代码。</p>
 </blockquote>
       
@@ -771,8 +773,6 @@
 
               </div>
             
-          
-        
           
         
       
