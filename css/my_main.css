@@ -1,7 +1,0 @@
-#u-search .modal, #u-search .modal .modal-body .modal-results .result .digest {
-    overflow: hidden;
-}
-/* 兼容main.css grid类名 */
-.widget.grid {
-    display: block;
-}
