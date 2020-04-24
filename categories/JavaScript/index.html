@@ -273,6 +273,8 @@
           
         
           
+        
+          
             <div class='post-wrapper'>
               <article class="post reveal ">
   
@@ -394,6 +396,141 @@
       
     
     
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/JavaScript/块级作用域内的函数声明到底是什么？？/">
+      块级作用域内的函数声明到底是什么？？
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    <a href="http://www.zsfmyz.top" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>赵十八</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2020-04-16</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/JavaScript/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>JavaScript</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>在一篇文章里看到这样一个问题。<a href="https://mp.weixin.qq.com/s/MlKRNfK3blGJA7bfXzdsNg" target="_blank" rel="noopener">文章地址</a></p>
+<blockquote>
+<p>文章中会扩展一些其他的内容， 大家可以看过之后再来看我这篇个人的总结</p>
+</blockquote>
+<p>函数声明写在块级作用域中（ES6）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">    a = <span class="number">1</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">    a = <span class="number">21</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"里面"</span>,a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"外部"</span>,a);</span><br></pre></td></tr></table></figure></p>
+<p>请问输出是什么？ 答案是：<strong>里面21 外面1</strong>。</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovLzViMDk4OGU1OTUyMjUuY2RuLnNvaHVjcy5jb20vaW1hZ2VzLzIwMjAwMzIxL2Q3MTRmMzU1YjUwYTRlYjU4YWIyZTI3MTliYTNkMjUzLmpwZWc?x-oss-process=image/format,png#pic_center" alt="小朋友，ni&#39;you"><br>正如我一样，看到答案的我蒙蔽了，然后就继续阅读完全文，感觉还是有点不太明白。最后经过我查询资料我得到了答案。</p>
+<h3 id="转换结果"><a href="#转换结果" class="headerlink" title="转换结果"></a>转换结果</h3><p>代码转化如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> a;</span><br><span class="line">   <span class="keyword">var</span> a = <span class="number">0</span>;</span><br><span class="line">   <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">       <span class="keyword">let</span> a = <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">       &#125;</span><br><span class="line">       a = <span class="number">1</span>; </span><br><span class="line">       <span class="built_in">window</span>.a = a;  <span class="comment">//此处为原函数声明的位置</span></span><br><span class="line">       a = <span class="number">21</span>;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">"里面"</span>,a);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">"外部"</span>,a);</span><br></pre></td></tr></table></figure>
+<p>其实，函数声明放在块级作用域内做了以下几件事。<br>so， 我想看到了转换后的代码，估计大家就豁然开朗了。</p>
+<ol>
+<li><p>{}内部修改的是let定义的块级a，跟外部没关系。</p>
+</li>
+<li><p>所以 a = 1 的时候，外部其实还是为0。</p>
+</li>
+<li><p>外部的全局a原本为0， 被window.a = a 同步为了1.</p>
+</li>
+<li><p>a =21 块级a变成了21，全局a无变化还是1.</p>
+</li>
+</ol>
+<p><strong>那么为啥会这么转换呢????</strong>  </p>
+<h3 id="实质"><a href="#实质" class="headerlink" title="实质"></a>实质</h3><ol>
+<li><p>函数声明会被提升到<strong>块级作用域</strong>顶部。</p>
+</li>
+<li><p>使用了类似let的方式定义了一个<strong>块级作用域</strong>的函数<strong>同名变量</strong>，并赋值。（个人总结）</p>
+</li>
+<li><p>函数声明的<strong>变量被声明</strong>到了<strong>全局作用域</strong>（或者函数作用域）顶部。</p>
+</li>
+<li><p>在函数<strong>声明的位置</strong>，会将目前<strong>块级作用域内的变量的值</strong>，<strong>同步</strong>到全局作用域（函数作用域）下。</p>
+</li>
+</ol>
+<h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><p>如下标记 1234 ，我想这样是最直观的。</p>
+<p>（window 代表的外层的作用域上下文，意思是if块所在的作用域，因为此处为全局，所以为window）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> a; <span class="comment">// 3</span></span><br><span class="line">   <span class="keyword">var</span> a = <span class="number">0</span>;</span><br><span class="line">   <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">       <span class="keyword">let</span> a = <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">       	<span class="comment">// 1，2</span></span><br><span class="line">       &#125;</span><br><span class="line">       a = <span class="number">1</span>; </span><br><span class="line">       <span class="built_in">window</span>.a = a;  <span class="comment">// 4：此处为原函数声明的位置</span></span><br><span class="line">       a = <span class="number">21</span>;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">"里面"</span>,a);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">"外部"</span>,a);</span><br></pre></td></tr></table></figure>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"> </span>)</span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>转换为es5为</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>所以经过我的查找，所有人都不推荐直接在块级作用域内进行函数声明，如果非要，就请使用es5的函数表达式写法。</p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/JavaScript/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>JavaScript</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
       
         
           <div class='post-wrapper'>
@@ -1122,9 +1259,9 @@
     <div class='content pure'>
       <ul class="entry">
         
-          <li><a class="flat-box" title="/categories/Algorithm/" href="/categories/Algorithm/"><div class='name'>Algorithm</div><div class='badge'>(16)</div></a></li>
+          <li><a class="flat-box" title="/categories/Algorithm/" href="/categories/Algorithm/"><div class='name'>Algorithm</div><div class='badge'>(22)</div></a></li>
         
-          <li><a class="flat-box child" title="/categories/Algorithm/每日一题/" href="/categories/Algorithm/每日一题/"><div class='name'>每日一题</div><div class='badge'>(15)</div></a></li>
+          <li><a class="flat-box child" title="/categories/Algorithm/每日一题/" href="/categories/Algorithm/每日一题/"><div class='name'>每日一题</div><div class='badge'>(21)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Angular/" href="/categories/Angular/"><div class='name'>Angular</div><div class='badge'>(3)</div></a></li>
         
@@ -1134,7 +1271,7 @@
         
           <li><a class="flat-box" title="/categories/Hexo/" href="/categories/Hexo/"><div class='name'>Hexo</div><div class='badge'>(1)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/JavaScript/" href="/categories/JavaScript/"><div class='name'>JavaScript</div><div class='badge'>(6)</div></a></li>
+          <li><a class="flat-box" title="/categories/JavaScript/" href="/categories/JavaScript/"><div class='name'>JavaScript</div><div class='badge'>(7)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Linux/" href="/categories/Linux/"><div class='name'>Linux</div><div class='badge'>(2)</div></a></li>
         
@@ -1171,7 +1308,7 @@
 </header>
 
     <div class='content pure'>
-      <a href="/tags/Algorithm/" style="font-size: 24px; color: #555">Algorithm</a> <a href="/tags/Angular/" style="font-size: 18px; color: #7e7e7e">Angular</a> <a href="/tags/Css/" style="font-size: 22px; color: #636363">Css</a> <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 20px; color: #707070">JavaScript</a> <a href="/tags/Linux/" style="font-size: 16px; color: #8b8b8b">Linux</a> <a href="/tags/Vue/" style="font-size: 18px; color: #7e7e7e">Vue</a> <a href="/tags/api/" style="font-size: 14px; color: #999">api</a>
+      <a href="/tags/Algorithm/" style="font-size: 24px; color: #555">Algorithm</a> <a href="/tags/Angular/" style="font-size: 19px; color: #777">Angular</a> <a href="/tags/Css/" style="font-size: 21.5px; color: #666">Css</a> <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 21.5px; color: #666">JavaScript</a> <a href="/tags/Linux/" style="font-size: 16.5px; color: #888">Linux</a> <a href="/tags/Vue/" style="font-size: 19px; color: #777">Vue</a> <a href="/tags/api/" style="font-size: 14px; color: #999">api</a>
     </div>
   </section>
 
