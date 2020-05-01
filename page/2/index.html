@@ -233,6 +233,718 @@
       
         
   <h2 class="title">
+    <a href="/Algorithm/每日一题/leetcode_11. 盛最多水的容器/">
+      Leetcode_11. 盛最多水的容器 （暴力遍历=>双指针）
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    <a href="http://www.zsfmyz.top" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>赵十八</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2020-04-19</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Algorithm/每日一题/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Algorithm&nbsp;/&nbsp;每日一题</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a><a href="https://leetcode-cn.com/problems/container-with-most-water/" target="_blank" rel="noopener">题目描述</a></h3><p>给你 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。</p>
+<p>说明：你不能倾斜容器，且 n 的值至少为 2。</p>
+<h3 id="解题思路-一暴力法"><a href="#解题思路-一暴力法" class="headerlink" title="解题思路 一暴力法"></a>解题思路 一暴力法</h3><p>办法一很简单，双层循环计算出所有可能的结果，选出最大的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> maxArea = <span class="function"><span class="keyword">function</span>(<span class="params">height</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> area = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; height.length; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = i; j &lt; height.length; j++) &#123;</span><br><span class="line">            <span class="keyword">let</span> m2 = <span class="built_in">Math</span>.min(height[i],height[j]) * (j-i);</span><br><span class="line">            <span class="keyword">if</span> (m2 &gt; area) &#123;</span><br><span class="line">                area = m2;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> area;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>一点难度都没有。</p>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p>接下来我们优化一下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> getArea = <span class="function"><span class="keyword">function</span>(<span class="params">height, i, j</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.min(height[i],height[j]) * (j-i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> maxArea = <span class="function"><span class="keyword">function</span>(<span class="params">height</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> start = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> end = height.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">let</span> area = getArea(height, start, end );</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; height.length; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = height.length - <span class="number">1</span>; j &gt; i; j--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (height[j] &lt; height[end]) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (area &lt; getArea(height, i, j)) &#123;</span><br><span class="line">                area = getArea(height,i, j);</span><br><span class="line">                start = i;</span><br><span class="line">                end = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> area;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>把计算面积提出到getArea中了</li>
+<li>标记了start，end。并利用其进行剪枝（优化去掉不必要的for循环），因为我们很容易看出来，比end（距离start最远）位更短的木板没有必要再进行计算了。</li>
+</ol>
+<h3 id="解题思路-二-双指针"><a href="#解题思路-二-双指针" class="headerlink" title="解题思路 二 双指针"></a>解题思路 二 双指针</h3><p>其实这道题的思路是这样：<br>计算start，end之间的距离（宽），和Math.min(start，end)(高)的面积。<br>怎么计算最大面积呢？目标是找最宽和最高。<br>即在start，end距离最远的情况下，找两边最高的木板。</p>
+<p>所以，我们通过让start和end在最远的距离处，开始慢慢靠近，靠近的规则是：</p>
+<ol>
+<li>抛弃最短的，即若start比end处的木板短，start向右移一位+1，（反之end处短，则end - 1）</li>
+<li>这样可以使两边都保证是最长的木板之间的面积</li>
+<li>同样我们可以加入上面的优化，移位后，比原本位置短的，直接过滤掉。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> getArea = <span class="function"><span class="keyword">function</span>(<span class="params">height, i, j</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.min(height[i],height[j]) * (j-i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> maxArea = <span class="function"><span class="keyword">function</span>(<span class="params">height</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> start = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> end = height.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">let</span> area = getArea(height, start, end );</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>,j = end; i &lt; j;) &#123;</span><br><span class="line">            <span class="keyword">if</span> (height[i] &gt; height[j]) &#123;</span><br><span class="line">                j--;</span><br><span class="line">                <span class="keyword">if</span> (height[j] &lt; height[end]) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                i++</span><br><span class="line">                <span class="keyword">if</span> (height[i] &lt; height[start]) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">let</span> m2 = getArea(height, i, j);</span><br><span class="line">            <span class="keyword">if</span> (area &lt; m2) &#123;</span><br><span class="line">                area = m2;</span><br><span class="line">                start = i;</span><br><span class="line">                end = j;</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> area;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/JavaScript/块级作用域内的函数声明到底是什么？？/">
+      块级作用域内的函数声明到底是什么？？
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    <a href="http://www.zsfmyz.top" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>赵十八</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2020-04-16</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/JavaScript/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>JavaScript</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>在一篇文章里看到这样一个问题。<a href="https://mp.weixin.qq.com/s/MlKRNfK3blGJA7bfXzdsNg" target="_blank" rel="noopener">文章地址</a></p>
+<blockquote>
+<p>文章中会扩展一些其他的内容， 大家可以看过之后再来看我这篇个人的总结</p>
+</blockquote>
+<p>函数声明写在块级作用域中（ES6）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">    a = <span class="number">1</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">    a = <span class="number">21</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"里面"</span>,a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"外部"</span>,a);</span><br></pre></td></tr></table></figure></p>
+<p>请问输出是什么？ 答案是：<strong>里面21 外面1</strong>。</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovLzViMDk4OGU1OTUyMjUuY2RuLnNvaHVjcy5jb20vaW1hZ2VzLzIwMjAwMzIxL2Q3MTRmMzU1YjUwYTRlYjU4YWIyZTI3MTliYTNkMjUzLmpwZWc?x-oss-process=image/format,png#pic_center" alt="小朋友，ni&#39;you"><br>正如我一样，看到答案的我蒙蔽了，然后就继续阅读完全文，感觉还是有点不太明白。最后经过我查询资料我得到了答案。</p>
+<h3 id="转换结果"><a href="#转换结果" class="headerlink" title="转换结果"></a>转换结果</h3><p>代码转化如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> a;</span><br><span class="line">   <span class="keyword">var</span> a = <span class="number">0</span>;</span><br><span class="line">   <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">       <span class="keyword">let</span> a = <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">       &#125;</span><br><span class="line">       a = <span class="number">1</span>; </span><br><span class="line">       <span class="built_in">window</span>.a = a;  <span class="comment">//此处为原函数声明的位置</span></span><br><span class="line">       a = <span class="number">21</span>;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">"里面"</span>,a);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">"外部"</span>,a);</span><br></pre></td></tr></table></figure>
+<p>其实，函数声明放在块级作用域内做了以下几件事。<br>so， 我想看到了转换后的代码，估计大家就豁然开朗了。</p>
+<ol>
+<li><p>{}内部修改的是let定义的块级a，跟外部没关系。</p>
+</li>
+<li><p>所以 a = 1 的时候，外部其实还是为0。</p>
+</li>
+<li><p>外部的全局a原本为0， 被window.a = a 同步为了1.</p>
+</li>
+<li><p>a =21 块级a变成了21，全局a无变化还是1.</p>
+</li>
+</ol>
+<p><strong>那么为啥会这么转换呢????</strong>  </p>
+<h3 id="实质"><a href="#实质" class="headerlink" title="实质"></a>实质</h3><ol>
+<li><p>函数声明会被提升到<strong>块级作用域</strong>顶部。</p>
+</li>
+<li><p>使用了类似let的方式定义了一个<strong>块级作用域</strong>的函数<strong>同名变量</strong>，并赋值。（个人总结）</p>
+</li>
+<li><p>函数声明的<strong>变量被声明</strong>到了<strong>全局作用域</strong>（或者函数作用域）顶部。</p>
+</li>
+<li><p>在函数<strong>声明的位置</strong>，会将目前<strong>块级作用域内的变量的值</strong>，<strong>同步</strong>到全局作用域（函数作用域）下。</p>
+</li>
+</ol>
+<h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><p>如下标记 1234 ，我想这样是最直观的。</p>
+<p>（window 代表的外层的作用域上下文，意思是if块所在的作用域，因为此处为全局，所以为window）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> a; <span class="comment">// 3</span></span><br><span class="line">   <span class="keyword">var</span> a = <span class="number">0</span>;</span><br><span class="line">   <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">       <span class="keyword">let</span> a = <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">       	<span class="comment">// 1，2</span></span><br><span class="line">       &#125;</span><br><span class="line">       a = <span class="number">1</span>; </span><br><span class="line">       <span class="built_in">window</span>.a = a;  <span class="comment">// 4：此处为原函数声明的位置</span></span><br><span class="line">       a = <span class="number">21</span>;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">"里面"</span>,a);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">"外部"</span>,a);</span><br></pre></td></tr></table></figure>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"> </span>)</span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>转换为es5为</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>所以经过我的查找，所有人都不推荐直接在块级作用域内进行函数声明，如果非要，就请使用es5的函数表达式写法。</p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/JavaScript/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>JavaScript</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/Algorithm/每日一题/leetcode.旋转矩阵/">
+      Leetcode 每日一题 旋转矩阵 （逆列 => 行）
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    <a href="http://www.zsfmyz.top" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>赵十八</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2020-04-07</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Algorithm/每日一题/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Algorithm&nbsp;/&nbsp;每日一题</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给你一幅由 N × N 矩阵表示的图像，其中每个像素的大小为 4 字节。请你设计一种算法，将图像旋转 90 度。</p>
+<blockquote>
+<p>不占用额外内存空间能否做到？</p>
+</blockquote>
+<p>示例 1:<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">给定 matrix = </span><br><span class="line">[</span><br><span class="line">  [1,2,3],</span><br><span class="line">  [4,5,6],</span><br><span class="line">  [7,8,9]</span><br><span class="line">],</span><br></pre></td></tr></table></figure></p>
+<p>原地旋转输入矩阵，使其变为:<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [7,4,1],</span><br><span class="line">  [8,5,2],</span><br><span class="line">  [9,6,3]</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>目标阵列的每一<strong>横列</strong>为对应原始阵列每一<strong>竖列</strong>的<strong>倒序</strong>。</p>
+<h3 id="题解一："><a href="#题解一：" class="headerlink" title="题解一："></a>题解一：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @param &#123;number[][]&#125; matrix</span><br><span class="line"> * @return &#123;void&#125; Do not return anything, modify matrix in-place instead.</span><br><span class="line"> */</span><br><span class="line">var rotate = function(matrix) &#123;</span><br><span class="line">    let N = matrix.length;</span><br><span class="line">   	let newM = []</span><br><span class="line">    for (let i = 0; i &lt; N; i++) &#123;</span><br><span class="line">        newM[i] = Array.from(matrix[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    for (let i = 0; i &lt; N; i++) &#123;</span><br><span class="line">        for(let j = 0; j &lt; N; j++) &#123;</span><br><span class="line">            matrix[i][j] = newM [N - j - 1][i]; </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="题解二：不创建新的数组空间"><a href="#题解二：不创建新的数组空间" class="headerlink" title="题解二：不创建新的数组空间"></a>题解二：不创建新的数组空间</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @param &#123;number[][]&#125; matrix</span><br><span class="line"> * @return &#123;void&#125; Do not return anything, modify matrix in-place instead.</span><br><span class="line"> */</span><br><span class="line">var rotate = function(matrix) &#123;</span><br><span class="line">    let N = matrix.length;</span><br><span class="line">    for (let i = 0; i &lt; N; i++) &#123;</span><br><span class="line">        for(let j = 0; j &lt; N; j++) &#123;</span><br><span class="line">            matrix[i][j + N] = matrix[N - j - 1][i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    for (let i = 0; i &lt; N; i++) &#123;</span><br><span class="line">        matrix[i] = matrix[i].slice(N, 2*N);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>事实上这种方法是取巧了的，数组扩容了。数组检测到需要扩容时，就会开辟新的内存空间，最终大小为1.5倍+16。当数组内存空间&gt;=length*2+16的时候会进行缩容。如果数组长度比之前缩短了1，则只回收多余容量的一半，若长度比之前缩小的更多，则全部回收多余容量。</p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/Algorithm/每日一题/leetcode_289.生命游戏/">
+      leetcode_289.生命游戏：巧妙处理边界问题。
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    <a href="http://www.zsfmyz.top" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>赵十八</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2020-04-03</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Algorithm/每日一题/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Algorithm&nbsp;/&nbsp;每日一题</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a><a href="https://leetcode-cn.com/problems/game-of-life/" target="_blank" rel="noopener">题目描述</a></h3><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>其实这道题，大家看到第一眼应该就知道很简单了。</p>
+<p>同时更新的意思就是让我们拷贝一份数据备用嘛，</p>
+<p>根据原版备份数据去更新新的细胞阵列。</p>
+<ol>
+<li>boardBak = copy(board)</li>
+</ol>
+<p>然后看看核心思路</p>
+<ol>
+<li>统计8个位置的1的个数</li>
+<li>==3 那肯定要活着， ==2 自生自灭，其他情况都嗝屁</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">boardBak[y-1][x-1] + </span><br><span class="line">boardBak[y+1][x+1] + </span><br><span class="line">boardBak[y-1][x] + </span><br><span class="line">boardBak[y][x-1] + </span><br><span class="line">boardBak[y-1][x+1] + </span><br><span class="line">boardBak[y+1][x-1] + </span><br><span class="line">boardBak[y][x+1] + </span><br><span class="line">boardBak[y+1][x];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if (sum === 3) &#123;</span><br><span class="line">    board[y][x] = 1;</span><br><span class="line">&#125; else if(sum !== 2) &#123;</span><br><span class="line">    board[y][x] = 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>so 核心的部分就是这些，一点难度都没有。</p>
+<p>然后假定m为行数，n为列数，将下面的循环包裹在核心代码外，就ok了</p>
+<p>for (y=0, y &lt; m)<br>  for (x=0, x &lt; n)</p>
+<p>是不是很简单！！</p>
+<p>但是可恶的是，报错了。。因为边边上的细胞不够8个。。</p>
+<p>那怎么办呢。。</p>
+<p>我是这个样子处理的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [0,1,0],</span><br><span class="line">  [0,0,1],</span><br><span class="line">  [1,1,1],</span><br><span class="line">  [0,0,0]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">====&gt;</span><br><span class="line"></span><br><span class="line">[</span><br><span class="line">  [0,0,1,0,0],</span><br><span class="line">  [0,0,1,0,0],</span><br><span class="line">  [0,0,0,1,0],</span><br><span class="line">  [0,1,1,1,0],</span><br><span class="line">  [0,0,0,0,0],</span><br><span class="line">  [0,0,0,0,0],</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>看粗来了吗</p>
+<p>我用了一圈死细胞（0）把我们的目标组织包裹起来了，这样不管是边界细胞还是里面的细胞，大家都可以统一的按照8个周边处理咯</p>
+<p>当然我们不要直接改造目标细胞，而是改造备份细胞。</p>
+<p>改造完之后，只需要改变一下循环条件，目的是为了从(1,1)坐标的细胞开始遍历到(m-1,n-1)，不去遍历我们包裹的边界。</p>
+<p>for (y=1, y &lt; m-1)<br>  for (x=1, x &lt; n-1)</p>
+<pre><code>同样的现在我们的原阵列跟备份阵列的坐标存在不同咯。
+
+备份阵列因为多了一层，所以，需要-1之后才是备份细胞在原阵列中的位置。
+
+if (sum === 3) {
+       board[y-1][x-1] = 1;
+   } else if(sum !== 2) {
+       board[y-1][x-1] = 0;
+   }
+</code></pre><p>到此就完事儿了。</p>
+<p>下面是具体实现。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[][]&#125;</span> <span class="variable">board</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;void&#125;</span> </span>Do not return anything, modify board in-place instead.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> gameOfLife = <span class="function"><span class="keyword">function</span>(<span class="params">board</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> boardBak = [];</span><br><span class="line">    <span class="keyword">let</span> n = board[<span class="number">0</span>].length;</span><br><span class="line">     board.map(<span class="function">(<span class="params">row</span>)=&gt;</span>&#123;</span><br><span class="line">        boardBak.push([<span class="number">0</span>, ...row, <span class="number">0</span>]);</span><br><span class="line">    &#125;)</span><br><span class="line">    boardBak = [<span class="keyword">new</span> <span class="built_in">Array</span>(n + <span class="number">2</span>).fill(<span class="number">0</span>), ...boardBak, <span class="keyword">new</span> <span class="built_in">Array</span>(n + <span class="number">2</span>).fill(<span class="number">0</span>)]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> m = boardBak.length;</span><br><span class="line">    n = boardBak[<span class="number">0</span>].length;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> y = <span class="number">1</span>; y &lt; m - <span class="number">1</span>; y++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> x = <span class="number">1</span>; x &lt; n - <span class="number">1</span>; x++) &#123;</span><br><span class="line">            <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">            sum = boardBak[y<span class="number">-1</span>][x<span class="number">-1</span>] + </span><br><span class="line">            boardBak[y+<span class="number">1</span>][x+<span class="number">1</span>] + </span><br><span class="line">            boardBak[y<span class="number">-1</span>][x] + </span><br><span class="line">            boardBak[y][x<span class="number">-1</span>] + </span><br><span class="line">            boardBak[y<span class="number">-1</span>][x+<span class="number">1</span>] + </span><br><span class="line">            boardBak[y+<span class="number">1</span>][x<span class="number">-1</span>] + </span><br><span class="line">            boardBak[y][x+<span class="number">1</span>] + </span><br><span class="line">            boardBak[y+<span class="number">1</span>][x];</span><br><span class="line">            <span class="keyword">if</span> (sum === <span class="number">3</span>) &#123;</span><br><span class="line">                board[y<span class="number">-1</span>][x<span class="number">-1</span>] = <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span>(sum !== <span class="number">2</span>) &#123;</span><br><span class="line">                board[y<span class="number">-1</span>][x<span class="number">-1</span>] = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> board;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/Algorithm/每日一题/leetcode_226.翻转二叉树/">
+      Leetcode_226. 翻转二叉树
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    <a href="http://www.zsfmyz.top" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>赵十八</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2020-03-26</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Algorithm/每日一题/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Algorithm&nbsp;/&nbsp;每日一题</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h3 id="题目解析"><a href="#题目解析" class="headerlink" title="题目解析"></a>题目解析</h3><p>翻转一棵二叉树。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>示例 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">     4</span><br><span class="line">   /   \</span><br><span class="line">  2     7</span><br><span class="line"> / \   / \</span><br><span class="line">1   3 6   9</span><br><span class="line"></span><br><span class="line">输出: </span><br><span class="line">     4</span><br><span class="line">   /   \</span><br><span class="line">  7     2</span><br><span class="line"> / \   / \</span><br><span class="line">9   6 3   1</span><br></pre></td></tr></table></figure></p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><pre><code>递归，递归判断条件
+1. 左右节点是否为null，不为null，则翻转其左右节点
+</code></pre>
+      
+        <div class="readmore">
+          <a href="/Algorithm/每日一题/leetcode_226.翻转二叉树/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/Vue/Vue双向数据绑定原理及实现/">
+      Vue双向数据绑定原理及实现
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    <a href="http://www.zsfmyz.top" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>赵十八</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2020-03-14</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Vue/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Vue</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>vue实现双向绑定原理，主要是利用Object.defineProperty 来给实例data的属性添加 setter和getter.<br>并通过发布订阅模式（一对多的依赖关系，当状态发生改变，它的所有依赖都将被通知）来实现响应。</p>
+<p>这个环节中包含了三个部分</p>
+<ul>
+<li><p>Observer 用来监听拦截data的属性为监察者。 </p>
+</li>
+<li><p>Dep用来添加订阅者，为订阅器</p>
+</li>
+<li><p>Watcher 就是订阅者</p>
+</li>
+</ul>
+<p>监察者通过 Dep 向 Watcher发布更新消息</p>
+      
+        <div class="readmore">
+          <a href="/Vue/Vue双向数据绑定原理及实现/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Vue/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Vue</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
     <a href="/JavaScript/定时器中的异步请求堆积如何解决？/">
       定时器中的异步请求堆积如何解决？
     </a>
@@ -658,548 +1370,6 @@
           </div>
         
       
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
-  
-
-
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/Git/Git入门篇/">
-      Git入门篇
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-  <div class='new-meta-item author'>
-    <a href="http://www.zsfmyz.top" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>赵十八</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-11-28</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/Git/' rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>Git</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <h5 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h5><ul>
-<li>首先我们需要去github官网申请git账号。<a href="https://github.com/" target="_blank" rel="noopener">git官网</a></li>
-<li><p>申请之后，我们进入自己的linux服务器</p>
-</li>
-<li><p>安装git</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install -y git</span><br><span class="line"></span><br><span class="line">git --version</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-      
-        <div class="readmore">
-          <a href="/Git/Git入门篇/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/Git/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Git</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
-  
-
-
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/Linux/linux文件共享服务(samba安装配置)/">
-      linux文件共享服务(Samba安装配置)
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-  <div class='new-meta-item author'>
-    <a href="http://www.zsfmyz.top" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>赵十八</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-11-27</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/Linux/' rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>Linux</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <p>我们的服务器基本都是linux系统的，但是我们需要在windows下开发。</p>
-<p>解决方案有两种：</p>
-<ol>
-<li>通过git同步linux和windows下的代码。</li>
-<li>通过文件共享使windows连接linux下的共享文件夹</li>
-</ol>
-<p>现在说第二种方式如何实现：</p>
-<p>Samba的介绍我就不多说了，总结一下就是可以在windows下操作编辑linux里面共享的内容。</p>
-      
-        <div class="readmore">
-          <a href="/Linux/linux文件共享服务(samba安装配置)/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/Linux/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Linux</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
-  
-
-
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/Algorithm/每日一题/leetcode_145. 二叉树的后序遍历/">
-      Leetcode_145. 二叉树的后序遍历
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-  <div class='new-meta-item author'>
-    <a href="http://www.zsfmyz.top" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>赵十八</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-11-17</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/Algorithm/每日一题/' rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>Algorithm&nbsp;/&nbsp;每日一题</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <h3 id="题目解析："><a href="#题目解析：" class="headerlink" title="题目解析："></a>题目解析：</h3><p>给定一个二叉树，返回它的 后序 遍历。</p>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>示例 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入: [1,null,2,3]  </span><br><span class="line">   1</span><br><span class="line">    \</span><br><span class="line">     2</span><br><span class="line">    /</span><br><span class="line">   3 </span><br><span class="line"></span><br><span class="line">输出: [3,2,1]</span><br></pre></td></tr></table></figure></p>
-<p>说明&amp;&amp;进阶:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> 递归算法很简单，你可以通过迭代算法完成吗？</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">前序排列的顺序是左，右，父。</span><br></pre></td></tr></table></figure></p>
-      
-        <div class="readmore">
-          <a href="/Algorithm/每日一题/leetcode_145. 二叉树的后序遍历/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
-  
-
-
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/Algorithm/每日一题/leetcode_144. 二叉树的前序遍历/">
-      Leetcode_144. 二叉树的前序遍历
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-  <div class='new-meta-item author'>
-    <a href="http://www.zsfmyz.top" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>赵十八</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-10-17</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/Algorithm/每日一题/' rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>Algorithm&nbsp;/&nbsp;每日一题</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <h3 id="题目解析："><a href="#题目解析：" class="headerlink" title="题目解析："></a>题目解析：</h3><p>给定一个二叉树，返回它的 前序 遍历。</p>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>示例 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入: [1,null,2,3]  </span><br><span class="line">   1</span><br><span class="line">    \</span><br><span class="line">     2</span><br><span class="line">    /</span><br><span class="line">   3 </span><br><span class="line"></span><br><span class="line">输出: [1,2,3]</span><br></pre></td></tr></table></figure></p>
-<p>说明&amp;&amp;进阶:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> 递归算法很简单，你可以通过迭代算法完成吗？</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">前序排列的顺序是父节点在前，然后遍历左树，然后遍历右树。</span><br></pre></td></tr></table></figure></p>
-      
-        <div class="readmore">
-          <a href="/Algorithm/每日一题/leetcode_144. 二叉树的前序遍历/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
-  
-
-
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/Algorithm/每日一题/leetcode_94. 二叉树的中序遍历/">
-      Leetcode_94. 二叉树的中序遍历
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-  <div class='new-meta-item author'>
-    <a href="http://www.zsfmyz.top" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>赵十八</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-10-17</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/Algorithm/每日一题/' rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>Algorithm&nbsp;/&nbsp;每日一题</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <h3 id="题目解析："><a href="#题目解析：" class="headerlink" title="题目解析："></a>题目解析：</h3><p>给定一个二叉树，返回它的 中序 遍历。</p>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>示例 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入: [1,null,2,3]  </span><br><span class="line">   1</span><br><span class="line">    \</span><br><span class="line">     2</span><br><span class="line">    /</span><br><span class="line">   3 </span><br><span class="line"></span><br><span class="line">输出: [1,3,2]</span><br></pre></td></tr></table></figure></p>
-<p>说明&amp;&amp;进阶:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> 递归算法很简单，你可以通过迭代算法完成吗？</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">前序排列的顺序是左，父，右。</span><br></pre></td></tr></table></figure></p>
-      
-        <div class="readmore">
-          <a href="/Algorithm/每日一题/leetcode_94. 二叉树的中序遍历/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1215,7 +1385,7 @@
             </a>
           
           <p class="current">
-            2 / 5
+            2 / 6
           </p>
           
             <a class="next" rel="next" href="/page/3/">
@@ -1402,9 +1572,9 @@
     <div class='content pure'>
       <ul class="entry">
         
-          <li><a class="flat-box" title="/categories/Algorithm/" href="/categories/Algorithm/"><div class='name'>Algorithm</div><div class='badge'>(22)</div></a></li>
+          <li><a class="flat-box" title="/categories/Algorithm/" href="/categories/Algorithm/"><div class='name'>Algorithm</div><div class='badge'>(28)</div></a></li>
         
-          <li><a class="flat-box child" title="/categories/Algorithm/每日一题/" href="/categories/Algorithm/每日一题/"><div class='name'>每日一题</div><div class='badge'>(21)</div></a></li>
+          <li><a class="flat-box child" title="/categories/Algorithm/每日一题/" href="/categories/Algorithm/每日一题/"><div class='name'>每日一题</div><div class='badge'>(27)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Angular/" href="/categories/Angular/"><div class='name'>Angular</div><div class='badge'>(3)</div></a></li>
         
