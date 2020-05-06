@@ -232,8 +232,8 @@
   
   <entry>
     <title>Leetcode_面试题51. 数组中的逆序对（归并排序记录逆序对）</title>
-    <link href="http://www.zsfmyz.top/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/leetcode_%E9%9D%A2%E8%AF%95%E9%A2%9851.%20%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%80%86%E5%BA%8F%E5%AF%B9/"/>
-    <id>http://www.zsfmyz.top/Algorithm/每日一题/leetcode_面试题51. 数组中的逆序对/</id>
+    <link href="http://www.zsfmyz.top/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/JavaScript%EF%BC%9Aleetcode_%E9%9D%A2%E8%AF%95%E9%A2%9851.%20%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%80%86%E5%BA%8F%E5%AF%B9/"/>
+    <id>http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode_面试题51. 数组中的逆序对/</id>
     <published>2020-04-24T09:59:13.000Z</published>
     <updated>2020-04-24T07:58:53.825Z</updated>
     
@@ -259,8 +259,8 @@
   
   <entry>
     <title>Leetcode_面试题 08.11. 硬币(数学方法，双百分)</title>
-    <link href="http://www.zsfmyz.top/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/leetcode_%E9%9D%A2%E8%AF%95%E9%A2%98%2008.11.%20%E7%A1%AC%E5%B8%81/"/>
-    <id>http://www.zsfmyz.top/Algorithm/每日一题/leetcode_面试题 08.11. 硬币/</id>
+    <link href="http://www.zsfmyz.top/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/JavaScript%EF%BC%9Aleetcode_%E9%9D%A2%E8%AF%95%E9%A2%98%2008.11.%20%E7%A1%AC%E5%B8%81/"/>
+    <id>http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode_面试题 08.11. 硬币/</id>
     <published>2020-04-23T09:59:13.000Z</published>
     <updated>2020-04-24T07:58:05.179Z</updated>
     
@@ -286,10 +286,10 @@
   
   <entry>
     <title>Leecode_199. 二叉树的右视图(二叉树中右左遍历）</title>
-    <link href="http://www.zsfmyz.top/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/leecode_199.%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%8F%B3%E8%A7%86%E5%9B%BE/"/>
-    <id>http://www.zsfmyz.top/Algorithm/每日一题/leecode_199. 二叉树的右视图/</id>
+    <link href="http://www.zsfmyz.top/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/JavaScript%EF%BC%9Aleecode_199.%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%8F%B3%E8%A7%86%E5%9B%BE/"/>
+    <id>http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leecode_199. 二叉树的右视图/</id>
     <published>2020-04-22T09:59:13.000Z</published>
-    <updated>2020-04-24T07:57:55.860Z</updated>
+    <updated>2020-05-06T10:17:42.492Z</updated>
     
     <content type="html"><![CDATA[<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">给定一棵二叉树，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值。</span><br><span class="line"></span><br><span class="line">示例:</span><br><span class="line"></span><br><span class="line">输入: [1,2,3,null,5,null,4]</span><br><span class="line">输出: [1, 3, 4]</span><br><span class="line">解释:</span><br><span class="line"></span><br><span class="line">   1            &lt;---</span><br><span class="line"> /   \</span><br><span class="line">2     3         &lt;---</span><br><span class="line"> \     \</span><br><span class="line">  5     4       &lt;---</span><br></pre></td></tr></table></figure><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>对二叉树进行<strong>中右左</strong>顺序遍历，以此顺序，记录每个层级第一个被遍历的节点。</p><h3 id="题解一："><a href="#题解一：" class="headerlink" title="题解一："></a>题解一：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * function TreeNode(val) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = val;</span></span><br><span class="line"><span class="comment"> *     this.left = this.right = null;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;TreeNode&#125;</span> <span class="variable">root</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number[]&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> rightSideView = <span class="function"><span class="keyword">function</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> resArr = [];</span><br><span class="line">    <span class="keyword">let</span> level = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (!root) &#123;<span class="keyword">return</span> []&#125;    </span><br><span class="line">    nodeFn(root, <span class="number">0</span>, resArr)</span><br><span class="line">    <span class="keyword">return</span> resArr;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> nodeFn = <span class="function"><span class="keyword">function</span> (<span class="params">node, level, resArr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (resArr[level] === <span class="literal">undefined</span>) &#123;</span><br><span class="line">        resArr[level] = node.val;</span><br><span class="line">    &#125;</span><br><span class="line">    node.right &amp;&amp; nodeFn(node.right, level + <span class="number">1</span>, resArr)</span><br><span class="line">    node.left &amp;&amp; nodeFn(node.left, level + <span class="number">1</span>, resArr)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>相当于二叉树的后序遍历的反序（中右左），只不过需要标记一下每个层级的第一个遍历节点即可。</p>]]></content>
     
@@ -313,8 +313,8 @@
   
   <entry>
     <title>Leetcode_200. 岛屿数量 (DFS)</title>
-    <link href="http://www.zsfmyz.top/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/leetcode_200.%20%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/"/>
-    <id>http://www.zsfmyz.top/Algorithm/每日一题/leetcode_200. 岛屿数量/</id>
+    <link href="http://www.zsfmyz.top/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/JavaScript%EF%BC%9Aleetcode_200.%20%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/"/>
+    <id>http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode_200. 岛屿数量/</id>
     <published>2020-04-20T09:59:13.000Z</published>
     <updated>2020-04-24T07:57:55.737Z</updated>
     
@@ -340,8 +340,8 @@
   
   <entry>
     <title>Leetcode_11. 盛最多水的容器 （暴力遍历=&gt;双指针）</title>
-    <link href="http://www.zsfmyz.top/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/leetcode_11.%20%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/"/>
-    <id>http://www.zsfmyz.top/Algorithm/每日一题/leetcode_11. 盛最多水的容器/</id>
+    <link href="http://www.zsfmyz.top/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/JavaScript%EF%BC%9Aleetcode_11.%20%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/"/>
+    <id>http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode_11. 盛最多水的容器/</id>
     <published>2020-04-19T09:59:13.000Z</published>
     <updated>2020-04-24T07:53:56.692Z</updated>
     
@@ -392,8 +392,8 @@
   
   <entry>
     <title>Leetcode 每日一题 旋转矩阵 （逆列 =&gt; 行）</title>
-    <link href="http://www.zsfmyz.top/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/leetcode.%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5/"/>
-    <id>http://www.zsfmyz.top/Algorithm/每日一题/leetcode.旋转矩阵/</id>
+    <link href="http://www.zsfmyz.top/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/JavaScript%EF%BC%9Aleetcode.%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5/"/>
+    <id>http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode.旋转矩阵/</id>
     <published>2020-04-07T09:59:13.000Z</published>
     <updated>2020-04-24T07:48:39.852Z</updated>
     
@@ -420,8 +420,8 @@
   
   <entry>
     <title>leetcode_289.生命游戏：巧妙处理边界问题。</title>
-    <link href="http://www.zsfmyz.top/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/leetcode_289.%E7%94%9F%E5%91%BD%E6%B8%B8%E6%88%8F/"/>
-    <id>http://www.zsfmyz.top/Algorithm/每日一题/leetcode_289.生命游戏/</id>
+    <link href="http://www.zsfmyz.top/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/JavaScript%EF%BC%9Aleetcode_289.%E7%94%9F%E5%91%BD%E6%B8%B8%E6%88%8F/"/>
+    <id>http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode_289.生命游戏/</id>
     <published>2020-04-03T09:59:13.000Z</published>
     <updated>2020-04-24T07:47:18.524Z</updated>
     
@@ -447,8 +447,8 @@
   
   <entry>
     <title>Leetcode_226. 翻转二叉树</title>
-    <link href="http://www.zsfmyz.top/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/leetcode_226.%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
-    <id>http://www.zsfmyz.top/Algorithm/每日一题/leetcode_226.翻转二叉树/</id>
+    <link href="http://www.zsfmyz.top/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/JavaScript%EF%BC%9Aleetcode_226.%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    <id>http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode_226.翻转二叉树/</id>
     <published>2020-03-26T03:59:13.000Z</published>
     <updated>2020-04-15T07:40:23.891Z</updated>
     
@@ -536,8 +536,8 @@
   
   <entry>
     <title>Leetcode_101. 对称二叉树</title>
-    <link href="http://www.zsfmyz.top/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/leetcode_101.%20%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
-    <id>http://www.zsfmyz.top/Algorithm/每日一题/leetcode_101. 对称二叉树/</id>
+    <link href="http://www.zsfmyz.top/Algorithm/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/JavaScript%EF%BC%9Aleetcode_101.%20%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    <id>http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode_101. 对称二叉树/</id>
     <published>2019-12-12T03:59:13.000Z</published>
     <updated>2020-03-27T09:56:43.175Z</updated>
     
