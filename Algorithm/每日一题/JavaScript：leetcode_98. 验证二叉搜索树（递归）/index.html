@@ -358,6 +358,7 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           <h3 id="题目说明"><a href="#题目说明" class="headerlink" title="题目说明"></a>题目说明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">给定一个二叉树，判断其是否是一个有效的二叉搜索树。</span><br><span class="line"></span><br><span class="line">假设一个二叉搜索树具有如下特征：</span><br><span class="line"></span><br><span class="line">节点的左子树只包含小于当前节点的数。</span><br><span class="line">节点的右子树只包含大于当前节点的数。</span><br><span class="line">所有左子树和右子树自身必须也是二叉搜索树。</span><br><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入:</span><br><span class="line">    2</span><br><span class="line">   / \</span><br><span class="line">  1   3</span><br><span class="line">输出: true</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入:</span><br><span class="line">    5</span><br><span class="line">   / \</span><br><span class="line">  1   4</span><br><span class="line">     / \</span><br><span class="line">    3   6</span><br><span class="line">输出: false</span><br><span class="line">解释: 输入为: [5,1,4,null,null,3,6]。</span><br><span class="line">     根节点的值为 5 ，但是其右子节点值为 4 。</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h3 id="解题思路一"><a href="#解题思路一" class="headerlink" title="解题思路一"></a>解题思路一</h3><p>解决树的问题，最常用的还是递归的方法。<br>此题的关键就是找到node.val的取值范围。</p>
 <p>其左右树的取值范围是以<code>根节点为分界线</code>，<code>左集合</code>为<code>左树取值范围</code>，<code>右集合</code>为<code>右树取值范围。</code></p>
 <p>如下 左树取值范围是<code>[-∞，4]</code>,右树取值范围是<code>[6，+∞]</code>，以此类推。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  5</span><br><span class="line"> / \</span><br><span class="line">1   8</span><br><span class="line">   / \</span><br><span class="line">  6   9</span><br></pre></td></tr></table></figure></p>
@@ -380,7 +381,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-28T09:21:25+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-28T10:00:00+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
     <p>最后更新于 2020年5月28日</p>
@@ -405,7 +406,7 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode_98. 验证二叉搜索树（递归）/&title=JavaScript：leetcode_98. 验证二叉搜索树（递归） | Eighteen Blog&summary="
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode_98. 验证二叉搜索树（递归）/&title=JavaScript：leetcode_98. 验证二叉搜索树（递归） | Eighteen Blog&summary=题目说明1234567891011121314151617181920212223242526给定一个二叉树，判断其是否是一个有效的二叉搜索树。假设一个二叉搜索树具有如下特征：节点的左子树只包含小于当前节点的数。节点的右子树只包含大于当前节点的数。所有左子树和右子树自身必须也是二叉搜索树。示例 1:输入:    2   / \  1   3输出: true示例 2:输入:    5   / \  1   4     / \    3   6输出: false解释: 输入为: [5,1,4,null,null,3,6]。     根节点的值为 5 ，但是其右子节点值为 4 。"
           
           >
           
@@ -417,7 +418,7 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode_98. 验证二叉搜索树（递归）/&title=JavaScript：leetcode_98. 验证二叉搜索树（递归） | Eighteen Blog&summary="
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode_98. 验证二叉搜索树（递归）/&title=JavaScript：leetcode_98. 验证二叉搜索树（递归） | Eighteen Blog&summary=题目说明1234567891011121314151617181920212223242526给定一个二叉树，判断其是否是一个有效的二叉搜索树。假设一个二叉搜索树具有如下特征：节点的左子树只包含小于当前节点的数。节点的右子树只包含大于当前节点的数。所有左子树和右子树自身必须也是二叉搜索树。示例 1:输入:    2   / \  1   3输出: true示例 2:输入:    5   / \  1   4     / \    3   6输出: false解释: 输入为: [5,1,4,null,null,3,6]。     根节点的值为 5 ，但是其右子节点值为 4 。"
           
           >
           
@@ -437,7 +438,7 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode_98. 验证二叉搜索树（递归）/&title=JavaScript：leetcode_98. 验证二叉搜索树（递归） | Eighteen Blog&summary="
+          href="http://service.weibo.com/share/share.php?url=http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode_98. 验证二叉搜索树（递归）/&title=JavaScript：leetcode_98. 验证二叉搜索树（递归） | Eighteen Blog&summary=题目说明1234567891011121314151617181920212223242526给定一个二叉树，判断其是否是一个有效的二叉搜索树。假设一个二叉搜索树具有如下特征：节点的左子树只包含小于当前节点的数。节点的右子树只包含大于当前节点的数。所有左子树和右子树自身必须也是二叉搜索树。示例 1:输入:    2   / \  1   3输出: true示例 2:输入:    5   / \  1   4     / \    3   6输出: false解释: 输入为: [5,1,4,null,null,3,6]。     根节点的值为 5 ，但是其右子节点值为 4 。"
           
           >
           

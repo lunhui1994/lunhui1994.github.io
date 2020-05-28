@@ -358,6 +358,7 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           <h3 id="题目说明"><a href="#题目说明" class="headerlink" title="题目说明"></a>题目说明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">给定一个整数数组 A，返回其中元素之和可被 K 整除的（连续、非空）子数组的数目。</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">示例：</span><br><span class="line"></span><br><span class="line">输入：A = [4,5,0,-2,-3,1], K = 5</span><br><span class="line">输出：7</span><br><span class="line">解释：</span><br><span class="line">有 7 个子数组满足其元素之和可被 K = 5 整除：</span><br><span class="line">[4, 5, 0, -2, -3, 1], [5], [5, 0], [5, 0, -2, -3], [0], [0, -2, -3], [-2, -3]</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">提示：</span><br><span class="line"></span><br><span class="line">1 &lt;= A.length &lt;= 30000</span><br><span class="line">-10000 &lt;= A[i] &lt;= 10000</span><br><span class="line">2 &lt;= K &lt;= 10000</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h3 id="解题思路一-暴力枚举，O（n-3）"><a href="#解题思路一-暴力枚举，O（n-3）" class="headerlink" title="解题思路一(暴力枚举，O（n^3）)"></a>解题思路一(暴力枚举，O（n^3）)</h3><ol>
 <li>暴力枚举所有的前序和，判断<code>对K取模</code>是否为<code>0</code>，为<code>0</code>则结果<code>+1</code><h3 id="代码实现一"><a href="#代码实现一" class="headerlink" title="代码实现一"></a>代码实现一</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">A</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">K</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> subarraysDivByK = <span class="function"><span class="keyword">function</span>(<span class="params">A, K</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; A.length; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> prev = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = i; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">            prev += A[j];</span><br><span class="line">            <span class="keyword">if</span> (prev % K === <span class="number">0</span>) &#123;</span><br><span class="line">                res++</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 </li>
@@ -402,7 +403,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-28T09:53:52+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-28T09:58:49+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
     <p>最后更新于 2020年5月28日</p>
@@ -427,7 +428,7 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode_974. 和可被 K 整除的子数组（前序和 + 同余定理）/&title=JavaScript：leetcode_974. 和可被 K 整除的子数组（前序和 + 同余定理） | Eighteen Blog&summary="
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode_974. 和可被 K 整除的子数组（前序和 + 同余定理）/&title=JavaScript：leetcode_974. 和可被 K 整除的子数组（前序和 + 同余定理） | Eighteen Blog&summary=题目说明123456789101112131415161718给定一个整数数组 A，返回其中元素之和可被 K 整除的（连续、非空）子数组的数目。 示例：输入：A = [4,5,0,-2,-3,1], K = 5输出：7解释：有 7 个子数组满足其元素之和可被 K = 5 整除：[4, 5, 0, -2, -3, 1], [5], [5, 0], [5, 0, -2, -3], [0], [0, -2, -3], [-2, -3] 提示：1 &lt;= A.length &lt;= 30000-10000 &lt;= A[i] &lt;= 100002 &lt;= K &lt;= 10000"
           
           >
           
@@ -439,7 +440,7 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode_974. 和可被 K 整除的子数组（前序和 + 同余定理）/&title=JavaScript：leetcode_974. 和可被 K 整除的子数组（前序和 + 同余定理） | Eighteen Blog&summary="
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode_974. 和可被 K 整除的子数组（前序和 + 同余定理）/&title=JavaScript：leetcode_974. 和可被 K 整除的子数组（前序和 + 同余定理） | Eighteen Blog&summary=题目说明123456789101112131415161718给定一个整数数组 A，返回其中元素之和可被 K 整除的（连续、非空）子数组的数目。 示例：输入：A = [4,5,0,-2,-3,1], K = 5输出：7解释：有 7 个子数组满足其元素之和可被 K = 5 整除：[4, 5, 0, -2, -3, 1], [5], [5, 0], [5, 0, -2, -3], [0], [0, -2, -3], [-2, -3] 提示：1 &lt;= A.length &lt;= 30000-10000 &lt;= A[i] &lt;= 100002 &lt;= K &lt;= 10000"
           
           >
           
@@ -459,7 +460,7 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode_974. 和可被 K 整除的子数组（前序和 + 同余定理）/&title=JavaScript：leetcode_974. 和可被 K 整除的子数组（前序和 + 同余定理） | Eighteen Blog&summary="
+          href="http://service.weibo.com/share/share.php?url=http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode_974. 和可被 K 整除的子数组（前序和 + 同余定理）/&title=JavaScript：leetcode_974. 和可被 K 整除的子数组（前序和 + 同余定理） | Eighteen Blog&summary=题目说明123456789101112131415161718给定一个整数数组 A，返回其中元素之和可被 K 整除的（连续、非空）子数组的数目。 示例：输入：A = [4,5,0,-2,-3,1], K = 5输出：7解释：有 7 个子数组满足其元素之和可被 K = 5 整除：[4, 5, 0, -2, -3, 1], [5], [5, 0], [5, 0, -2, -3], [0], [0, -2, -3], [-2, -3] 提示：1 &lt;= A.length &lt;= 30000-10000 &lt;= A[i] &lt;= 100002 &lt;= K &lt;= 10000"
           
           >
           

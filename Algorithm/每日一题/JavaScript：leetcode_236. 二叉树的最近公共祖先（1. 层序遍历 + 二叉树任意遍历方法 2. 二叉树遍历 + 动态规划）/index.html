@@ -359,6 +359,7 @@
         <div class="article-entry" itemprop="articleBody">
           <h3 id="题目说明"><a href="#题目说明" class="headerlink" title="题目说明"></a>题目说明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</span><br><span class="line"></span><br><span class="line">百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，</span><br><span class="line">满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”</span><br><span class="line"></span><br><span class="line">例如，给定如下二叉树:  root = [3,5,1,6,2,0,8,null,null,7,4]</span><br></pre></td></tr></table></figure>
 <p><img src="https://img-blog.csdnimg.cn/20200510171131762.png" alt="在这里插入图片描述"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1</span><br><span class="line">输出: 3</span><br><span class="line">解释: 节点 5 和节点 1 的最近公共祖先是节点 3。</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4</span><br><span class="line">输出: 5</span><br><span class="line">解释: 节点 5 和节点 4 的最近公共祖先是节点 5。因为根据定义最近公共祖先节点可以为节点本身。</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">说明:</span><br><span class="line"></span><br><span class="line">所有节点的值都是唯一的。</span><br><span class="line">p、q 为不同节点且均存在于给定的二叉树中。</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <h3 id="解题思路一"><a href="#解题思路一" class="headerlink" title="解题思路一"></a>解题思路一</h3><ol>
 <li><code>层序</code>遍历二叉树，每遍历到一个节点，就<code>收集</code>该节点在内的<code>所有子节点</code>。</li>
 <li>该节点<code>子节点集合</code>中是否同时<code>存在p,q</code>，如果<code>存在</code>，标记该节点，<code>flag为true</code>代表：该节点是p，q的一个<code>公共祖先</code>，然后依次遍历其<code>左右节点</code>的<code>子节点集合</code>。</li>
@@ -390,7 +391,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-28T09:40:01+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-28T09:59:15+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
     <p>最后更新于 2020年5月28日</p>
@@ -415,7 +416,8 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode_236. 二叉树的最近公共祖先（1. 层序遍历 + 二叉树任意遍历方法 2. 二叉树遍历 + 动态规划）/&title=JavaScript：leetcode_236. 二叉树的最近公共祖先（1. 层序遍历 + 二叉树任意遍历方法 2. 二叉树遍历 + 动态规划） | Eighteen Blog&summary="
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode_236. 二叉树的最近公共祖先（1. 层序遍历 + 二叉树任意遍历方法 2. 二叉树遍历 + 动态规划）/&title=JavaScript：leetcode_236. 二叉树的最近公共祖先（1. 层序遍历 + 二叉树任意遍历方法 2. 二叉树遍历 + 动态规划） | Eighteen Blog&summary=题目说明123456给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”例如，给定如下二叉树:  root = [3,5,1,6,2,0,8,null,null,7,4]
+1234567891011121314151617示例 1:输入: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1输出: 3解释: 节点 5 和节点 1 的最近公共祖先是节点 3。示例 2:输入: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4输出: 5解释: 节点 5 和节点 4 的最近公共祖先是节点 5。因为根据定义最近公共祖先节点可以为节点本身。 说明:所有节点的值都是唯一的。p、q 为不同节点且均存在于给定的二叉树中。"
           
           >
           
@@ -427,7 +429,8 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode_236. 二叉树的最近公共祖先（1. 层序遍历 + 二叉树任意遍历方法 2. 二叉树遍历 + 动态规划）/&title=JavaScript：leetcode_236. 二叉树的最近公共祖先（1. 层序遍历 + 二叉树任意遍历方法 2. 二叉树遍历 + 动态规划） | Eighteen Blog&summary="
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode_236. 二叉树的最近公共祖先（1. 层序遍历 + 二叉树任意遍历方法 2. 二叉树遍历 + 动态规划）/&title=JavaScript：leetcode_236. 二叉树的最近公共祖先（1. 层序遍历 + 二叉树任意遍历方法 2. 二叉树遍历 + 动态规划） | Eighteen Blog&summary=题目说明123456给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”例如，给定如下二叉树:  root = [3,5,1,6,2,0,8,null,null,7,4]
+1234567891011121314151617示例 1:输入: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1输出: 3解释: 节点 5 和节点 1 的最近公共祖先是节点 3。示例 2:输入: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4输出: 5解释: 节点 5 和节点 4 的最近公共祖先是节点 5。因为根据定义最近公共祖先节点可以为节点本身。 说明:所有节点的值都是唯一的。p、q 为不同节点且均存在于给定的二叉树中。"
           
           >
           
@@ -447,7 +450,8 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode_236. 二叉树的最近公共祖先（1. 层序遍历 + 二叉树任意遍历方法 2. 二叉树遍历 + 动态规划）/&title=JavaScript：leetcode_236. 二叉树的最近公共祖先（1. 层序遍历 + 二叉树任意遍历方法 2. 二叉树遍历 + 动态规划） | Eighteen Blog&summary="
+          href="http://service.weibo.com/share/share.php?url=http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode_236. 二叉树的最近公共祖先（1. 层序遍历 + 二叉树任意遍历方法 2. 二叉树遍历 + 动态规划）/&title=JavaScript：leetcode_236. 二叉树的最近公共祖先（1. 层序遍历 + 二叉树任意遍历方法 2. 二叉树遍历 + 动态规划） | Eighteen Blog&summary=题目说明123456给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”例如，给定如下二叉树:  root = [3,5,1,6,2,0,8,null,null,7,4]
+1234567891011121314151617示例 1:输入: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1输出: 3解释: 节点 5 和节点 1 的最近公共祖先是节点 3。示例 2:输入: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4输出: 5解释: 节点 5 和节点 4 的最近公共祖先是节点 5。因为根据定义最近公共祖先节点可以为节点本身。 说明:所有节点的值都是唯一的。p、q 为不同节点且均存在于给定的二叉树中。"
           
           >
           
