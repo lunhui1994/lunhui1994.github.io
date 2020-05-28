@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>JavaScript：leetcode_983. 最低票价（动态规划） | Eighteen Blog</title>
+  
+  <meta name="keywords" content="leetcode, 最低票价, 动态规划, 前端, LH_ZSF, Eighteen Blog, ZSF, 赵十八, 赵少飞">
+  
+  
+  <meta name="description" content="好学力行，明德任责。一起分享芝士。">
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="Eighteen Blog">
+  
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/all.min.css">
+  
+
+  
+  <link rel="shortcut icon" type="image/x-icon" href="http://www.zsfmyz.top/img/eighteen.ico">
+  
+    <!-- color css -->
+    <link rel="stylesheet" href="/./color/main.css">
+    <link rel="stylesheet" href="/./color/icon.css">
+    
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.5/css/style.css">
+  
+  
+    <link rel="stylesheet" href="/./css/my_main.css">
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+</head>
+
+<body>
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post half'>
+      
+        
+  <h1 class='title'>Eighteen Blog</h1>
+
+
+  <div class="m_search">
+    <form name="searchform" class="form u-search-form">
+      <input type="text" class="input u-search-input" placeholder="" />
+      <i class="icon fas fa-search fa-fw"></i>
+    </form>
+  </div>
+
+<div class='menu navgation'>
+  <ul class='h-list'>
+    
+      
+        <li>
+          <a class="nav home" href="/"
+            
+            
+            id="home">
+            <i class='fas fa-rss fa-fw'></i>&nbsp;博文
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/about/"
+            
+              rel="nofollow"
+            
+            
+            id="about">
+            <i class='fas fa-info-circle fa-fw'></i>&nbsp;关于
+          </a>
+        </li>
+      
+    
+  </ul>
+</div>
+
+      
+    </cover>
+    <header class="l_header pure">
+  <div id="loading-bar-wrapper">
+    <div id="loading-bar" class="pure"></div>
+  </div>
+
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          Eighteen Blog
+        
+      </a>
+			<div class='menu navgation'>
+				<ul class='h-list'>
+          
+  					
+  						<li>
+								<a class="nav flat-box" href="/"
+                  
+                  
+                  id="home">
+									<i class='fas fa-grin fa-fw'></i>&nbsp;文章
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/categories/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="categories">
+									<i class='fas fa-folder-open fa-fw'></i>&nbsp;分类
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/tags/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="tags">
+									<i class='fas fa-hashtag fa-fw'></i>&nbsp;标签
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/archives/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="archives">
+									<i class='fas fa-archive fa-fw'></i>&nbsp;归档
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/demo/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="demo">
+									<i class='fas fa-book fa-fw'></i>&nbsp;Demo
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<i class="icon fas fa-search fa-fw"></i>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+        
+          <li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+        
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu navgation">
+      <ul>
+        
+          
+            <li>
+							<a class="nav flat-box" href="/"
+                
+                
+                id="home">
+								<i class='fas fa-clock fa-fw'></i>&nbsp;近期文章
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/archives/"
+                
+                  rel="nofollow"
+                
+                
+                id="archives">
+								<i class='fas fa-archive fa-fw'></i>&nbsp;文章归档
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/demo/"
+                
+                  rel="nofollow"
+                
+                
+                id="demo">
+								<i class='fas fa-book fa-fw'></i>&nbsp;Demo
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/about/"
+                
+                  rel="nofollow"
+                
+                
+                id="about">
+								<i class='fas fa-info-circle fa-fw'></i>&nbsp;关于小站
+							</a>
+            </li>
+          
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      <div class='l_main'>
+  
+
+  
+    <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+      
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  
+    <h1 class="title">
+      <a href="/Algorithm/每日一题/JavaScript：leetcode_983. 最低票价（动态规划）/">
+        JavaScript：leetcode_983. 最低票价（动态规划）
+      </a>
+    </h1>
+  
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    <a href="http://www.zsfmyz.top" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>赵十八</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2020-05-06</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Algorithm/每日一题/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Algorithm&nbsp;/&nbsp;每日一题</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class='notlink'>
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          <h3 id="题目说明"><a href="#题目说明" class="headerlink" title="题目说明"></a>题目说明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">在一个火车旅行很受欢迎的国度，你提前一年计划了一些火车旅行。在接下来的一年里，你要旅行的日子将以一个名为 days 的数组给出。每一项是一个从 1 到 365 的整数。</span><br><span class="line"></span><br><span class="line">火车票有三种不同的销售方式：</span><br><span class="line"></span><br><span class="line">一张为期一天的通行证售价为 costs[0] 美元；</span><br><span class="line">一张为期七天的通行证售价为 costs[1] 美元；</span><br><span class="line">一张为期三十天的通行证售价为 costs[2] 美元。</span><br><span class="line">通行证允许数天无限制的旅行。 例如，如果我们在第 2 天获得一张为期 7 天的通行证，那么我们可以连着旅行 7 天：第 2 天、第 3 天、第 4 天、第 5 天、第 6 天、第 7 天和第 8 天。</span><br><span class="line"></span><br><span class="line">返回你想要完成在给定的列表 days 中列出的每一天的旅行所需要的最低消费。</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">示例 1：</span><br><span class="line"></span><br><span class="line">输入：days = [1,4,6,7,8,20], costs = [2,7,15]</span><br><span class="line">输出：11</span><br><span class="line">解释： </span><br><span class="line">例如，这里有一种购买通行证的方法，可以让你完成你的旅行计划：</span><br><span class="line">在第 1 天，你花了 costs[0] = $2 买了一张为期 1 天的通行证，它将在第 1 天生效。</span><br><span class="line">在第 3 天，你花了 costs[1] = $7 买了一张为期 7 天的通行证，它将在第 3, 4, ..., 9 天生效。</span><br><span class="line">在第 20 天，你花了 costs[0] = $2 买了一张为期 1 天的通行证，它将在第 20 天生效。</span><br><span class="line">你总共花了 $11，并完成了你计划的每一天旅行。</span><br><span class="line">示例 2：</span><br><span class="line"></span><br><span class="line">输入：days = [1,2,3,4,5,6,7,8,9,10,30,31], costs = [2,7,15]</span><br><span class="line">输出：17</span><br><span class="line">解释：</span><br><span class="line">例如，这里有一种购买通行证的方法，可以让你完成你的旅行计划： </span><br><span class="line">在第 1 天，你花了 costs[2] = $15 买了一张为期 30 天的通行证，它将在第 1, 2, ..., 30 天生效。</span><br><span class="line">在第 31 天，你花了 costs[0] = $2 买了一张为期 1 天的通行证，它将在第 31 天生效。 </span><br><span class="line">你总共花了 $17，并完成了你计划的每一天旅行。</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">提示：</span><br><span class="line"></span><br><span class="line">1 &lt;= days.length &lt;= 365</span><br><span class="line">1 &lt;= days[i] &lt;= 365</span><br><span class="line">days 按顺序严格递增</span><br><span class="line">costs.length == 3</span><br><span class="line">1 &lt;= costs[i] &lt;= 1000</span><br></pre></td></tr></table></figure>
+<h3 id="解题思路一"><a href="#解题思路一" class="headerlink" title="解题思路一"></a>解题思路一</h3><p>动态规划的问题。</p>
+<p>好多题解是倒着来算的，对于书写是更简洁了，但是对于思维，太别扭了。。我脑子实在转不过来。</p>
+<p>所以我就换成正序规划，这样好理解一点。</p>
+<p>此题有点类似于背包算法。但是又不太一样。</p>
+<ol>
+<li>打点 days[0] 到 days[days.length - 1]的每一天。 所以初始化 dp = new Array(days.length).fill(0),代表的是<code>一年的第一天</code>到<code>计划旅行的最后一天</code></li>
+<li>days[0]的值为计划开始旅行的第一天的日期，所以当开始第一天时，当然是2块钱最划算，所以dp[days[0]] = 2</li>
+<li>第三步就比较核心了!!!!<ol>
+<li>当我们算到第二天的时候，是不是要比较买什么票合适呢？</li>
+<li>买如果只买一天的票，那就是今天之前所有的money加上今天的2块钱，<code>dp[i-1] + costs[0]</code></li>
+<li>如果买7天的票，那就是今天往前划拉7天的money加上今天的7块钱，<code>dp[i-7] + costs[1]</code></li>
+<li>同理买30天的票，划拉30天<code>dp[i-30] + costs[2]</code></li>
+<li>好嘞，我们又三种选择了，根据题意和常识，我们选择最<code>便宜的。</code>用<code>Math.min(dp[i-1] + costs[0],dp[i-7] + costs[1],dp[i-30] + costs[2])</code></li>
+</ol>
+</li>
+</ol>
+<h3 id="代码实现一"><a href="#代码实现一" class="headerlink" title="代码实现一"></a>代码实现一</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">days</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">costs</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> mincostTickets = <span class="function"><span class="keyword">function</span>(<span class="params">days, costs</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> dp = <span class="keyword">new</span> <span class="built_in">Array</span>(days[days.length<span class="number">-1</span>]).fill(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = days[<span class="number">0</span>], k = <span class="number">0</span>; i &lt;= days[days.length<span class="number">-1</span>]; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i === days[k]) &#123; <span class="comment">//确定今天是不是旅行日</span></span><br><span class="line">            dp[i] = <span class="built_in">Math</span>.min(dp[(i - <span class="number">1</span>)&gt;=<span class="number">0</span>?(i - <span class="number">1</span>):<span class="number">0</span>] + costs[<span class="number">0</span>],</span><br><span class="line">                             dp[(i - <span class="number">7</span>)&gt;=<span class="number">0</span>?(i - <span class="number">7</span>):<span class="number">0</span>] + costs[<span class="number">1</span>],</span><br><span class="line">                             dp[(i - <span class="number">30</span>)&gt;=<span class="number">0</span>?(i - <span class="number">30</span>):<span class="number">0</span>] + costs[<span class="number">2</span>]) <span class="comment">//如果是，就得用前面花的钱加上今天花的钱。</span></span><br><span class="line">            <span class="comment">//今天之前的钱数都是确定的且最小的。</span></span><br><span class="line">            k++</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            dp[i] = dp[i<span class="number">-1</span>] <span class="comment">//如果今天不旅行，那肯定不花钱，跟前一天的钱一样。</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[dp.length<span class="number">-1</span>]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <hr>
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-28T09:22:13+08:00">
+  <a class='notlink'>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>最后更新于 2020年5月28日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>Algorithm</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode_983. 最低票价（动态规划）/&title=JavaScript：leetcode_983. 最低票价（动态规划） | Eighteen Blog&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode_983. 最低票价（动态规划）/&title=JavaScript：leetcode_983. 最低票价（动态规划） | Eighteen Blog&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class='qrcode' rel="external nofollow noopener noreferrer" href='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD+UlEQVR42u3ay27bQBAEQP//TytATgkcMt0zSyWGiyfDssRl6dCex8dHfL1+Xp9/vvrN51d/ve5fvbqST74/57ELBw4cOHAEj5p89NXN8gdOfn9/x/xs9++9vDsOHDhw4DjEkYTr/W/uPzPhaGlajuScOHDgwIHjnRx5YZaQtTF8T9y+igMHDhw4/meOPCaThl3b1JudHwcOHDhwPM2Rj3DaAc+MaXaepIF4rFeKAwcOHDjSpCsWGr7Kz2/a78CBAweOb8/xKq825Noobc+ZcBRnw4EDBw4ch86W3CZPqHbslK8vJOsUbQsyqmhx4MCBA0d85rYJ2Lb28nZhG5bt8kQU8zhw4MCBY82RH7EdIM3KubYpmZd2STzjwIEDB449R/7m5KPztl0egXnc5ve9PDMOHDhw4FhztG21WemVl3+zNmVbiEafjwMHDhw4Fhyb0Hpi6yxnzR++qGhx4MCBA8eCYx+cbaC2uLMvpv4v49T/EThw4MCBIy6fNo3CfB1hH5956/APn4YDBw4cOA5x5OsFeR6dis920WHWfOzXP3DgwIEDx91p8xCdLSXkiw4tU/tlRMUkDhw4cOBYc2xWEPZrCpsFuHaFIo9qHDhw4MBxlmOzgtCuO+SH3kR78i4cOHDgwLHn2BRC+aFnZPtHbQs5HDhw4MBximM2vMlHUO3fJ1/AqbbmX/Y7cODAgQPHiOPUEOjswGlWFq6WHnDgwIEDx1GONqiSB0jiLR9HzUI9aWjiwIEDB473cOTBdrZ515ZwpxqOOHDgwIFjz5EvGURBFZRPSUDO4jz5tIIbBw4cOHCMOJ4I103rMCFIRlBtwxEHDhw4cJzlSK48epOy8DW68lFTuzaBAwcOHDhOcTwRZu3SQxvqCWtb8hUPiQMHDhw40rtHN2jHQu1yQ95MbNGHDUQcOHDgwDHimK2g5aybsNyUannzEQcOHDhwnOKYrSbs35WXiO2CQluI/nZHHDhw4MDxMMesHGpHPslx29bhcLkBBw4cOHCsOTZlWF7UzSrLWcOxbW4OR1A4cODAgePibO1gJm/JJQ82W2vI+doFOxw4cODAcYpjE7Sz8mmPcnZUhgMHDhw4TnHMhj0HbrkeIOUhWo+mcODAgQPHguNVXvnIah+Q+dgpbxRG/3fgwIEDB44Fxyz22vFPG9Kzkmz29zhw4MCB4wmOWcsvj7T9Il0S9psgx4EDBw4cT3DUPcUyaPMdvbyYLPb+2hYhDhw4cOB4C0cemUnrMF+h2MR2HtI4cODAgeNfcbQLEHnstZRPjMdw4MCBA8cpjlmxNGzAxeOl4SPFBd7hXikOHDhw4Fi00pIHnm1SzOCSr3BWWOLAgQMHjpjjB7YVSUte1ZKUAAAAAElFTkSuQmCC'>
+        
+          <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/wechat.png">
+        
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=http://www.zsfmyz.top/Algorithm/每日一题/JavaScript：leetcode_983. 最低票价（动态规划）/&title=JavaScript：leetcode_983. 最低票价（动态规划） | Eighteen Blog&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
+          
+        </a>
+      
+    
+      
+        <a class='qrcode' rel="external nofollow noopener noreferrer" href='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD+UlEQVR42u3ay27bQBAEQP//TytATgkcMt0zSyWGiyfDssRl6dCex8dHfL1+Xp9/vvrN51d/ve5fvbqST74/57ELBw4cOHAEj5p89NXN8gdOfn9/x/xs9++9vDsOHDhw4DjEkYTr/W/uPzPhaGlajuScOHDgwIHjnRx5YZaQtTF8T9y+igMHDhw4/meOPCaThl3b1JudHwcOHDhwPM2Rj3DaAc+MaXaepIF4rFeKAwcOHDjSpCsWGr7Kz2/a78CBAweOb8/xKq825Noobc+ZcBRnw4EDBw4ch86W3CZPqHbslK8vJOsUbQsyqmhx4MCBA0d85rYJ2Lb28nZhG5bt8kQU8zhw4MCBY82RH7EdIM3KubYpmZd2STzjwIEDB449R/7m5KPztl0egXnc5ve9PDMOHDhw4FhztG21WemVl3+zNmVbiEafjwMHDhw4Fhyb0Hpi6yxnzR++qGhx4MCBA8eCYx+cbaC2uLMvpv4v49T/EThw4MCBIy6fNo3CfB1hH5956/APn4YDBw4cOA5x5OsFeR6dis920WHWfOzXP3DgwIEDx91p8xCdLSXkiw4tU/tlRMUkDhw4cOBYc2xWEPZrCpsFuHaFIo9qHDhw4MBxlmOzgtCuO+SH3kR78i4cOHDgwLHn2BRC+aFnZPtHbQs5HDhw4MBximM2vMlHUO3fJ1/AqbbmX/Y7cODAgQPHiOPUEOjswGlWFq6WHnDgwIEDx1GONqiSB0jiLR9HzUI9aWjiwIEDB473cOTBdrZ515ZwpxqOOHDgwIFjz5EvGURBFZRPSUDO4jz5tIIbBw4cOHCMOJ4I103rMCFIRlBtwxEHDhw4cJzlSK48epOy8DW68lFTuzaBAwcOHDhOcTwRZu3SQxvqCWtb8hUPiQMHDhw40rtHN2jHQu1yQ95MbNGHDUQcOHDgwDHimK2g5aybsNyUannzEQcOHDhwnOKYrSbs35WXiO2CQluI/nZHHDhw4MDxMMesHGpHPslx29bhcLkBBw4cOHCsOTZlWF7UzSrLWcOxbW4OR1A4cODAgePibO1gJm/JJQ82W2vI+doFOxw4cODAcYpjE7Sz8mmPcnZUhgMHDhw4TnHMhj0HbrkeIOUhWo+mcODAgQPHguNVXvnIah+Q+dgpbxRG/3fgwIEDB44Fxyz22vFPG9Kzkmz29zhw4MCB4wmOWcsvj7T9Il0S9psgx4EDBw4cT3DUPcUyaPMdvbyYLPb+2hYhDhw4cOB4C0cemUnrMF+h2MR2HtI4cODAgeNfcbQLEHnstZRPjMdw4MCBA8cpjlmxNGzAxeOl4SPFBd7hXikOHDhw4Fi00pIHnm1SzOCSr3BWWOLAgQMHjpjjB7YVSUte1ZKUAAAAAElFTkSuQmCC'>
+        
+          <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qrcode.png">
+        
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                            <h4>
+                                <a href="/Algorithm/每日一题/JavaScript：leetcode_572. 另一个树的子树（广度遍历+深度遍历）/" rel="prev" title="JavaScript：leetcode_572. 另一个树的子树（广度遍历+深度遍历）">
+                                  
+                                      JavaScript：leetcode_572. 另一个树的子树（广度遍历+深度遍历）
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/Algorithm/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Algorithm</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/Vue/Vue双向数据绑定原理及实现/" rel="prev" title="Vue(2.x 和 3.0) 双向绑定原理及实现（Object.defineProperty 和 Proxy）以及常见错误区分">
+                                    
+                                        Vue(2.x 和 3.0) 双向绑定原理及实现（Object.defineProperty 和 Proxy）以及常见错误区分
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/Vue/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Vue</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+      </section>
+    </article>
+  
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+      
+      
+        <section id="comments">
+          <div id="gitalk-container"></div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'JavaScript：leetcode_983. 最低票价（动态规划）',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+    
+    
+      
+        
+          
+          
+            <section class='widget author'>
+  <div class='content pure'>
+    
+      <div class='avatar'>
+        <img class='avatar' src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1566989685462&di=31f5b9f85e870563ef23d1229da8227f&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201211%2F04%2F20121104120256_vKHAX.thumb.1000_0.jpeg'/>
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="mailto:aqshaofei@vip.qq.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://github.com/lunhui1994"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=382209257"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+          
+        
+      
+        
+          
+          
+            
+  <section class='widget toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目录</div>
+  
+    <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目说明"><span class="toc-text">题目说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解题思路一"><span class="toc-text">解题思路一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码实现一"><span class="toc-text">代码实现一</span></a></li></ol>
+    </div>
+  </section>
+
+
+          
+        
+      
+        
+          
+          
+            <section class='widget grid'>
+  
+<header class='pure'>
+  <div><i class="fas fa-map-signs fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;站内导航</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="grid navgation">
+      
+        <li><a class="flat-box" title="/" href="/"
+          
+          
+          id="home">
+          
+            <i class="fas fa-clock fa-fw" aria-hidden="true"></i>
+          
+          近期文章
+        </a></li>
+      
+        <li><a class="flat-box" title="/archives/" href="/archives/"
+          
+            rel="nofollow"
+          
+          
+          id="archives">
+          
+            <i class="fas fa-archive fa-fw" aria-hidden="true"></i>
+          
+          文章归档
+        </a></li>
+      
+        <li><a class="flat-box" title="/demo/" href="/demo/"
+          
+            rel="nofollow"
+          
+          
+          id="demo">
+          
+            <i class="fas fa-book fa-fw" aria-hidden="true"></i>
+          
+          Demo
+        </a></li>
+      
+        <li><a class="flat-box" title="/about/" href="/about/"
+          
+            rel="nofollow"
+          
+          
+          id="about">
+          
+            <i class="fas fa-info-circle fa-fw" aria-hidden="true"></i>
+          
+          关于小站
+        </a></li>
+      
+        <li><a class="flat-box" title="http://tiny.zsfmyz.top" href="http://tiny.zsfmyz.top"
+          
+          
+          id="http:tiny.zsfmyz.top">
+          
+            <i class="fas fa-link fa-fw" aria-hidden="true"></i>
+          
+          我的友链
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+          
+        
+      
+        
+          
+          
+            
+  <section class='widget category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分类</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/categories/"
+    title="categories/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Algorithm/" href="/categories/Algorithm/"><div class='name'>Algorithm</div><div class='badge'>(52)</div></a></li>
+        
+          <li><a class="flat-box child" title="/categories/Algorithm/每日一题/" href="/categories/Algorithm/每日一题/"><div class='name'>每日一题</div><div class='badge'>(51)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Angular/" href="/categories/Angular/"><div class='name'>Angular</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Css/" href="/categories/Css/"><div class='name'>Css</div><div class='badge'>(7)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Git/" href="/categories/Git/"><div class='name'>Git</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Hexo/" href="/categories/Hexo/"><div class='name'>Hexo</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/JavaScript/" href="/categories/JavaScript/"><div class='name'>JavaScript</div><div class='badge'>(7)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Linux/" href="/categories/Linux/"><div class='name'>Linux</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Vue/" href="/categories/Vue/"><div class='name'>Vue</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/api/" href="/categories/api/"><div class='name'>api</div><div class='badge'>(1)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+          
+        
+      
+        
+          
+          
+            
+  <section class='widget tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-fire fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/tags/"
+    title="tags/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/Algorithm/" style="font-size: 24px; color: #555">Algorithm</a> <a href="/tags/Angular/" style="font-size: 19px; color: #777">Angular</a> <a href="/tags/Css/" style="font-size: 21.5px; color: #666">Css</a> <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 21.5px; color: #666">JavaScript</a> <a href="/tags/Linux/" style="font-size: 16.5px; color: #888">Linux</a> <a href="/tags/Vue/" style="font-size: 19px; color: #777">Vue</a> <a href="/tags/api/" style="font-size: 14px; color: #999">api</a>
+    </div>
+  </section>
+
+
+          
+        
+      
+        
+          
+          
+            
+
+
+  <section class='widget music'>
+    
+<header class='pure'>
+  <div><i class="fas fa-compact-disc fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;最近在听</div>
+  
+    <a class="rightBtn"
+    
+      rel="external nofollow noopener noreferrer"
+    
+    
+      target="_blank"
+    
+    href="https://music.163.com/#/user/songs/rank?id=382209257"
+    title="https://music.163.com/#/user/songs/rank?id=382209257">
+    <i class="far fa-heart fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
+  <div class="aplayer"
+    data-theme="#1BCDFC"
+    
+    
+    data-mode="circulation"
+    data-server="netease"
+    data-type="playlist"
+    data-id="541812888"
+    data-volume="0.7">
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
+
+
+    </div>
+  </section>
+
+
+          
+        
+      
+    
+
+  
+</aside>
+
+<footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="/atom.xml"
+            class="social fas fa-rss flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="mailto:aqshaofei@vip.qq.com"
+            class="social fas fa-envelope flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://github.com/lunhui1994"
+            class="social fab fa-github flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=382209257"
+            class="social fas fa-headphones-alt flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>© 2018-2019 zsfmyz.top 版权所有 ICP证：京ICP备18047643号</p>
+</div>
+  <div>
+    Use
+    <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">material-x</a>
+    material-x
+    
+      ，
+      总访问量为
+      <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+      次
+    
+    。
+    <br>
+    © 2020 赵少飞 <span> | </span>
+    <img src="https://static.dy208.cn/o_1dfilp8ruo521thr1hvf18ji17soa.png">
+    <a href="http://www.beian.miit.gov.cn/" target="_blank">京ICP备18047643号</a>
+  </div>
+</footer>
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<!-- 看板娘 -->
+
+
+
+
+    <script>
+        var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+        var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+        var ALGOLIA_API_KEY = "";
+        var ALGOLIA_APP_ID = "";
+        var ALGOLIA_INDEX_NAME = "";
+        var AZURE_SERVICE_NAME = "";
+        var AZURE_INDEX_NAME = "";
+        var AZURE_QUERY_KEY = "";
+        var BAIDU_API_ID = "";
+        var SEARCH_SERVICE = "hexo" || "hexo";
+        var ROOT = "/" || "/";
+        if (!ROOT.endsWith('/')) ROOT += '/';
+    </script>
+
+<script src="//instant.page/1.2.2" type="module"
+        integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
+
+
+    <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            const $reveal = $('.reveal');
+            if ($reveal.length === 0) return;
+            const sr = ScrollReveal({
+                distance: 0
+            });
+            sr.reveal('.reveal');
+        });
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            Waves.attach('.flat-btn', ['waves-button']);
+            Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+            Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+            Waves.attach('.flat-box', ['waves-block']);
+            Waves.attach('.float-box', ['waves-block', 'waves-float']);
+            Waves.attach('.waves-image');
+            Waves.init();
+        });
+    </script>
+
+
+    <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+    
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                if ('.cover') {
+                    $('.cover').backstretch(
+                            ["https://s2.ax1x.com/2019/09/19/nqVpMd.jpg"], {
+                            duration: "6000",
+                            fade: "2500"
+                        });
+                } else {
+                    $.backstretch(
+                            ["https://s2.ax1x.com/2019/09/19/nqVpMd.jpg"], {
+                            duration: "6000",
+                            fade: "2500"
+                        });
+                }
+            });
+        </script>
+    
+
+
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <script src="/js/md5.js"></script>
+    <script type="text/javascript">
+        var gitalk = new Gitalk({
+            clientID: "57052046652c742e7a75",
+            clientSecret: "dc4cffe55050ef4cad3363710a11b074f1ddca98",
+            repo: "blogtalk",
+            owner: "lunhui1994",
+            admin: "lunhui1994",
+            
+            id: md5(location.pathname), // Ensure uniqueness and length less than 50
+            
+            distractionFreeMode: false // Facebook-like distraction free mode
+        });
+        gitalk.render('gitalk-container');
+    </script>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.5/js/app.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.5/js/search.js"></script>
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>复制</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?77e8ceece592fb0726fcf5fbf991c674";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>
