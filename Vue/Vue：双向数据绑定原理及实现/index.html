@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>Vue(2.x 和 3.0) 双向绑定原理及实现（Object.defineProperty 和 Proxy）以及常见错误区分 | Eighteen Blog</title>
+  
+  <meta name="keywords" content="Vue, 双向数据绑定, defineProperty, Proxy, 前端, LH_ZSF, Eighteen Blog, ZSF, 赵十八, 赵少飞">
+  
+  
+  <meta name="description" content="好学力行，明德任责。一起分享芝士。">
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="Eighteen Blog">
+  
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/all.min.css">
+  
+
+  
+  <link rel="shortcut icon" type="image/x-icon" href="https://www.zsfmyz.top/img/eighteen.ico">
+  
+    <!-- color css -->
+    <link rel="stylesheet" href="/./color/main.css">
+    <link rel="stylesheet" href="/./color/icon.css">
+    
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.5/css/style.css">
+  
+  
+    <link rel="stylesheet" href="/./css/my_main.css">
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+</head>
+
+<body>
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post half'>
+      
+        
+  <h1 class='title'>Eighteen Blog</h1>
+
+
+  <div class="m_search">
+    <form name="searchform" class="form u-search-form">
+      <input type="text" class="input u-search-input" placeholder="" />
+      <i class="icon fas fa-search fa-fw"></i>
+    </form>
+  </div>
+
+<div class='menu navgation'>
+  <ul class='h-list'>
+    
+      
+        <li>
+          <a class="nav home" href="/"
+            
+            
+            id="home">
+            <i class='fas fa-rss fa-fw'></i>&nbsp;博文
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/about/"
+            
+              rel="nofollow"
+            
+            
+            id="about">
+            <i class='fas fa-info-circle fa-fw'></i>&nbsp;关于
+          </a>
+        </li>
+      
+    
+  </ul>
+</div>
+
+      
+    </cover>
+    <header class="l_header pure">
+  <div id="loading-bar-wrapper">
+    <div id="loading-bar" class="pure"></div>
+  </div>
+
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          Eighteen Blog
+        
+      </a>
+			<div class='menu navgation'>
+				<ul class='h-list'>
+          
+  					
+  						<li>
+								<a class="nav flat-box" href="/"
+                  
+                  
+                  id="home">
+									<i class='fas fa-grin fa-fw'></i>&nbsp;文章
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/categories/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="categories">
+									<i class='fas fa-folder-open fa-fw'></i>&nbsp;分类
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/tags/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="tags">
+									<i class='fas fa-hashtag fa-fw'></i>&nbsp;标签
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/archives/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="archives">
+									<i class='fas fa-archive fa-fw'></i>&nbsp;归档
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/demo/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="demo">
+									<i class='fas fa-book fa-fw'></i>&nbsp;Demo
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<i class="icon fas fa-search fa-fw"></i>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+        
+          <li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+        
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu navgation">
+      <ul>
+        
+          
+            <li>
+							<a class="nav flat-box" href="/"
+                
+                
+                id="home">
+								<i class='fas fa-clock fa-fw'></i>&nbsp;近期文章
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/archives/"
+                
+                  rel="nofollow"
+                
+                
+                id="archives">
+								<i class='fas fa-archive fa-fw'></i>&nbsp;文章归档
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/demo/"
+                
+                  rel="nofollow"
+                
+                
+                id="demo">
+								<i class='fas fa-book fa-fw'></i>&nbsp;Demo
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/about/"
+                
+                  rel="nofollow"
+                
+                
+                id="about">
+								<i class='fas fa-info-circle fa-fw'></i>&nbsp;关于小站
+							</a>
+            </li>
+          
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      <div class='l_main'>
+  
+
+  
+    <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+      
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  
+    <h1 class="title">
+      <a href="/Vue/Vue：双向数据绑定原理及实现/">
+        Vue(2.x 和 3.0) 双向绑定原理及实现（Object.defineProperty 和 Proxy）以及常见错误区分
+      </a>
+    </h1>
+  
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    <a href="https://www.zsfmyz.top" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>赵十八</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2020-05-06</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Vue/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Vue</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class='notlink'>
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          <h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>vue实现双向绑定原理，主要是利用Object.defineProperty 来给实例data的属性添加 setter和getter.<br>并通过发布订阅模式（一对多的依赖关系，当状态发生改变，它的所有依赖都将被通知）来实现响应。</p>
+<p>这个环节中包含了三个部分</p>
+<ul>
+<li><p>Observer 用来监听拦截data的属性为监察者。 </p>
+</li>
+<li><p>Dep用来添加订阅者，为订阅器</p>
+</li>
+<li><p>Watcher 就是订阅者</p>
+</li>
+</ul>
+<p>监察者通过 Dep 向 Watcher发布更新消息</p>
+<h4 id="简单实现"><a href="#简单实现" class="headerlink" title="简单实现"></a>简单实现</h4><p>那么首先</p>
+<ol>
+<li>通过对set和get的拦截，在get阶段进行依赖收集，在set阶段对通知该属性上所啊绑定的依赖。</li>
+</ol>
+<p>如下我们就已经实现了一个简单的双向绑定了。</p>
+<p>我们将data的value属性绑定上set和get，通过 _value 来进行操作。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- HTML部分 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"inp"</span> <span class="attr">oninput</span>=<span class="string">"inputFn(this.value)"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'div'</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- JS部分 --&gt;</span><br><span class="line"><span class="keyword">var</span> inp = <span class="built_in">document</span>.getElementById(<span class="string">'inp'</span>);</span><br><span class="line"><span class="keyword">var</span> div = <span class="built_in">document</span>.getElementById(<span class="string">'div'</span>);</span><br><span class="line"><span class="keyword">var</span> data = &#123;</span><br><span class="line">    value:<span class="string">''</span></span><br><span class="line">&#125;</span><br><span class="line">  <span class="built_in">Object</span>.defineProperty(data, <span class="string">'value'</span>, &#123;</span><br><span class="line">    enumerable: <span class="literal">true</span>,</span><br><span class="line">    configurable: <span class="literal">true</span>,</span><br><span class="line">    <span class="keyword">set</span>: function (newValue) &#123;</span><br><span class="line">        <span class="keyword">this</span>._value = newValue; </span><br><span class="line">        div.innerText = data._value = value; <span class="comment">//watcher</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">get</span>: function () &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>._value; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inputFn</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">  data._value = value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果只是实现一个简单的双向绑定那么上面的代码就已经实现了。</p>
+<h4 id="进一步完善模拟vue实现"><a href="#进一步完善模拟vue实现" class="headerlink" title="进一步完善模拟vue实现"></a>进一步完善模拟vue实现</h4><p>首先我们将watcher抽出来 备用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">watcher</span>(<span class="params">params</span>) </span>&#123;</span><br><span class="line">  div.innerText = inp.value = params; <span class="comment">// 派发watcher</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>声明一个vm来模拟vue的实例,并初始化。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//类似vue实例上的data</span></span><br><span class="line">    data: &#123;</span><br><span class="line">        value: <span class="string">''</span></span><br><span class="line">    &#125;, </span><br><span class="line"></span><br><span class="line">    <span class="comment">// vue私有, _data的所有属性为data中的所有属性被改造为 getter/setter 之后的。</span></span><br><span class="line">    _data: &#123;</span><br><span class="line">        value: <span class="string">''</span></span><br><span class="line">    &#125;, </span><br><span class="line"></span><br><span class="line">    <span class="comment">// 代理到vm对象上，可以实现vm.value</span></span><br><span class="line">    value: <span class="string">''</span>, </span><br><span class="line"></span><br><span class="line">    <span class="comment">//value的订阅器用来收集订阅者 </span></span><br><span class="line">    valueWatchers:[] </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>遍历其data上的属性 进行改造 这里我们还是只举一个例子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 利用 Object.defineProperty 定义一个属性 (eg：value) 描述符为存取描述符的属性</span></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(vm._data, <span class="string">'value'</span>, &#123;</span><br><span class="line">    enumerable: <span class="literal">true</span>, <span class="comment">//是否可枚举</span></span><br><span class="line">    configurable: <span class="literal">true</span>, <span class="comment">//是否可配置</span></span><br><span class="line">    <span class="keyword">set</span>: function (newValue) &#123; <span class="comment">//set 派发watchers</span></span><br><span class="line">      vm.data.value = newValue; </span><br><span class="line">      vm.valueWatchers.map(<span class="function"><span class="params">fn</span> =&gt;</span> fn(newValue));</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">get</span>: function () &#123; </span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 收集wachter vue中会在compile解析器中通过 显示调用 (this.xxx) 来触发get进行收集</span></span><br><span class="line">        vm.valueWatchers.length = <span class="number">0</span>; </span><br><span class="line">        vm.valueWatchers.push(watcher); </span><br><span class="line">        <span class="keyword">return</span> vm.data.value; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">  &lt;!--直接通过显示调用来触发<span class="keyword">get</span>进行绑定 vue中是在compile解析器中来进行这一步--&gt;</span><br><span class="line">  vm._data.value</span><br></pre></td></tr></table></figure>
+<p>进行到这儿也已经实现了绑定，但是我们平时使用vue ，都是可以直接通过 this.xxx来获取和定义数据</p>
+<p>那么我们还需要进行一步Proxy 代理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(vm, <span class="string">'value'</span>, &#123;</span><br><span class="line">    enumerable: <span class="literal">true</span>,</span><br><span class="line">    configurable: <span class="literal">true</span>,</span><br><span class="line">    <span class="keyword">set</span>: function (newValue) &#123;</span><br><span class="line">        <span class="keyword">this</span>._data.value = newValue; <span class="comment">//借助</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">get</span>: function () &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>._data.value; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这样我们就把vm._data.value 代理到vm.value上了，可以通过其直接操作了。</p>
+<p>那么按照官方的写法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">proxy</span> (<span class="params">target, sourceKey, key</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">Object</span>.defineProperty(target, key, &#123;</span><br><span class="line">        enumerable: <span class="literal">true</span>,</span><br><span class="line">        configurable: <span class="literal">true</span>,</span><br><span class="line">        <span class="keyword">get</span>() &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>[sourceKey][key];</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="keyword">set</span>(val) &#123;</span><br><span class="line">            <span class="keyword">this</span>[sourceKey][key] = val;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line">proxy(vm, <span class="string">'_data'</span>, <span class="string">'value'</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="完善后的完整代码"><a href="#完善后的完整代码" class="headerlink" title="完善后的完整代码"></a>完善后的完整代码</h4><p>以下为整个页面，可以直接运行<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>双向绑定简单实现<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"inp"</span> <span class="attr">oninput</span>=<span class="string">"inputFn(this.value)"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"inp2"</span> <span class="attr">oninput</span>=<span class="string">"inputFn(this.value)"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'div'</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> inp = <span class="built_in">document</span>.getElementById(<span class="string">'inp'</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> inp2 = <span class="built_in">document</span>.getElementById(<span class="string">'inp2'</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> div = <span class="built_in">document</span>.getElementById(<span class="string">'div'</span>);</span></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">inputFn</span><span class="params">(value)</span> </span>&#123;</span></span><br><span class="line">        div.innerText = vm.value = value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">watcher</span><span class="params">(params)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(<span class="number">1</span>)</span></span><br><span class="line"><span class="actionscript">        div.innerText = inp.value = params; <span class="comment">// 派发watcher</span></span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">watcher2</span><span class="params">(params)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(<span class="number">2</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">        div.innerText = inp2.value = params; <span class="comment">// 派发watcher</span></span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">proxy</span> <span class="params">(target, sourceKey, key)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">Object</span>.defineProperty(target, key, &#123;</span></span><br><span class="line"><span class="actionscript">            enumerable: <span class="literal">true</span>,</span></span><br><span class="line"><span class="actionscript">            configurable: <span class="literal">true</span>,</span></span><br><span class="line"><span class="javascript">            <span class="keyword">get</span>() &#123;</span></span><br><span class="line"><span class="actionscript">                <span class="keyword">return</span> <span class="keyword">this</span>[sourceKey][key];</span></span><br><span class="line">            &#125;,</span><br><span class="line"><span class="javascript">            <span class="keyword">set</span>(val) &#123;</span></span><br><span class="line"><span class="actionscript">                <span class="keyword">this</span>[sourceKey][key] = val;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="javascript">	<span class="keyword">let</span> handler = &#123;</span></span><br><span class="line"><span class="actionscript">        enumerable: <span class="literal">true</span>,</span></span><br><span class="line"><span class="actionscript">        configurable: <span class="literal">true</span>,</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">set</span>: <span class="function"><span class="keyword">function</span> <span class="params">(newValue)</span> </span>&#123;</span></span><br><span class="line">            vm.data.value = newValue; </span><br><span class="line"><span class="javascript">            vm.valueWatchers.map(<span class="function"><span class="params">fn</span> =&gt;</span> fn(newValue));</span></span><br><span class="line">        &#125;,</span><br><span class="line"><span class="actionscript">        <span class="keyword">get</span>: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">            vm.valueWatchers = []; <span class="comment">//防止重复添加, </span></span></span><br><span class="line">            vm.valueWatchers.push(watcher); </span><br><span class="line">            vm.valueWatchers.push(watcher2); </span><br><span class="line"><span class="actionscript">            <span class="keyword">return</span> vm.data.value; </span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> vm = &#123;</span></span><br><span class="line">        data: &#123;&#125;,</span><br><span class="line">        _data: &#123;&#125;,</span><br><span class="line"><span class="actionscript">        value: <span class="string">''</span>, </span></span><br><span class="line">        valueWatchers: [] </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"><span class="javascript">    <span class="built_in">Object</span>.defineProperty(vm._data, <span class="string">'value'</span>, handler)</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">    proxy(vm, <span class="string">'_data'</span>, <span class="string">'value'</span>);</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">    vm.value;  <span class="comment">//显示调用绑定</span></span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h4><p>再多讲一点。实际上vue在初始化的时候是用解析器解析过程中将wathcer进行绑定的。</p>
+<p>它会利用一个全局的Dep.target = watcher </p>
+<p>然后在get收集中，只收集全局上Dep.target, 添加完毕后会重新初始化全局Dep.target = null;</p>
+<p>类似如下操作<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Dep.target = watcher;</span><br><span class="line">vm.value;    <span class="comment">// 触发get =&gt; Dep.target &amp;&amp; valueWatchers.push(Dep.target);</span></span><br><span class="line">Dep.target = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure></p>
+<p>这样也会防止我们在调用时触发get重复去添加watcher。</p>
+<p>而我们的例子中只是每次都初始化为[]. 实际订阅器也不只是一个watcher数组。 </p>
+<p>此例跟官方实现还是有很多差距，只是简单模拟。</p>
+<h4 id="vue3-0-使用-Proxy"><a href="#vue3-0-使用-Proxy" class="headerlink" title="vue3.0 使用 Proxy"></a>vue3.0 使用 Proxy</h4><blockquote>
+<p>在vue3.0中，使用proxy这个功能更加强大的函数，它可以定义对象的基本操作的自定义行为。对比defineProperty只能拦截对象的某一属性，proxy的功能更方便。所提供的可自定义的操作也更多。</p>
+</blockquote>
+<p>上面，我用defineProperty实现了vue的双向绑定，接下来我们用proxy来实现。</p>
+<p>首先我们可以先了解一下<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy" target="_blank" rel="noopener">proxy的作用和用法</a></p>
+<p>首先 <code>defineProperty</code> 的用法是<code>Object.defineProperty(obj, prop, descriptor)</code></p>
+<p><strong>proxy</strong>的用法如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="built_in">Proxy</span>(target, handler)</span><br></pre></td></tr></table></figure></p>
+<p>我们用proxy来实现一下双向绑定：</p>
+<p>核心代码就像这样，在我们这个需求下分析</p>
+<ol>
+<li><code>set</code>函数中<ol>
+<li><code>target</code> 为所拦截的对象</li>
+<li><code>key</code> 为属性名</li>
+<li><code>newValue</code>为所赋予的值</li>
+<li>set中需要<code>return true</code>代表设置成功，返回flase在严格模式下报TypeError （代表该值与期望值类型不同）</li>
+</ol>
+</li>
+<li><code>get</code>函数中<ol>
+<li><code>target</code> 为所拦截的对象</li>
+<li><code>key</code> 为属性名</li>
+<li>get可返回任意值<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> data = &#123;<span class="attr">value</span>: <span class="number">0</span>&#125;</span><br><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> <span class="built_in">Proxy</span>(&#123;<span class="attr">value</span>: <span class="number">0</span> &#125;, &#123;</span><br><span class="line">	<span class="keyword">set</span>: function(target, key, newValue)&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(key + <span class="string">'被赋值为'</span> + newValue)</span><br><span class="line">		target[key] = newValue</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">	&#125;，</span><br><span class="line">	<span class="keyword">get</span>: function(target, key) &#123;</span><br><span class="line">		<span class="built_in">console</span>.log(target[key])</span><br><span class="line">        <span class="keyword">return</span> target[key]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">vm.value = <span class="number">1</span> <span class="comment">// 0; value被赋值为1</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="proxy双向绑定具体实现"><a href="#proxy双向绑定具体实现" class="headerlink" title="proxy双向绑定具体实现"></a>proxy双向绑定具体实现</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">"content"</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"enter"</span> <span class="attr">value</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> content = <span class="built_in">document</span>.getElementById(<span class="string">"content"</span>)</span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> enter_input = <span class="built_in">document</span>.getElementById(<span class="string">'enter'</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> data = &#123;</span></span><br><span class="line"><span class="actionscript">        enter_input: <span class="string">''</span>,</span></span><br><span class="line">        enter_input_watchers: []</span><br><span class="line">    &#125;</span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> watcher = <span class="function"><span class="keyword">function</span> <span class="title">watcherFn</span>(<span class="params">value</span>) </span>&#123;</span></span><br><span class="line">        content.innerText = value</span><br><span class="line">    &#125;</span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> watcher2 = <span class="function"><span class="keyword">function</span> <span class="title">watcher2Fn</span>(<span class="params">value</span>) </span>&#123;</span></span><br><span class="line">        enter_input.value = value</span><br><span class="line">    &#125;</span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> handler = &#123;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">set</span>: <span class="function"><span class="keyword">function</span><span class="params">(target, key, value)</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">if</span> (key === <span class="string">'enter_input'</span>) &#123;</span></span><br><span class="line">                target[key] = value;</span><br><span class="line"><span class="actionscript">                target[key + <span class="string">"_watchers"</span>].map(<span class="function"><span class="keyword">function</span> <span class="params">(watcher)</span> </span>&#123;</span></span><br><span class="line">                    watcher(value)</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line"><span class="actionscript">        <span class="keyword">get</span>: <span class="function"><span class="keyword">function</span><span class="params">(target, key)</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">            target[key + <span class="string">"_watchers"</span>] = [watcher, watcher2];</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">return</span> target[key]</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> db = <span class="keyword">new</span> <span class="built_in">Proxy</span>(data, handler);</span></span><br><span class="line"><span class="actionscript">    db.enter_input; <span class="comment">//收集监听</span></span></span><br><span class="line"><span class="actionscript">    enter_input.addEventListener(<span class="string">'input'</span>, <span class="function"><span class="keyword">function</span><span class="params">(e)</span></span>&#123;</span></span><br><span class="line">        db.enter_input = e.target.value;</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="错误类型扩展"><a href="#错误类型扩展" class="headerlink" title="错误类型扩展"></a>错误类型扩展</h4><p>平时我们常见的错误类型分为<code>ReferenceError</code>，<code>TypeError</code>，<code>SyntaxError</code> 这三种。</p>
+<h5 id="一、-ReferenceError-代表我们的作用域查找错误。"><a href="#一、-ReferenceError-代表我们的作用域查找错误。" class="headerlink" title="一、  ReferenceError 代表我们的作用域查找错误。"></a>一、  <strong>ReferenceError 代表我们的作用域查找错误。</strong></h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> b = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(b)</span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">//ReferenceError</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>我们在全局定义了<code>b</code>，所以<code>console.log(b)为1</code>，但是我们没有定义<code>a</code>，所以我们在全局作用域下找不到a，就会报<code>ReferenceError</code></p>
+</li>
+<li><p>如果是在函数中定义，则在函数中查找不到时，会去父作用域查找，一直到全局，都找不到，才会报<code>ReferenceError</code></p>
+</li>
+</ol>
+<h5 id="二、-TypeError代表数据类型与预期不符。"><a href="#二、-TypeError代表数据类型与预期不符。" class="headerlink" title="二、  TypeError代表数据类型与预期不符。"></a>二、  <strong>TypeError代表数据类型与预期不符。</strong></h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> b = <span class="number">1</span>;</span><br><span class="line">b() <span class="comment">//TypeError</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>我们在全局定义了<code>b</code>，其类型为Number，但是我们用()来执行它，把它当作了函数用，所以就会报<code>TypeError</code></li>
+</ol>
+<h5 id="三、-SyntaxError代表语法错误。"><a href="#三、-SyntaxError代表语法错误。" class="headerlink" title="三、  SyntaxError代表语法错误。"></a>三、  <strong>SyntaxError代表语法错误。</strong></h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> b &gt; <span class="number">1</span>;<span class="comment">//SyntaxError</span></span><br><span class="line"><span class="comment">//or</span></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">let</span> b<span class="comment">//SyntaxError</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>很明显，我们不可以这么使用let，语法就错误了，所以就会报<code>SyntaxError</code></li>
+</ol>
+
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <hr>
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-06T18:14:37+08:00">
+  <a class='notlink'>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>最后更新于 2020年5月6日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Vue/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>Vue</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://www.zsfmyz.top/Vue/Vue：双向数据绑定原理及实现/&title=Vue(2.x 和 3.0) 双向绑定原理及实现（Object.defineProperty 和 Proxy）以及常见错误区分 | Eighteen Blog&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://www.zsfmyz.top/Vue/Vue：双向数据绑定原理及实现/&title=Vue(2.x 和 3.0) 双向绑定原理及实现（Object.defineProperty 和 Proxy）以及常见错误区分 | Eighteen Blog&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class='qrcode' rel="external nofollow noopener noreferrer" href='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACpUlEQVR42u3aQU7DQAwFUO5/6bJFgjTf9ri00ssK0XTiF6Sx8fjrK74eP67qt5J1Hr+uZLVjFx4eHt4g9KvHXAX0PPR8zSoviRkPDw9vm5csV00bVwH10k8SDx4eHt5n8Z6nh/y7yTp4eHh4n8KrlsvVNJCkFjw8PLz34VXDnVCjJsLTJsVKrwUPDw8v5lWPst7h55XzPTw8PLzxqXp1w83L3KTteyBaPDw8vAXefHSg92ryAr36gv64Hw8PD2+N12u25iHmwVVbEjfFNx4eHt5RXi8NVBPD8xCrTeFCYwIPDw9vjTdpECShTxJMNalcZjw8PDy8ZV7y5VMDAflryp+Oh4eHt80rbLWtTbxamk+GGG7O9/Dw8PDGvF7BeuqlVA+95mU9Hh4e3pzXO9bKt/5J0ZyTmjkEDw8Pb8DLm7nzJm+ePPKDust18PDw8BZ4vc13PnTVI+UpCg8PD+81vN7Q6uSRzSHUVnMEDw8P7ywvP1KaH2hVPz2cEvDw8PDGvN5Bfr5x77Voo1IeDw8P7yW8ees2HwLotXfzEhwPDw9vgzdpy1bL4jwN9DrQl0/Ew8PDW+BVb+01C6qNieqdeHh4eK/h9VqlpwYFkpI6KaBvMh4eHh7eUV6CrP6+yph8Gj0LDw8Pb42XFMG9g6hkICBPSOU48fDw8NZ4eaN2fjSVj3DlTd7LOPHw8PDWeNUNN2+nJuvnqag8rICHh4d3lPcoXvMRq1MFdNTMxcPDw1vgTTbf/P581KB6Jx4eHt5/8fIg8t9M2gpJoZ8cyOHh4eFt8/IWbbVJMS/Te4dweHh4eO/PS0rhvJmbJyo8PDy8z+LlAwGTcYQqHg8PD+81vGozojewlY8U5GMHN38qPDw8vAXe5B/+vC1bTTaTwzM8PDy8Nd43LNJPzGSUkcQAAAAASUVORK5CYII='>
+        
+          <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/wechat.png">
+        
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=https://www.zsfmyz.top/Vue/Vue：双向数据绑定原理及实现/&title=Vue(2.x 和 3.0) 双向绑定原理及实现（Object.defineProperty 和 Proxy）以及常见错误区分 | Eighteen Blog&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
+          
+        </a>
+      
+    
+      
+        <a class='qrcode' rel="external nofollow noopener noreferrer" href='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACpUlEQVR42u3aQU7DQAwFUO5/6bJFgjTf9ri00ssK0XTiF6Sx8fjrK74eP67qt5J1Hr+uZLVjFx4eHt4g9KvHXAX0PPR8zSoviRkPDw9vm5csV00bVwH10k8SDx4eHt5n8Z6nh/y7yTp4eHh4n8KrlsvVNJCkFjw8PLz34VXDnVCjJsLTJsVKrwUPDw8v5lWPst7h55XzPTw8PLzxqXp1w83L3KTteyBaPDw8vAXefHSg92ryAr36gv64Hw8PD2+N12u25iHmwVVbEjfFNx4eHt5RXi8NVBPD8xCrTeFCYwIPDw9vjTdpECShTxJMNalcZjw8PDy8ZV7y5VMDAflryp+Oh4eHt80rbLWtTbxamk+GGG7O9/Dw8PDGvF7BeuqlVA+95mU9Hh4e3pzXO9bKt/5J0ZyTmjkEDw8Pb8DLm7nzJm+ePPKDust18PDw8BZ4vc13PnTVI+UpCg8PD+81vN7Q6uSRzSHUVnMEDw8P7ywvP1KaH2hVPz2cEvDw8PDGvN5Bfr5x77Voo1IeDw8P7yW8ees2HwLotXfzEhwPDw9vgzdpy1bL4jwN9DrQl0/Ew8PDW+BVb+01C6qNieqdeHh4eK/h9VqlpwYFkpI6KaBvMh4eHh7eUV6CrP6+yph8Gj0LDw8Pb42XFMG9g6hkICBPSOU48fDw8NZ4eaN2fjSVj3DlTd7LOPHw8PDWeNUNN2+nJuvnqag8rICHh4d3lPcoXvMRq1MFdNTMxcPDw1vgTTbf/P581KB6Jx4eHt5/8fIg8t9M2gpJoZ8cyOHh4eFt8/IWbbVJMS/Te4dweHh4eO/PS0rhvJmbJyo8PDy8z+LlAwGTcYQqHg8PD+81vGozojewlY8U5GMHN38qPDw8vAXe5B/+vC1bTTaTwzM8PDy8Nd43LNJPzGSUkcQAAAAASUVORK5CYII='>
+        
+          <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qrcode.png">
+        
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                            <h4>
+                                <a href="/Algorithm/每日一题/JavaScript：leetcode_983. 最低票价（动态规划）/" rel="prev" title="JavaScript：leetcode_983. 最低票价（动态规划）">
+                                  
+                                      JavaScript：leetcode_983. 最低票价（动态规划）
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/Algorithm/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Algorithm</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/Algorithm/每日一题/JavaScript：leetcode_98. 验证二叉搜索树（递归）/" rel="prev" title="JavaScript：leetcode_98. 验证二叉搜索树（递归）">
+                                    
+                                        JavaScript：leetcode_98. 验证二叉搜索树（递归）
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/Algorithm/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Algorithm</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+      </section>
+    </article>
+  
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+      
+      
+        <section id="comments">
+          <div id="gitalk-container"></div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'Vue(2.x 和 3.0) 双向绑定原理及实现（Object.defineProperty 和 Proxy）以及常见错误区分',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+    
+    
+      
+        
+          
+          
+            <section class='widget author'>
+  <div class='content pure'>
+    
+      <div class='avatar'>
+        <img class='avatar' src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1566989685462&di=31f5b9f85e870563ef23d1229da8227f&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201211%2F04%2F20121104120256_vKHAX.thumb.1000_0.jpeg'/>
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="mailto:aqshaofei@vip.qq.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://github.com/lunhui1994"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=382209257"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+          
+        
+      
+        
+          
+          
+            
+  <section class='widget toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目录</div>
+  
+    <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#说明"><span class="toc-text">说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#简单实现"><span class="toc-text">简单实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#进一步完善模拟vue实现"><span class="toc-text">进一步完善模拟vue实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#完善后的完整代码"><span class="toc-text">完善后的完整代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解释"><span class="toc-text">解释</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vue3-0-使用-Proxy"><span class="toc-text">vue3.0 使用 Proxy</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#proxy双向绑定具体实现"><span class="toc-text">proxy双向绑定具体实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#错误类型扩展"><span class="toc-text">错误类型扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#一、-ReferenceError-代表我们的作用域查找错误。"><span class="toc-text">一、  ReferenceError 代表我们的作用域查找错误。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二、-TypeError代表数据类型与预期不符。"><span class="toc-text">二、  TypeError代表数据类型与预期不符。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#三、-SyntaxError代表语法错误。"><span class="toc-text">三、  SyntaxError代表语法错误。</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
+
+          
+        
+      
+        
+          
+          
+            <section class='widget grid'>
+  
+<header class='pure'>
+  <div><i class="fas fa-map-signs fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;站内导航</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="grid navgation">
+      
+        <li><a class="flat-box" title="/" href="/"
+          
+          
+          id="home">
+          
+            <i class="fas fa-clock fa-fw" aria-hidden="true"></i>
+          
+          近期文章
+        </a></li>
+      
+        <li><a class="flat-box" title="/archives/" href="/archives/"
+          
+            rel="nofollow"
+          
+          
+          id="archives">
+          
+            <i class="fas fa-archive fa-fw" aria-hidden="true"></i>
+          
+          文章归档
+        </a></li>
+      
+        <li><a class="flat-box" title="/demo/" href="/demo/"
+          
+            rel="nofollow"
+          
+          
+          id="demo">
+          
+            <i class="fas fa-book fa-fw" aria-hidden="true"></i>
+          
+          Demo
+        </a></li>
+      
+        <li><a class="flat-box" title="/about/" href="/about/"
+          
+            rel="nofollow"
+          
+          
+          id="about">
+          
+            <i class="fas fa-info-circle fa-fw" aria-hidden="true"></i>
+          
+          关于小站
+        </a></li>
+      
+        <li><a class="flat-box" title="http://tiny.zsfmyz.top" href="http://tiny.zsfmyz.top"
+          
+          
+          id="http:tiny.zsfmyz.top">
+          
+            <i class="fas fa-link fa-fw" aria-hidden="true"></i>
+          
+          TinyFish
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+          
+        
+      
+        
+          
+          
+            
+  <section class='widget category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分类</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/categories/"
+    title="categories/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Algorithm/" href="/categories/Algorithm/"><div class='name'>Algorithm</div><div class='badge'>(52)</div></a></li>
+        
+          <li><a class="flat-box child" title="/categories/Algorithm/每日一题/" href="/categories/Algorithm/每日一题/"><div class='name'>每日一题</div><div class='badge'>(51)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Angular/" href="/categories/Angular/"><div class='name'>Angular</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Css/" href="/categories/Css/"><div class='name'>Css</div><div class='badge'>(11)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Git/" href="/categories/Git/"><div class='name'>Git</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Hexo/" href="/categories/Hexo/"><div class='name'>Hexo</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/JavaScript/" href="/categories/JavaScript/"><div class='name'>JavaScript</div><div class='badge'>(7)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Linux/" href="/categories/Linux/"><div class='name'>Linux</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Vue/" href="/categories/Vue/"><div class='name'>Vue</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/api/" href="/categories/api/"><div class='name'>api</div><div class='badge'>(1)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+          
+        
+      
+        
+          
+          
+            
+  <section class='widget tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-fire fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/tags/"
+    title="tags/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/Algorithm/" style="font-size: 24px; color: #555">Algorithm</a> <a href="/tags/Angular/" style="font-size: 18px; color: #7e7e7e">Angular</a> <a href="/tags/Css/" style="font-size: 22px; color: #636363">Css</a> <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 20px; color: #707070">JavaScript</a> <a href="/tags/Linux/" style="font-size: 16px; color: #8b8b8b">Linux</a> <a href="/tags/Vue/" style="font-size: 18px; color: #7e7e7e">Vue</a> <a href="/tags/api/" style="font-size: 14px; color: #999">api</a>
+    </div>
+  </section>
+
+
+          
+        
+      
+        
+          
+          
+            
+
+
+  <section class='widget music'>
+    
+<header class='pure'>
+  <div><i class="fas fa-compact-disc fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;最近在听</div>
+  
+    <a class="rightBtn"
+    
+      rel="external nofollow noopener noreferrer"
+    
+    
+      target="_blank"
+    
+    href="https://music.163.com/#/user/songs/rank?id=382209257"
+    title="https://music.163.com/#/user/songs/rank?id=382209257">
+    <i class="far fa-heart fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
+  <div class="aplayer"
+    data-theme="#1BCDFC"
+    
+    
+    data-mode="circulation"
+    data-server="netease"
+    data-type="playlist"
+    data-id="541812888"
+    data-volume="0.7">
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
+
+
+    </div>
+  </section>
+
+
+          
+        
+      
+    
+
+  
+</aside>
+
+<footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="/atom.xml"
+            class="social fas fa-rss flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="mailto:aqshaofei@vip.qq.com"
+            class="social fas fa-envelope flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://github.com/lunhui1994"
+            class="social fab fa-github flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=382209257"
+            class="social fas fa-headphones-alt flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>© 2018-2019 zsfmyz.top 版权所有 ICP证：京ICP备18047643号</p>
+</div>
+  <div>
+    Use
+    <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">material-x</a>
+    material-x
+    
+      ，
+      总访问量为
+      <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+      次
+    
+    。
+    <br>
+    © 2020 赵少飞 <span> | </span>
+    <img src="https://static.dy208.cn/o_1dfilp8ruo521thr1hvf18ji17soa.png">
+    <a href="http://www.beian.miit.gov.cn/" target="_blank">京ICP备18047643号</a>
+  </div>
+</footer>
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<!-- 看板娘 -->
+
+
+
+
+    <script>
+        var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+        var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+        var ALGOLIA_API_KEY = "";
+        var ALGOLIA_APP_ID = "";
+        var ALGOLIA_INDEX_NAME = "";
+        var AZURE_SERVICE_NAME = "";
+        var AZURE_INDEX_NAME = "";
+        var AZURE_QUERY_KEY = "";
+        var BAIDU_API_ID = "";
+        var SEARCH_SERVICE = "hexo" || "hexo";
+        var ROOT = "/" || "/";
+        if (!ROOT.endsWith('/')) ROOT += '/';
+    </script>
+
+<script src="//instant.page/1.2.2" type="module"
+        integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
+
+
+    <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            const $reveal = $('.reveal');
+            if ($reveal.length === 0) return;
+            const sr = ScrollReveal({
+                distance: 0
+            });
+            sr.reveal('.reveal');
+        });
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            Waves.attach('.flat-btn', ['waves-button']);
+            Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+            Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+            Waves.attach('.flat-box', ['waves-block']);
+            Waves.attach('.float-box', ['waves-block', 'waves-float']);
+            Waves.attach('.waves-image');
+            Waves.init();
+        });
+    </script>
+
+
+    <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+    
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                if ('.cover') {
+                    $('.cover').backstretch(
+                            ["https://s2.ax1x.com/2019/09/19/nqVpMd.jpg"], {
+                            duration: "6000",
+                            fade: "2500"
+                        });
+                } else {
+                    $.backstretch(
+                            ["https://s2.ax1x.com/2019/09/19/nqVpMd.jpg"], {
+                            duration: "6000",
+                            fade: "2500"
+                        });
+                }
+            });
+        </script>
+    
+
+
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <script src="/js/md5.js"></script>
+    <script type="text/javascript">
+        var gitalk = new Gitalk({
+            clientID: "57052046652c742e7a75",
+            clientSecret: "dc4cffe55050ef4cad3363710a11b074f1ddca98",
+            repo: "blogtalk",
+            owner: "lunhui1994",
+            admin: "lunhui1994",
+            
+            id: md5(location.pathname), // Ensure uniqueness and length less than 50
+            
+            distractionFreeMode: false // Facebook-like distraction free mode
+        });
+        gitalk.render('gitalk-container');
+    </script>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.5/js/app.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.5/js/search.js"></script>
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>复制</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?77e8ceece592fb0726fcf5fbf991c674";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>

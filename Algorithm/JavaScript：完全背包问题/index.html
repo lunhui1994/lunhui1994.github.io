@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>JavaScript：完全背包问题 | Eighteen Blog</title>
+  
+  <meta name="keywords" content="完全背包问题, 前端, LH_ZSF, Eighteen Blog, ZSF, 赵十八, 赵少飞">
+  
+  
+  <meta name="description" content="好学力行，明德任责。一起分享芝士。">
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="Eighteen Blog">
+  
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/all.min.css">
+  
+
+  
+  <link rel="shortcut icon" type="image/x-icon" href="https://www.zsfmyz.top/img/eighteen.ico">
+  
+    <!-- color css -->
+    <link rel="stylesheet" href="/./color/main.css">
+    <link rel="stylesheet" href="/./color/icon.css">
+    
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.5/css/style.css">
+  
+  
+    <link rel="stylesheet" href="/./css/my_main.css">
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+</head>
+
+<body>
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover [layout, category] half'>
+      
+        
+  <h1 class='title'>Eighteen Blog</h1>
+
+
+  <div class="m_search">
+    <form name="searchform" class="form u-search-form">
+      <input type="text" class="input u-search-input" placeholder="" />
+      <i class="icon fas fa-search fa-fw"></i>
+    </form>
+  </div>
+
+<div class='menu navgation'>
+  <ul class='h-list'>
+    
+      
+        <li>
+          <a class="nav home" href="/"
+            
+            
+            id="home">
+            <i class='fas fa-rss fa-fw'></i>&nbsp;博文
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/about/"
+            
+              rel="nofollow"
+            
+            
+            id="about">
+            <i class='fas fa-info-circle fa-fw'></i>&nbsp;关于
+          </a>
+        </li>
+      
+    
+  </ul>
+</div>
+
+      
+    </cover>
+    <header class="l_header pure">
+  <div id="loading-bar-wrapper">
+    <div id="loading-bar" class="pure"></div>
+  </div>
+
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          Eighteen Blog
+        
+      </a>
+			<div class='menu navgation'>
+				<ul class='h-list'>
+          
+  					
+  						<li>
+								<a class="nav flat-box" href="/"
+                  
+                  
+                  id="home">
+									<i class='fas fa-grin fa-fw'></i>&nbsp;文章
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/categories/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="categories">
+									<i class='fas fa-folder-open fa-fw'></i>&nbsp;分类
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/tags/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="tags">
+									<i class='fas fa-hashtag fa-fw'></i>&nbsp;标签
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/archives/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="archives">
+									<i class='fas fa-archive fa-fw'></i>&nbsp;归档
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/demo/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="demo">
+									<i class='fas fa-book fa-fw'></i>&nbsp;Demo
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<i class="icon fas fa-search fa-fw"></i>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+        
+          <li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+        
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu navgation">
+      <ul>
+        
+          
+            <li>
+							<a class="nav flat-box" href="/"
+                
+                
+                id="home">
+								<i class='fas fa-clock fa-fw'></i>&nbsp;近期文章
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/archives/"
+                
+                  rel="nofollow"
+                
+                
+                id="archives">
+								<i class='fas fa-archive fa-fw'></i>&nbsp;文章归档
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/demo/"
+                
+                  rel="nofollow"
+                
+                
+                id="demo">
+								<i class='fas fa-book fa-fw'></i>&nbsp;Demo
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/about/"
+                
+                  rel="nofollow"
+                
+                
+                id="about">
+								<i class='fas fa-info-circle fa-fw'></i>&nbsp;关于小站
+							</a>
+            </li>
+          
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      <div class='l_main'>
+  
+
+  
+    <article id="[layout, category]" class="post white-box article-type-[layout, category]" itemscope itemprop="blogPost">
+      
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  
+    <h1 class="title">
+      <a href="/Algorithm/JavaScript：完全背包问题/">
+        JavaScript：完全背包问题
+      </a>
+    </h1>
+  
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    <a href="https://www.zsfmyz.top" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>赵十八</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-04-30</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Algorithm/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Algorithm</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class='notlink'>
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><blockquote>
+<p>这里借用一个题目的描述来说明要解决问题的背景。</p>
+</blockquote>
+<p>LiYuxiang是个天资聪颖的孩子，他的梦想是成为世界上最伟大的医师。为此，他想拜附近最有威望的医师为师。医师为了判断他的资质，给他出了一个难题。医师把他带到一个到处都是草药的山洞里对他说：“孩子，这个山洞里有一些不同种类的草药，采每一种都需要一些时间，每一种也有它自身的价值。我会给你一段时间，在这段时间里，你可以采到一些草药。如果你是一个聪明的孩子，你应该可以让采到的草药的总价值最大。”</p>
+<p>如果你是LiYuxiang，你能完成这个任务吗？</p>
+<p>此题和原题的不同点：</p>
+<p>1.每种草药可以无限制地疯狂采摘。</p>
+<p>2.药的种类眼花缭乱，采药时间好长好长啊！师傅等得菊花都谢了！</p>
+<h2 id="一、-什么是背包算法"><a href="#一、-什么是背包算法" class="headerlink" title="一、 什么是背包算法"></a>一、 什么是背包算法</h2><p>背包算法的基础标准描述为：当前有N件商品，每件商品都有不同的价值v和重量w。我们要把这些商品放在容量为L的背包中，实现背包中的价值最大化。（第i件商品的价值为v[i]，重量为w[i])。上面的题目中的条件之一：草药无限（每件商品可以重复放入背包）即表明了该问题是完全背包问题。</p>
+<a id="more"></a>
+<h2 id="二、-背包算法的应用"><a href="#二、-背包算法的应用" class="headerlink" title="二、 背包算法的应用"></a>二、 背包算法的应用</h2><p>背包算法在我看来是一种“性价比”算法。即我们在有限的条件下得到最大的收获。例如曾经有个节目可以让嘉宾在有限的时间内选购满满购物车的货品。这个场景及其符合背包算法。或者例如我们在考试的时侯，都会尽可能的选择简单并且分数又多的题先做。同时我们也可以应用到其他问题上去。比如在选择购买多种原材料时，尽可能的缩小原材料成本。投资时对多种投资产品的选择组合。</p>
+<h2 id="三、-背包算法的原理"><a href="#三、-背包算法的原理" class="headerlink" title="三、 背包算法的原理"></a>三、 背包算法的原理</h2><p>背包问题需要用到动态规划算法。当我们装一个商品的时侯需要判断几个条件：</p>
+<ol>
+<li>该商品的重量和背包大小的关系。如果背包的总容量小于商品的重量，那就GG，根本不用考虑了。</li>
+<li>商品的重量小于背包剩余容量。即背包中之前装入的商品不需要拿出来就可以把当前商品装下，那也不用考虑，直接装就好了。</li>
+<li>商品的重量小于背包总容量，但是剩余空间不够装了。那我们就需要考虑衡量一下，拿出来原有的一部分商品，装入现在的商品是不是划算的。</li>
+</ol>
+<p>从上面的三个条件可以看出最重要的就是第三条，我们需要判断价值。假设我们背包可以装<strong>8kg</strong>东西，现在有三个商品（商品都是以袋为单位销售不可拆分）：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">苹果</th>
+<th style="text-align:center">香蕉</th>
+<th>草莓</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">3kg</td>
+<td style="text-align:center">2kg</td>
+<td>5kg</td>
+</tr>
+<tr>
+<td style="text-align:center">￥45</td>
+<td style="text-align:center">￥20</td>
+<td>￥150</td>
+</tr>
+</tbody>
+</table>
+<p>我们以1kg为单位打表:<br>第一次打表</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">0kg</th>
+<th style="text-align:center">1kg</th>
+<th style="text-align:center">2kg</th>
+<th style="text-align:center">3kg</th>
+<th style="text-align:center">4kg</th>
+<th style="text-align:center">5kg</th>
+<th style="text-align:center">6kg</th>
+<th style="text-align:center">7kg</th>
+<th style="text-align:center">8kg</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">无</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">苹果</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">￥45</td>
+<td style="text-align:center">￥45</td>
+<td style="text-align:center">￥45</td>
+<td style="text-align:center">￥90</td>
+<td style="text-align:center">￥90</td>
+<td style="text-align:center">￥90</td>
+</tr>
+<tr>
+<td style="text-align:center">香蕉</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">草莓</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+</tbody>
+</table>
+<p>第二次打表</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">0kg</th>
+<th style="text-align:center">1kg</th>
+<th style="text-align:center">2kg</th>
+<th style="text-align:center">3kg</th>
+<th style="text-align:center">4kg</th>
+<th style="text-align:center">5kg</th>
+<th style="text-align:center">6kg</th>
+<th style="text-align:center">7kg</th>
+<th style="text-align:center">8kg</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">无</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">苹果</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">￥45</td>
+<td style="text-align:center">￥45</td>
+<td style="text-align:center">￥45</td>
+<td style="text-align:center">￥90</td>
+<td style="text-align:center">￥90</td>
+<td style="text-align:center">￥90</td>
+</tr>
+<tr>
+<td style="text-align:center">香蕉</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">￥20</td>
+<td style="text-align:center">￥45</td>
+<td style="text-align:center">￥45</td>
+<td style="text-align:center">￥65</td>
+<td style="text-align:center">￥90</td>
+<td style="text-align:center">￥90</td>
+<td style="text-align:center">￥110</td>
+</tr>
+<tr>
+<td style="text-align:center">草莓</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+</tbody>
+</table>
+<p>最终打表结果：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">0kg</th>
+<th style="text-align:center">1kg</th>
+<th style="text-align:center">2kg</th>
+<th style="text-align:center">3kg</th>
+<th style="text-align:center">4kg</th>
+<th style="text-align:center">5kg</th>
+<th style="text-align:center">6kg</th>
+<th style="text-align:center">7kg</th>
+<th style="text-align:center">8kg</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">无</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">苹果</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">￥45</td>
+<td style="text-align:center">￥45</td>
+<td style="text-align:center">￥45</td>
+<td style="text-align:center">￥90</td>
+<td style="text-align:center">￥90</td>
+<td style="text-align:center">￥90</td>
+</tr>
+<tr>
+<td style="text-align:center">香蕉</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">￥20</td>
+<td style="text-align:center">￥45</td>
+<td style="text-align:center">￥45</td>
+<td style="text-align:center">￥65</td>
+<td style="text-align:center">￥90</td>
+<td style="text-align:center">￥90</td>
+<td style="text-align:center">￥110</td>
+</tr>
+<tr>
+<td style="text-align:center">草莓</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">￥20</td>
+<td style="text-align:center">￥45</td>
+<td style="text-align:center">￥45</td>
+<td style="text-align:center">￥150</td>
+<td style="text-align:center">￥150</td>
+<td style="text-align:center">￥170</td>
+<td style="text-align:center">￥195</td>
+</tr>
+</tbody>
+</table>
+<p>如表我们的最终排列结果。</p>
+<p>核心判断为：<code>bag[i-1][j]</code> 和<code>bag[i-1][j-k*w[i]] + k*v[i]</code> 的价值哪个大。<br>我来说明上面的变量都代表了什么：</p>
+<ul>
+<li><code>bag[i][j]</code> 代表了我们在看到第i个商品时，背包容量占用了<code>jkg</code>时，背包内物品的价值。</li>
+<li>那么<code>bag[i-1][j]</code> 就代表了我们在看到第i-1个商品时，背包容量占用了<code>jkg</code>时，背包内装的价值。</li>
+<li><code>v[i]</code>代表了当前商品的价值，<code>k*v[i]</code>代表了<code>k</code>个<code>v[i]</code>的价值（商品不限量）。</li>
+<li><code>w[i]</code>代表了当前商品的重量，<code>k*w[i]</code>代表了<code>k</code>个<code>w[i]</code>的重量。</li>
+<li><code>bag[i-1][j-k*w[i]]</code>就代表了上一个情况下，背包装了k个i商品时，余下空间在上一状态的最大价值。</li>
+</ul>
+<p>所以，我们的核心判断种需要 上一个情况下的背包的所有状态。当我们把背包中 <code>k*w[i]</code>的空间腾出来用来装k个i商品，加上剩余空间可以装的商品的最大价值。如果它<strong>小于</strong>上一个状态下<code>bag[i-1][j]</code>所装货品的价值，那么我们就没必要替换这部分空间了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//两个循环</span><br><span class="line">for (3) //3个商品</span><br><span class="line">	for (8) // 8种占用空间的情况（1kg-8kg）</span><br><span class="line"></span><br><span class="line">// 核心判断</span><br><span class="line">if (bag[i-1][j] &gt; bag[i-1][j-k*w[i]] + k*v[i]) &#123;</span><br><span class="line">	bag[i][j] = bag[i-1][j];</span><br><span class="line">&#125; else &#123;</span><br><span class="line">	bag[i][j] = bag[i-1][j-k*w[i]] + k*v[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实回到生活上，我们的想法跟这个是一样的，当我们有个背包要装满的时侯，我们先看到了苹果，那么当然的，我们要尽可能多的把苹果装到包包里。如果有剩余空间装不下那也只能浪费着。然后我们发现了香蕉，我们会开始想着怎么用香蕉代替一部分苹果把空间填满。在这个思考的过程中，我们会一直比较什么样的组合价值最大。草莓也是一样。</p>
+<p>其实如开头所说，我说这是“性价比”。上面我们商品出现的顺序是随机的。其实我们装东西判断价值，其实就是装性价比最高的物品。 不过同时需要考虑到空间的利用率。如果我们事先把性价比高的物品排在前面，那么效率会提高不少。</p>
+
+        </div>
+        
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                            <h4>
+                                <a href="/Algorithm/每日一题/JavaScript：leetcode_2. 两数相加/" rel="prev" title="Leetcode_2. 两数相加">
+                                  
+                                      Leetcode_2. 两数相加
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/Algorithm/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Algorithm</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/JavaScript/ES6 对象数组查找某一个对象 findIndex/" rel="prev" title="ES6 对象数组查找某一个对象 findIndex">
+                                    
+                                        ES6 对象数组查找某一个对象 findIndex
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/JavaScript/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>JavaScript</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+      </section>
+    </article>
+  
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+      
+      
+        <section id="comments">
+          <div id="gitalk-container"></div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+
+</div>
+<aside class='l_side'>
+  
+    
+    
+      
+        
+          
+          
+            <section class='widget author'>
+  <div class='content pure'>
+    
+      <div class='avatar'>
+        <img class='avatar' src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1566989685462&di=31f5b9f85e870563ef23d1229da8227f&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201211%2F04%2F20121104120256_vKHAX.thumb.1000_0.jpeg'/>
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="mailto:aqshaofei@vip.qq.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://github.com/lunhui1994"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=382209257"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+          
+        
+      
+        
+          
+          
+            
+
+          
+        
+      
+        
+          
+          
+            <section class='widget grid'>
+  
+<header class='pure'>
+  <div><i class="fas fa-map-signs fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;站内导航</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="grid navgation">
+      
+        <li><a class="flat-box" title="/" href="/"
+          
+          
+          id="home">
+          
+            <i class="fas fa-clock fa-fw" aria-hidden="true"></i>
+          
+          近期文章
+        </a></li>
+      
+        <li><a class="flat-box" title="/archives/" href="/archives/"
+          
+            rel="nofollow"
+          
+          
+          id="archives">
+          
+            <i class="fas fa-archive fa-fw" aria-hidden="true"></i>
+          
+          文章归档
+        </a></li>
+      
+        <li><a class="flat-box" title="/demo/" href="/demo/"
+          
+            rel="nofollow"
+          
+          
+          id="demo">
+          
+            <i class="fas fa-book fa-fw" aria-hidden="true"></i>
+          
+          Demo
+        </a></li>
+      
+        <li><a class="flat-box" title="/about/" href="/about/"
+          
+            rel="nofollow"
+          
+          
+          id="about">
+          
+            <i class="fas fa-info-circle fa-fw" aria-hidden="true"></i>
+          
+          关于小站
+        </a></li>
+      
+        <li><a class="flat-box" title="http://tiny.zsfmyz.top" href="http://tiny.zsfmyz.top"
+          
+          
+          id="http:tiny.zsfmyz.top">
+          
+            <i class="fas fa-link fa-fw" aria-hidden="true"></i>
+          
+          TinyFish
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+          
+        
+      
+        
+          
+          
+            
+  <section class='widget category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分类</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/categories/"
+    title="categories/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Algorithm/" href="/categories/Algorithm/"><div class='name'>Algorithm</div><div class='badge'>(52)</div></a></li>
+        
+          <li><a class="flat-box child" title="/categories/Algorithm/每日一题/" href="/categories/Algorithm/每日一题/"><div class='name'>每日一题</div><div class='badge'>(51)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Angular/" href="/categories/Angular/"><div class='name'>Angular</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Css/" href="/categories/Css/"><div class='name'>Css</div><div class='badge'>(11)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Git/" href="/categories/Git/"><div class='name'>Git</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Hexo/" href="/categories/Hexo/"><div class='name'>Hexo</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/JavaScript/" href="/categories/JavaScript/"><div class='name'>JavaScript</div><div class='badge'>(7)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Linux/" href="/categories/Linux/"><div class='name'>Linux</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Vue/" href="/categories/Vue/"><div class='name'>Vue</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/api/" href="/categories/api/"><div class='name'>api</div><div class='badge'>(1)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+          
+        
+      
+        
+          
+          
+            
+  <section class='widget tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-fire fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/tags/"
+    title="tags/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/Algorithm/" style="font-size: 24px; color: #555">Algorithm</a> <a href="/tags/Angular/" style="font-size: 18px; color: #7e7e7e">Angular</a> <a href="/tags/Css/" style="font-size: 22px; color: #636363">Css</a> <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 20px; color: #707070">JavaScript</a> <a href="/tags/Linux/" style="font-size: 16px; color: #8b8b8b">Linux</a> <a href="/tags/Vue/" style="font-size: 18px; color: #7e7e7e">Vue</a> <a href="/tags/api/" style="font-size: 14px; color: #999">api</a>
+    </div>
+  </section>
+
+
+          
+        
+      
+        
+          
+          
+            
+
+
+  <section class='widget music'>
+    
+<header class='pure'>
+  <div><i class="fas fa-compact-disc fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;最近在听</div>
+  
+    <a class="rightBtn"
+    
+      rel="external nofollow noopener noreferrer"
+    
+    
+      target="_blank"
+    
+    href="https://music.163.com/#/user/songs/rank?id=382209257"
+    title="https://music.163.com/#/user/songs/rank?id=382209257">
+    <i class="far fa-heart fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
+  <div class="aplayer"
+    data-theme="#1BCDFC"
+    
+    
+    data-mode="circulation"
+    data-server="netease"
+    data-type="playlist"
+    data-id="541812888"
+    data-volume="0.7">
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
+
+
+    </div>
+  </section>
+
+
+          
+        
+      
+    
+
+  
+</aside>
+
+<footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="/atom.xml"
+            class="social fas fa-rss flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="mailto:aqshaofei@vip.qq.com"
+            class="social fas fa-envelope flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://github.com/lunhui1994"
+            class="social fab fa-github flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=382209257"
+            class="social fas fa-headphones-alt flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>© 2018-2019 zsfmyz.top 版权所有 ICP证：京ICP备18047643号</p>
+</div>
+  <div>
+    Use
+    <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">material-x</a>
+    material-x
+    
+      ，
+      总访问量为
+      <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+      次
+    
+    。
+    <br>
+    © 2020 赵少飞 <span> | </span>
+    <img src="https://static.dy208.cn/o_1dfilp8ruo521thr1hvf18ji17soa.png">
+    <a href="http://www.beian.miit.gov.cn/" target="_blank">京ICP备18047643号</a>
+  </div>
+</footer>
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<!-- 看板娘 -->
+
+
+
+
+    <script>
+        var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+        var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+        var ALGOLIA_API_KEY = "";
+        var ALGOLIA_APP_ID = "";
+        var ALGOLIA_INDEX_NAME = "";
+        var AZURE_SERVICE_NAME = "";
+        var AZURE_INDEX_NAME = "";
+        var AZURE_QUERY_KEY = "";
+        var BAIDU_API_ID = "";
+        var SEARCH_SERVICE = "hexo" || "hexo";
+        var ROOT = "/" || "/";
+        if (!ROOT.endsWith('/')) ROOT += '/';
+    </script>
+
+<script src="//instant.page/1.2.2" type="module"
+        integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
+
+
+    <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            const $reveal = $('.reveal');
+            if ($reveal.length === 0) return;
+            const sr = ScrollReveal({
+                distance: 0
+            });
+            sr.reveal('.reveal');
+        });
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            Waves.attach('.flat-btn', ['waves-button']);
+            Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+            Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+            Waves.attach('.flat-box', ['waves-block']);
+            Waves.attach('.float-box', ['waves-block', 'waves-float']);
+            Waves.attach('.waves-image');
+            Waves.init();
+        });
+    </script>
+
+
+    <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+    
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                if ('.cover') {
+                    $('.cover').backstretch(
+                            ["https://s2.ax1x.com/2019/09/19/nqVpMd.jpg"], {
+                            duration: "6000",
+                            fade: "2500"
+                        });
+                } else {
+                    $.backstretch(
+                            ["https://s2.ax1x.com/2019/09/19/nqVpMd.jpg"], {
+                            duration: "6000",
+                            fade: "2500"
+                        });
+                }
+            });
+        </script>
+    
+
+
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <script src="/js/md5.js"></script>
+    <script type="text/javascript">
+        var gitalk = new Gitalk({
+            clientID: "57052046652c742e7a75",
+            clientSecret: "dc4cffe55050ef4cad3363710a11b074f1ddca98",
+            repo: "blogtalk",
+            owner: "lunhui1994",
+            admin: "lunhui1994",
+            
+            id: md5(location.pathname), // Ensure uniqueness and length less than 50
+            
+            distractionFreeMode: false // Facebook-like distraction free mode
+        });
+        gitalk.render('gitalk-container');
+    </script>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.5/js/app.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.5/js/search.js"></script>
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>复制</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?77e8ceece592fb0726fcf5fbf991c674";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>
