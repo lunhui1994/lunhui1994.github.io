@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>CSS揭秘：4.边框内圆角 | Eighteen Blog</title>
+  
+  <meta name="keywords" content="边框内圆角, RGBA/HSLA, background-clip, 前端, LH_ZSF, Eighteen Blog, ZSF, 赵十八, 赵少飞">
+  
+  
+  <meta name="description" content="好学力行，明德任责。一起分享芝士。">
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="Eighteen Blog">
+  
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/all.min.css">
+  
+
+  
+  <link rel="shortcut icon" type="image/x-icon" href="https://www.zsfmyz.top/img/eighteen.ico">
+  
+    <!-- color css -->
+    <link rel="stylesheet" href="/./color/main.css">
+    <link rel="stylesheet" href="/./color/icon.css">
+    
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.5/css/style.css">
+  
+  
+    <link rel="stylesheet" href="/./css/my_main.css">
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+</head>
+
+<body>
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post half'>
+      
+        
+  <h1 class='title'>Eighteen Blog</h1>
+
+
+  <div class="m_search">
+    <form name="searchform" class="form u-search-form">
+      <input type="text" class="input u-search-input" placeholder="" />
+      <i class="icon fas fa-search fa-fw"></i>
+    </form>
+  </div>
+
+<div class='menu navgation'>
+  <ul class='h-list'>
+    
+      
+        <li>
+          <a class="nav home" href="/"
+            
+            
+            id="home">
+            <i class='fas fa-rss fa-fw'></i>&nbsp;博文
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/about/"
+            
+              rel="nofollow"
+            
+            
+            id="about">
+            <i class='fas fa-info-circle fa-fw'></i>&nbsp;关于
+          </a>
+        </li>
+      
+    
+  </ul>
+</div>
+
+      
+    </cover>
+    <header class="l_header pure">
+  <div id="loading-bar-wrapper">
+    <div id="loading-bar" class="pure"></div>
+  </div>
+
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          Eighteen Blog
+        
+      </a>
+			<div class='menu navgation'>
+				<ul class='h-list'>
+          
+  					
+  						<li>
+								<a class="nav flat-box" href="/"
+                  
+                  
+                  id="home">
+									<i class='fas fa-grin fa-fw'></i>&nbsp;文章
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/categories/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="categories">
+									<i class='fas fa-folder-open fa-fw'></i>&nbsp;分类
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/tags/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="tags">
+									<i class='fas fa-hashtag fa-fw'></i>&nbsp;标签
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/archives/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="archives">
+									<i class='fas fa-archive fa-fw'></i>&nbsp;归档
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/demo/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="demo">
+									<i class='fas fa-book fa-fw'></i>&nbsp;Demo
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<i class="icon fas fa-search fa-fw"></i>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+        
+          <li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+        
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu navgation">
+      <ul>
+        
+          
+            <li>
+							<a class="nav flat-box" href="/"
+                
+                
+                id="home">
+								<i class='fas fa-clock fa-fw'></i>&nbsp;近期文章
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/archives/"
+                
+                  rel="nofollow"
+                
+                
+                id="archives">
+								<i class='fas fa-archive fa-fw'></i>&nbsp;文章归档
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/demo/"
+                
+                  rel="nofollow"
+                
+                
+                id="demo">
+								<i class='fas fa-book fa-fw'></i>&nbsp;Demo
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/about/"
+                
+                  rel="nofollow"
+                
+                
+                id="about">
+								<i class='fas fa-info-circle fa-fw'></i>&nbsp;关于小站
+							</a>
+            </li>
+          
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      <div class='l_main'>
+  
+
+  
+    <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+      
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  
+    <h1 class="title">
+      <a href="/Css/CSS揭秘：6.复杂的背景图案（上）/">
+        CSS揭秘：4.边框内圆角
+      </a>
+    </h1>
+  
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    <a href="https://www.zsfmyz.top" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>赵十八</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2020-09-23</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Css/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Css</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class='notlink'>
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          <p>@<a href="文章目录">TOC</a></p>
+<p></p>
+<hr style=" border:solid; width:100px; height:1px;" color="#000000" size="1"">
+
+# 前言
+上一篇文章中我们学会了如何使用渐变实现条纹状的背景，但是实际上条纹背景并不是我们能实现的唯一的背景图案，利用渐变我们可以实现很多更为复杂的图案，本篇会介绍一些其他的简单而实用的背景图案。
+
+<font color="#999AAA"></font>
+
+<hr style=" border:solid; width:100px; height:1px;" color="#000000" size="1"">
+
+
+<h1 id="一、网格"><a href="#一、网格" class="headerlink" title="一、网格"></a>一、网格</h1><p><font color="#999AAA">网格的原理其实很简单，目前我们已经实现了条纹背景，那么如果我们将条纹背景组合呢？互相穿插组合，那么是不是很简单就实现了各种各样的网格背景。</font></p>
+<h2 id="1-实色网格"><a href="#1-实色网格" class="headerlink" title="1. 实色网格"></a>1. 实色网格</h2><p><font color="#999AAA">代码如下：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">width</span>: 200<span class="selector-tag">px</span>;</span><br><span class="line"><span class="selector-tag">height</span>: 200<span class="selector-tag">px</span>;</span><br><span class="line"><span class="selector-tag">background-image</span>:</span><br><span class="line">	<span class="selector-tag">linear-gradient</span>(<span class="selector-tag">rgba</span>(255,187,51, <span class="selector-class">.5</span>) 33%, <span class="selector-tag">rgba</span>(85,136,170, <span class="selector-class">.5</span>) 0, <span class="selector-tag">rgba</span>(85,136,170, <span class="selector-class">.5</span>) 66%, <span class="selector-tag">rgba</span>(173,255,47, <span class="selector-class">.5</span>) 0),</span><br><span class="line">	<span class="selector-tag">linear-gradient</span>(90<span class="selector-tag">deg</span>, <span class="selector-tag">rgba</span>(255,187,51,1) 33%, <span class="selector-tag">rgba</span>(85,136,170, 1) 0, <span class="selector-tag">rgba</span>(85,136,170, 1) 66%, <span class="selector-tag">rgba</span>(173,255,47, <span class="selector-class">.5</span>) 0);</span><br><span class="line"><span class="selector-tag">background-size</span>: 60<span class="selector-tag">px</span> 60<span class="selector-tag">px</span>;</span><br></pre></td></tr></table></figure></font></p>
+<p><font color="#999AAA">实际效果。<br><img src="https://img-blog.csdnimg.cn/20200918100511610.png#pic_center" alt="在这里插入图片描述"></font></p>
+<h2 id="2-边框网格"><a href="#2-边框网格" class="headerlink" title="2. 边框网格"></a>2. 边框网格</h2><p>实现类似边框网格的效果，我们只需要将实色的网格色块改变成一条边框就可以了。方法为在渐变中设置一条<strong>1px</strong>长度的颜色，然后剩下的颜色为<strong>透明色</strong>（或者其他底色）。</p>
+<p><font color="#999AAA">代码如下：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">width</span>: 201<span class="selector-tag">px</span>;</span><br><span class="line"><span class="selector-tag">height</span>: 201<span class="selector-tag">px</span>;</span><br><span class="line"><span class="selector-tag">background-image</span>:</span><br><span class="line">	<span class="selector-tag">linear-gradient</span>(<span class="selector-tag">rgba</span>(255,187,51, <span class="selector-class">.5</span>) 1<span class="selector-tag">px</span>, <span class="selector-tag">transparent</span> 0),</span><br><span class="line">	<span class="selector-tag">linear-gradient</span>(90<span class="selector-tag">deg</span>,<span class="selector-tag">rgba</span>(255,187,51, <span class="selector-class">.5</span>) 1<span class="selector-tag">px</span>, <span class="selector-tag">transparent</span> 0);</span><br><span class="line"><span class="selector-tag">background-size</span>: 20<span class="selector-tag">px</span> 20<span class="selector-tag">px</span>;</span><br></pre></td></tr></table></figure></font></p>
+<p><font color="#999AAA">实际效果。<br><img src="https://img-blog.csdnimg.cn/20200918102106767.png#pic_center" alt="在这里插入图片描述"><br>我们可以通过调整<strong>background-size</strong>来调整<strong>网格</strong>的大小。</font></p>
+<p><strong>注意</strong>：整个图片的大小为<strong>201x201</strong>，由于我们设置的其实是<strong>左边和上边</strong>，所以同一个单位背景内只有上边和左边，没有下边和右边。所以如果设置总长为200px时，右边和下边会看不到边框。所以我们<strong>长宽各 + 1</strong>，以下一个背景的左上作为我们的右下边框。</p>
+<h2 id="3-波点"><a href="#3-波点" class="headerlink" title="3. 波点"></a>3. 波点</h2><p>除了实现类似格子一样的背景，我们还可以实现波点背景样式，这时我们就需要用到另外一个渐变：<strong>径向渐变（radial-gradient）</strong>，和线性渐变类似，效果是从背景中心点出发，向外渐变。</p>
+<p><font color="#999AAA">代码如下：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="selector-tag">width</span><span class="selector-pseudo">:200px</span>;</span><br><span class="line"><span class="selector-tag">height</span><span class="selector-pseudo">:200px</span>;</span><br><span class="line"><span class="selector-tag">background-image</span>: <span class="selector-tag">radial-gradient</span>(<span class="selector-tag">green</span> 3<span class="selector-tag">px</span>, <span class="selector-tag">yellowgreen</span> 0, <span class="selector-tag">yellowgreen</span> 6<span class="selector-tag">px</span>, <span class="selector-tag">transparent</span> 0);</span><br><span class="line"><span class="selector-tag">background-size</span>: 20<span class="selector-tag">px</span> 20<span class="selector-tag">px</span>;</span><br></pre></td></tr></table></figure></font></p>
+<p><font color="#999AAA">实际效果。<br><img src="https://img-blog.csdnimg.cn/20200921085836761.png#pic_center" alt="在这里插入图片描述"></font></p>
+<p>我们可以通过调整<strong>background-size</strong>来调整<strong>波点密度</strong>。</p>
+<p><strong>注意</strong>：使用background-size调整波点背景的单个背景大小，调整的视觉效果是波点的密度大小，有时候会呈现出不一样效果和图案，比如当我们的波点连接起来的时候，我们的图案就变成了一个个菱形。</p>
+<p><font color="#999AAA">实际效果。<br><img src="https://img-blog.csdnimg.cn/20200921090246511.png#pic_center" alt="在这里插入图片描述"></font></p>
+<p><font color="#999AAA">以上效果只需要将background-size调整为12px，即背景尺寸 = 波点直径。</font></p>
+<p>&lt;hr style=” border:solid; width:100px; height:1px;” color=#000000 size=1”&gt;</p>
+<h2 id="4-棋盘"><a href="#4-棋盘" class="headerlink" title="4. 棋盘"></a>4. 棋盘</h2><p><img src="https://img-blog.csdnimg.cn/2020092109251135.png#pic_center" alt="在这里插入图片描述"></p>
+<p>棋牌有点类似于我们在第一步做到的实色网格，不同的是棋盘是由一个实色和一个透明所组成的图案。所以，看似和实色网格类似，但是实现起来无法使用跟实色网格相同的实现方法（不信邪的话可以使尝试一下），那么我们如何实现棋牌类型的图案呢？也不难，我们使用直角三角形进行拼接。还得我们在实现斜向条纹时做的尝试吗？<a href="https://blog.csdn.net/lunhui1994_/article/details/106933714" target="_blank" rel="noopener">CSS揭秘：5.条纹背景（上）</a></p>
+<p><font color="#999AAA">代码如下：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="selector-tag">width</span><span class="selector-pseudo">:200px</span>;</span><br><span class="line"><span class="selector-tag">height</span><span class="selector-pseudo">:200px</span>;</span><br><span class="line"><span class="selector-tag">background</span>: <span class="selector-id">#eee</span>;</span><br><span class="line"><span class="selector-tag">background-image</span>: <span class="selector-tag">linear-gradient</span>(45<span class="selector-tag">deg</span>, <span class="selector-id">#bbb</span> 50%, <span class="selector-tag">transparent</span> 0);	</span><br><span class="line"><span class="selector-tag">background-size</span>: 30<span class="selector-tag">px</span> 30<span class="selector-tag">px</span>;</span><br></pre></td></tr></table></figure></font></p>
+<p><font color="#999AAA">实际效果。<br><img src="https://img-blog.csdnimg.cn/20200921092328712.png#pic_center" alt="在这里插入图片描述"></font></p>
+<ol>
+<li>从刚开始的展示图案可以看出来，我们的正方形色块只是对角线的一半，那么我们的一个三角形就是1/4了，所以我们改造一下</li>
+</ol>
+<p><font color="#999AAA">代码如下：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="selector-tag">width</span><span class="selector-pseudo">:200px</span>;</span><br><span class="line"><span class="selector-tag">height</span><span class="selector-pseudo">:200px</span>;</span><br><span class="line"><span class="selector-tag">background</span>: <span class="selector-id">#eee</span>;</span><br><span class="line"><span class="selector-tag">background-image</span>: <span class="selector-tag">linear-gradient</span>(45<span class="selector-tag">deg</span>, <span class="selector-id">#bbb</span> 25%, <span class="selector-tag">transparent</span> 0);</span><br><span class="line"><span class="selector-tag">background-size</span>: 40<span class="selector-tag">px</span> 40<span class="selector-tag">px</span>;</span><br></pre></td></tr></table></figure></font></p>
+<p><font color="#999AAA">实际效果。<br><img src="https://img-blog.csdnimg.cn/20200921092909744.png#pic_center" alt="在这里插入图片描述"></font></p>
+<ol start="2">
+<li>现在我们得到一半的三角形，那么拼一个正方形还需要一个相反方向的三角形，我们再来一个背景<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">background-image</span>: </span><br><span class="line">	<span class="selector-tag">linear-gradient</span>(45<span class="selector-tag">deg</span>, <span class="selector-id">#bbb</span> 25%, <span class="selector-tag">transparent</span> 0),</span><br><span class="line">	<span class="selector-tag">linear-gradient</span>(45<span class="selector-tag">deg</span>, <span class="selector-tag">transparent</span> 75%, <span class="selector-id">#bbb</span> 0);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/20200921092709910.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="3">
+<li>到此我们得到了两个直角三角形，那么如何拼接成一个正方形呢？使用<strong>background-position</strong>调整直角三角形的位置即可。把右上角显示三角形的背景 向下 向左移动就阔以了<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="selector-tag">width</span><span class="selector-pseudo">:200px</span>;</span><br><span class="line"><span class="selector-tag">height</span><span class="selector-pseudo">:200px</span>;</span><br><span class="line"><span class="selector-tag">background</span>: <span class="selector-id">#eee</span>;</span><br><span class="line"><span class="selector-tag">background-image</span>: </span><br><span class="line">	<span class="selector-tag">linear-gradient</span>(45<span class="selector-tag">deg</span>, <span class="selector-id">#bbb</span> 25%, <span class="selector-tag">transparent</span> 0),</span><br><span class="line">	<span class="selector-tag">linear-gradient</span>(45<span class="selector-tag">deg</span>, <span class="selector-tag">transparent</span> 75%, <span class="selector-id">#bbb</span> 0);</span><br><span class="line"><span class="selector-tag">background-position</span>: 0<span class="selector-tag">px</span> 0<span class="selector-tag">px</span>, <span class="selector-tag">-20px</span> 20<span class="selector-tag">px</span>;</span><br><span class="line"><span class="selector-tag">background-size</span>: 40<span class="selector-tag">px</span> 40<span class="selector-tag">px</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><font color="#999AAA">实际效果。<br><img src="https://img-blog.csdnimg.cn/20200921094902113.png#pic_center" alt="在这里插入图片描述"><br>那么搞定了一个再搞定另外一个就很简单了。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="selector-tag">width</span><span class="selector-pseudo">:200px</span>;</span><br><span class="line"><span class="selector-tag">height</span><span class="selector-pseudo">:200px</span>;</span><br><span class="line"><span class="selector-tag">background</span>: <span class="selector-id">#eee</span>;</span><br><span class="line"><span class="selector-tag">background</span>: <span class="selector-id">#eee</span>;<span class="selector-tag">background-image</span>:    </span><br><span class="line">	<span class="selector-tag">linear-gradient</span>(45<span class="selector-tag">deg</span>, <span class="selector-id">#bbb</span> 25%, <span class="selector-tag">transparent</span> 0),    </span><br><span class="line">	<span class="selector-tag">linear-gradient</span>(45<span class="selector-tag">deg</span>, <span class="selector-tag">transparent</span> 75%, <span class="selector-id">#bbb</span> 0),    </span><br><span class="line">	<span class="selector-tag">linear-gradient</span>(45<span class="selector-tag">deg</span>, <span class="selector-id">#bbb</span> 25%, <span class="selector-tag">transparent</span> 0),    </span><br><span class="line">	<span class="selector-tag">linear-gradient</span>(45<span class="selector-tag">deg</span>, <span class="selector-tag">transparent</span> 75%, <span class="selector-id">#bbb</span> 0);</span><br><span class="line"><span class="selector-tag">background-position</span>: 0 0, <span class="selector-tag">-20px</span> 20<span class="selector-tag">px</span>,                     </span><br><span class="line">	20<span class="selector-tag">px</span> <span class="selector-tag">-20px</span>, 0 0;</span><br><span class="line"><span class="selector-tag">background-size</span>: 40<span class="selector-tag">px</span> 40<span class="selector-tag">px</span>;</span><br></pre></td></tr></table></figure></font></p>
+<p><font color="#999AAA">实际效果。<br><img src="https://img-blog.csdnimg.cn/20200921095309238.png#pic_center" alt="在这里插入图片描述"></font></p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>本篇主要对一些更为复杂的背景图案做出了一些介绍，分别有<strong>实色网格图案，边框网格图案，波点图案，棋盘图案</strong>，其中：</p>
+<ol>
+<li>实色网格用到了透明叠加的方法，实现了苏格兰裙一样的背景图案。</li>
+<li>边框网格实际上是利用1px的渐变边框，实现其实类似纯div的左上border的方法。</li>
+<li>波点使用到了<strong>radial-gradient</strong>径向渐变，使用方法和线性渐变相似。</li>
+<li>棋盘图案则借助了background-position对直角三角形进行定位，以组合出正方形图案。</li>
+</ol>
+<h1 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a>相关阅读</h1><ul>
+<li><a href="https://blog.csdn.net/lunhui1994_/article/details/106653195" target="_blank" rel="noopener">CSS揭秘：1.半透明边框</a></li>
+<li><a href="https://blog.csdn.net/lunhui1994_/article/details/106677231" target="_blank" rel="noopener">CSS揭秘：2.多重边框</a></li>
+<li><a href="https://blog.csdn.net/lunhui1994_/article/details/106699349" target="_blank" rel="noopener">CSS揭秘：3.灵活的背景定位</a></li>
+<li><a href="https://blog.csdn.net/lunhui1994_/article/details/106845534" target="_blank" rel="noopener">CSS揭秘：4.边框内圆角</a></li>
+<li><a href="https://blog.csdn.net/lunhui1994_/article/details/106933714" target="_blank" rel="noopener">CSS揭秘：5.条纹背景（上）</a></li>
+<li><a href="https://blog.csdn.net/lunhui1994_/article/details/107192736" target="_blank" rel="noopener">CSS揭秘：5.条纹背景（下）</a></li>
+</ul>
+
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <hr>
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-23T11:35:28+08:00">
+  <a class='notlink'>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>最后更新于 2020年9月23日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Css/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>Css</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://www.zsfmyz.top/Css/CSS揭秘：6.复杂的背景图案（上）/&title=CSS揭秘：4.边框内圆角 | Eighteen Blog&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://www.zsfmyz.top/Css/CSS揭秘：6.复杂的背景图案（上）/&title=CSS揭秘：4.边框内圆角 | Eighteen Blog&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class='qrcode' rel="external nofollow noopener noreferrer" href='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuUlEQVR42u3awW7cMAwE0Pz/T2+BXtt1Z0gp2QLPpyKxd/1UQGKG/PqKr9fv691PXm+uP+9/99vkzuenVhceHh7e6NWfX7H9ebIoz8v0vMTJO+Ph4eHd5iUf1270yRafPNs+hYeHh/c5vGQTnx0heVWMh4eH9//y2uMhKYWTCw8PD+9zePnHtWV0fn9blB/OWvDw8PC6bykaYJ/w74v9PTw8PLxFV/325t5i6vfEw8PDu8BLwoKk8T8LEfYDClFIgYeHh3eBl4ets8Z/EgHPAt8kjMbDw8P7Ht7sJ217bLZM+XgBHh4e3j1evnEnjPzZTXRbNOfw8PDwjvLyWHa/cUcDUuXS/OM98fDw8C7w8sL32HhTHObuPwcPDw/vBq+NaPMG1SyQzbf76M8APDw8vAu82Zbdbuv7gjt5djVAgIeHhxff37bnNzFrfgglja6o3MfDw8O7zGvj1M2gwCzkrQ8YPDw8vAu8fVlcNKLi5llyqBQHFR4eHt5RXhs3bLb7dhSgXaAipcbDw8Nb89oAd3ZI5AX6fnHx8PDwvofXRhX50MDZAroYR8DDw8O7xtsECpv21exbingCDw8P7wIvKUzbrX/TZrtyDx4eHt7Re5IYd9b4P9DyDyKS6P8NDw8P7wJv9lrJ19wIMooIAw8PD+8CLy9e26K2aPDHYwT58AEeHh7ePV6yNc8K4jZWmI0pRAEuHh4e3lFe3sp6jmvzpckL8XZZozvx8PDw1rxXeSWkUwHugXIfDw8P7wJvXyLfaP/PDqrZuBgeHh7ejJcPV7WpcP5pswYbHh4e3s/y8oGnpKhtB7n2McTbp/Dw8PA+gDebTZiFv3nocOxgwMPDwzvK24QCbYG+aaENDwY8PDy8krcpi/OXaAezZot4IGvBw8PD6xLUY6FqW0afOmAOjA7g4eHh/f23vwAsh2nONU4w2QAAAABJRU5ErkJggg=='>
+        
+          <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/wechat.png">
+        
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=https://www.zsfmyz.top/Css/CSS揭秘：6.复杂的背景图案（上）/&title=CSS揭秘：4.边框内圆角 | Eighteen Blog&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
+          
+        </a>
+      
+    
+      
+        <a class='qrcode' rel="external nofollow noopener noreferrer" href='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuUlEQVR42u3awW7cMAwE0Pz/T2+BXtt1Z0gp2QLPpyKxd/1UQGKG/PqKr9fv691PXm+uP+9/99vkzuenVhceHh7e6NWfX7H9ebIoz8v0vMTJO+Ph4eHd5iUf1270yRafPNs+hYeHh/c5vGQTnx0heVWMh4eH9//y2uMhKYWTCw8PD+9zePnHtWV0fn9blB/OWvDw8PC6bykaYJ/w74v9PTw8PLxFV/325t5i6vfEw8PDu8BLwoKk8T8LEfYDClFIgYeHh3eBl4ets8Z/EgHPAt8kjMbDw8P7Ht7sJ217bLZM+XgBHh4e3j1evnEnjPzZTXRbNOfw8PDwjvLyWHa/cUcDUuXS/OM98fDw8C7w8sL32HhTHObuPwcPDw/vBq+NaPMG1SyQzbf76M8APDw8vAu82Zbdbuv7gjt5djVAgIeHhxff37bnNzFrfgglja6o3MfDw8O7zGvj1M2gwCzkrQ8YPDw8vAu8fVlcNKLi5llyqBQHFR4eHt5RXhs3bLb7dhSgXaAipcbDw8Nb89oAd3ZI5AX6fnHx8PDwvofXRhX50MDZAroYR8DDw8O7xtsECpv21exbingCDw8P7wIvKUzbrX/TZrtyDx4eHt7Re5IYd9b4P9DyDyKS6P8NDw8P7wJv9lrJ19wIMooIAw8PD+8CLy9e26K2aPDHYwT58AEeHh7ePV6yNc8K4jZWmI0pRAEuHh4e3lFe3sp6jmvzpckL8XZZozvx8PDw1rxXeSWkUwHugXIfDw8P7wJvXyLfaP/PDqrZuBgeHh7ejJcPV7WpcP5pswYbHh4e3s/y8oGnpKhtB7n2McTbp/Dw8PA+gDebTZiFv3nocOxgwMPDwzvK24QCbYG+aaENDwY8PDy8krcpi/OXaAezZot4IGvBw8PD6xLUY6FqW0afOmAOjA7g4eHh/f23vwAsh2nONU4w2QAAAABJRU5ErkJggg=='>
+        
+          <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qrcode.png">
+        
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                            <h4>
+                                <a href="/Css/CSS揭秘：5.条纹背景（下）/" rel="prev" title="CSS揭秘：4.边框内圆角">
+                                  
+                                      CSS揭秘：4.边框内圆角
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/Css/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Css</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/Css/CSS揭秘：4.边框内圆角/" rel="prev" title="CSS揭秘：4.边框内圆角">
+                                    
+                                        CSS揭秘：4.边框内圆角
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/Css/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Css</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+      </section>
+    </article>
+  
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+      
+      
+        <section id="comments">
+          <div id="gitalk-container"></div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'CSS揭秘：4.边框内圆角',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+    
+    
+      
+        
+          
+          
+            <section class='widget author'>
+  <div class='content pure'>
+    
+      <div class='avatar'>
+        <img class='avatar' src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1566989685462&di=31f5b9f85e870563ef23d1229da8227f&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201211%2F04%2F20121104120256_vKHAX.thumb.1000_0.jpeg'/>
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="mailto:aqshaofei@vip.qq.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://github.com/lunhui1994"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=382209257"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+          
+        
+      
+        
+          
+          
+            
+  <section class='widget toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目录</div>
+  
+    <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、网格"><span class="toc-text">一、网格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-实色网格"><span class="toc-text">1. 实色网格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-边框网格"><span class="toc-text">2. 边框网格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-波点"><span class="toc-text">3. 波点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-棋盘"><span class="toc-text">4. 棋盘</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#小结"><span class="toc-text">小结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#相关阅读"><span class="toc-text">相关阅读</span></a></li></ol>
+    </div>
+  </section>
+
+
+          
+        
+      
+        
+          
+          
+            <section class='widget grid'>
+  
+<header class='pure'>
+  <div><i class="fas fa-map-signs fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;站内导航</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="grid navgation">
+      
+        <li><a class="flat-box" title="/" href="/"
+          
+          
+          id="home">
+          
+            <i class="fas fa-clock fa-fw" aria-hidden="true"></i>
+          
+          近期文章
+        </a></li>
+      
+        <li><a class="flat-box" title="/archives/" href="/archives/"
+          
+            rel="nofollow"
+          
+          
+          id="archives">
+          
+            <i class="fas fa-archive fa-fw" aria-hidden="true"></i>
+          
+          文章归档
+        </a></li>
+      
+        <li><a class="flat-box" title="/demo/" href="/demo/"
+          
+            rel="nofollow"
+          
+          
+          id="demo">
+          
+            <i class="fas fa-book fa-fw" aria-hidden="true"></i>
+          
+          Demo
+        </a></li>
+      
+        <li><a class="flat-box" title="/about/" href="/about/"
+          
+            rel="nofollow"
+          
+          
+          id="about">
+          
+            <i class="fas fa-info-circle fa-fw" aria-hidden="true"></i>
+          
+          关于小站
+        </a></li>
+      
+        <li><a class="flat-box" title="http://tiny.zsfmyz.top" href="http://tiny.zsfmyz.top"
+          
+          
+          id="http:tiny.zsfmyz.top">
+          
+            <i class="fas fa-link fa-fw" aria-hidden="true"></i>
+          
+          TinyFish
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+          
+        
+      
+        
+          
+          
+            
+  <section class='widget category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分类</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/categories/"
+    title="categories/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Algorithm/" href="/categories/Algorithm/"><div class='name'>Algorithm</div><div class='badge'>(52)</div></a></li>
+        
+          <li><a class="flat-box child" title="/categories/Algorithm/每日一题/" href="/categories/Algorithm/每日一题/"><div class='name'>每日一题</div><div class='badge'>(51)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Angular/" href="/categories/Angular/"><div class='name'>Angular</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Css/" href="/categories/Css/"><div class='name'>Css</div><div class='badge'>(14)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Git/" href="/categories/Git/"><div class='name'>Git</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Hexo/" href="/categories/Hexo/"><div class='name'>Hexo</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/JavaScript/" href="/categories/JavaScript/"><div class='name'>JavaScript</div><div class='badge'>(7)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Linux/" href="/categories/Linux/"><div class='name'>Linux</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Vue/" href="/categories/Vue/"><div class='name'>Vue</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/api/" href="/categories/api/"><div class='name'>api</div><div class='badge'>(1)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+          
+        
+      
+        
+          
+          
+            
+  <section class='widget tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-fire fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/tags/"
+    title="tags/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/Algorithm/" style="font-size: 24px; color: #555">Algorithm</a> <a href="/tags/Angular/" style="font-size: 18px; color: #7e7e7e">Angular</a> <a href="/tags/Css/" style="font-size: 22px; color: #636363">Css</a> <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #999">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 20px; color: #707070">JavaScript</a> <a href="/tags/Linux/" style="font-size: 16px; color: #8b8b8b">Linux</a> <a href="/tags/Vue/" style="font-size: 18px; color: #7e7e7e">Vue</a> <a href="/tags/api/" style="font-size: 14px; color: #999">api</a>
+    </div>
+  </section>
+
+
+          
+        
+      
+        
+          
+          
+            
+
+
+  <section class='widget music'>
+    
+<header class='pure'>
+  <div><i class="fas fa-compact-disc fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;最近在听</div>
+  
+    <a class="rightBtn"
+    
+      rel="external nofollow noopener noreferrer"
+    
+    
+      target="_blank"
+    
+    href="https://music.163.com/#/user/songs/rank?id=382209257"
+    title="https://music.163.com/#/user/songs/rank?id=382209257">
+    <i class="far fa-heart fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
+  <div class="aplayer"
+    data-theme="#1BCDFC"
+    
+    
+    data-mode="circulation"
+    data-server="netease"
+    data-type="playlist"
+    data-id="541812888"
+    data-volume="0.7">
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
+
+
+    </div>
+  </section>
+
+
+          
+        
+      
+    
+
+  
+</aside>
+
+<footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="/atom.xml"
+            class="social fas fa-rss flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="mailto:aqshaofei@vip.qq.com"
+            class="social fas fa-envelope flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://github.com/lunhui1994"
+            class="social fab fa-github flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=382209257"
+            class="social fas fa-headphones-alt flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>© 2018-2019 zsfmyz.top 版权所有 ICP证：京ICP备18047643号</p>
+</div>
+  <div>
+    Use
+    <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">material-x</a>
+    material-x
+    
+      ，
+      总访问量为
+      <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+      次
+    
+    。
+    <br>
+    © 2020 赵少飞 <span> | </span>
+    <img src="https://static.dy208.cn/o_1dfilp8ruo521thr1hvf18ji17soa.png">
+    <a href="http://www.beian.miit.gov.cn/" target="_blank">京ICP备18047643号</a>
+  </div>
+</footer>
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<!-- 看板娘 -->
+
+
+
+
+    <script>
+        var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+        var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+        var ALGOLIA_API_KEY = "";
+        var ALGOLIA_APP_ID = "";
+        var ALGOLIA_INDEX_NAME = "";
+        var AZURE_SERVICE_NAME = "";
+        var AZURE_INDEX_NAME = "";
+        var AZURE_QUERY_KEY = "";
+        var BAIDU_API_ID = "";
+        var SEARCH_SERVICE = "hexo" || "hexo";
+        var ROOT = "/" || "/";
+        if (!ROOT.endsWith('/')) ROOT += '/';
+    </script>
+
+<script src="//instant.page/1.2.2" type="module"
+        integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
+
+
+    <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            const $reveal = $('.reveal');
+            if ($reveal.length === 0) return;
+            const sr = ScrollReveal({
+                distance: 0
+            });
+            sr.reveal('.reveal');
+        });
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            Waves.attach('.flat-btn', ['waves-button']);
+            Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+            Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+            Waves.attach('.flat-box', ['waves-block']);
+            Waves.attach('.float-box', ['waves-block', 'waves-float']);
+            Waves.attach('.waves-image');
+            Waves.init();
+        });
+    </script>
+
+
+    <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+    
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                if ('.cover') {
+                    $('.cover').backstretch(
+                            ["https://s2.ax1x.com/2019/09/19/nqVpMd.jpg"], {
+                            duration: "6000",
+                            fade: "2500"
+                        });
+                } else {
+                    $.backstretch(
+                            ["https://s2.ax1x.com/2019/09/19/nqVpMd.jpg"], {
+                            duration: "6000",
+                            fade: "2500"
+                        });
+                }
+            });
+        </script>
+    
+
+
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <script src="/js/md5.js"></script>
+    <script type="text/javascript">
+        var gitalk = new Gitalk({
+            clientID: "57052046652c742e7a75",
+            clientSecret: "dc4cffe55050ef4cad3363710a11b074f1ddca98",
+            repo: "blogtalk",
+            owner: "lunhui1994",
+            admin: "lunhui1994",
+            
+            id: md5(location.pathname), // Ensure uniqueness and length less than 50
+            
+            distractionFreeMode: false // Facebook-like distraction free mode
+        });
+        gitalk.render('gitalk-container');
+    </script>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.5/js/app.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.5/js/search.js"></script>
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>复制</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?77e8ceece592fb0726fcf5fbf991c674";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>
