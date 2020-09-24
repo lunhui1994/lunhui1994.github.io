@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>CSS揭秘：4.边框内圆角 | Eighteen Blog</title>
+  <title>CSS揭秘：5.条纹背景（下） | Eighteen Blog</title>
   
-  <meta name="keywords" content="边框内圆角, RGBA/HSLA, background-clip, 前端, LH_ZSF, Eighteen Blog, ZSF, 赵十八, 赵少飞">
+  <meta name="keywords" content="linear-gradient, background-size, 前端, LH_ZSF, Eighteen Blog, ZSF, 赵十八, 赵少飞">
   
   
   <meta name="description" content="好学力行，明德任责。一起分享芝士。">
@@ -276,7 +276,7 @@
   
     <h1 class="title">
       <a href="/Css/CSS揭秘：5.条纹背景（下）/">
-        CSS揭秘：4.边框内圆角
+        CSS揭秘：5.条纹背景（下）
       </a>
     </h1>
   
@@ -358,6 +358,7 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           <p>上篇文章讲述了实现条纹效果所使用的CSS特性并实现了水平和垂直条纹，接下来我们来实现斜向条纹。</p>
+<a id="more"></a>
 <p>回忆一下之前的效果</p>
 <p>水平条纹</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">background</span>: <span class="selector-tag">linear-gradient</span>(<span class="selector-id">#fb3</span> 33%, <span class="selector-id">#58a</span> 0, <span class="selector-id">#58a</span> 66%, <span class="selector-tag">yellowgreen</span> 0);</span><br><span class="line"><span class="selector-tag">background-size</span>: 100% 60<span class="selector-tag">px</span>;</span><br></pre></td></tr></table></figure>
@@ -392,20 +393,10 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">background</span>: <span class="selector-tag">linear-gradient</span>(45<span class="selector-tag">deg</span>, <span class="selector-id">#fb3</span> 25%, <span class="selector-id">#58a</span> 0, <span class="selector-id">#58a</span> 50%, <span class="selector-id">#fb3</span> 0, <span class="selector-id">#fb3</span> 75%, <span class="selector-id">#58a</span> 0, <span class="selector-id">#58a</span> 100%);</span><br><span class="line"><span class="selector-tag">background-size</span>: 60<span class="selector-tag">px</span> 60<span class="selector-tag">px</span>;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>repeating-linear-gradient()</code> 去掉background-size</p>
-  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">background</span>: <span class="selector-tag">repeating-linear-gradient</span>(60<span class="selector-tag">deg</span>, <span class="selector-id">#58a</span> 25%, <span class="selector-tag">rgba</span>(85, 136, 170, <span class="selector-class">.5</span>) 0, <span class="selector-tag">rgba</span>(85, 136, 170, <span class="selector-class">.5</span>) 50%, <span class="selector-id">#58a</span> 0, <span class="selector-id">#58a</span> 75%, <span class="selector-tag">rgba</span>(85, 136, 170, <span class="selector-class">.5</span>) 0, <span class="selector-tag">rgba</span>(85, 136, 170, <span class="selector-class">.5</span>) 100%);</span><br></pre></td></tr></table></figure>
-</li>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">background</span>: <span class="selector-tag">repeating-linear-gradient</span>(60<span class="selector-tag">deg</span>, <span class="selector-id">#58a</span> 25%, <span class="selector-tag">rgba</span>(85, 136, 170, <span class="selector-class">.5</span>) 0, <span class="selector-tag">rgba</span>(85, 136, 170, <span class="selector-class">.5</span>) 50%, <span class="selector-id">#58a</span> 0, <span class="selector-id">#58a</span> 75%, <span class="selector-tag">rgba</span>(85, 136, 170, <span class="selector-class">.5</span>) 0, <span class="selector-tag">rgba</span>(85, 136, 170, <span class="selector-class">.5</span>) 100%);</span><br></pre></td></tr></table></figure></li>
 </ol>
 </li>
 </ol>
-<p>下一篇：<a href="https://blog.csdn.net/lunhui1994_/article/details/108526888" target="_blank" rel="noopener">CSS揭秘：6.复杂的背景图案（上）</a></p>
-<h1 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a>相关阅读</h1><ul>
-<li><a href="https://blog.csdn.net/lunhui1994_/article/details/106653195" target="_blank" rel="noopener">CSS揭秘：1.半透明边框</a></li>
-<li><a href="https://blog.csdn.net/lunhui1994_/article/details/106677231" target="_blank" rel="noopener">CSS揭秘：2.多重边框</a></li>
-<li><a href="https://blog.csdn.net/lunhui1994_/article/details/106699349" target="_blank" rel="noopener">CSS揭秘：3.灵活的背景定位</a></li>
-<li><a href="https://blog.csdn.net/lunhui1994_/article/details/106845534" target="_blank" rel="noopener">CSS揭秘：4.边框内圆角</a></li>
-<li><a href="https://blog.csdn.net/lunhui1994_/article/details/106933714" target="_blank" rel="noopener">CSS揭秘：5.条纹背景（上）</a></li>
-<li><a href="https://blog.csdn.net/lunhui1994_/article/details/107192736" target="_blank" rel="noopener">CSS揭秘：5.条纹背景（下）</a></li>
-</ul>
 
         </div>
         
@@ -417,10 +408,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-23T11:39:18+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-24T10:21:31+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>最后更新于 2020年9月23日</p>
+    <p>最后更新于 2020年9月24日</p>
   </a>
 </div>
 
@@ -442,7 +433,7 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://www.zsfmyz.top/Css/CSS揭秘：5.条纹背景（下）/&title=CSS揭秘：4.边框内圆角 | Eighteen Blog&summary="
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://www.zsfmyz.top/Css/CSS揭秘：5.条纹背景（下）/&title=CSS揭秘：5.条纹背景（下） | Eighteen Blog&summary=上篇文章讲述了实现条纹效果所使用的CSS特性并实现了水平和垂直条纹，接下来我们来实现斜向条纹。"
           
           >
           
@@ -454,7 +445,7 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://www.zsfmyz.top/Css/CSS揭秘：5.条纹背景（下）/&title=CSS揭秘：4.边框内圆角 | Eighteen Blog&summary="
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://www.zsfmyz.top/Css/CSS揭秘：5.条纹背景（下）/&title=CSS揭秘：5.条纹背景（下） | Eighteen Blog&summary=上篇文章讲述了实现条纹效果所使用的CSS特性并实现了水平和垂直条纹，接下来我们来实现斜向条纹。"
           
           >
           
@@ -474,7 +465,7 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://www.zsfmyz.top/Css/CSS揭秘：5.条纹背景（下）/&title=CSS揭秘：4.边框内圆角 | Eighteen Blog&summary="
+          href="http://service.weibo.com/share/share.php?url=https://www.zsfmyz.top/Css/CSS揭秘：5.条纹背景（下）/&title=CSS揭秘：5.条纹背景（下） | Eighteen Blog&summary=上篇文章讲述了实现条纹效果所使用的CSS特性并实现了水平和垂直条纹，接下来我们来实现斜向条纹。"
           
           >
           
@@ -510,9 +501,9 @@
                         <span class="art-item-left">
                             <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
                             <h4>
-                                <a href="/Css/CSS揭秘：5.条纹背景（上）/" rel="prev" title="CSS揭秘：4.边框内圆角">
+                                <a href="/Css/CSS揭秘：5.条纹背景（上）/" rel="prev" title="CSS揭秘：5.条纹背景（上）">
                                   
-                                      CSS揭秘：4.边框内圆角
+                                      CSS揭秘：5.条纹背景（上）
                                   
                                 </a>
                             </h4>
@@ -530,16 +521,16 @@
                         <span class="art-item-right" aria-hidden="true">
                             <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                             <h4>
-                                <a href="/Css/CSS揭秘：6.复杂的背景图案（上）/" rel="prev" title="CSS揭秘：4.边框内圆角">
+                                <a href="/Algorithm/每日一题/JavaScript：leetcode_209. 长度最小的子数组（滑动窗口 + 双指针）/" rel="prev" title="JavaScript：leetcode_209. 长度最小的子数组（滑动窗口 + 双指针）">
                                     
-                                        CSS揭秘：4.边框内圆角
+                                        JavaScript：leetcode_209. 长度最小的子数组（滑动窗口 + 双指针）
                                     
                                 </a>
                             </h4>
                             
                                 
                                 <h6 class="tags">
-                                    <a class="tag" href="/tags/Css/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Css</a>
+                                    <a class="tag" href="/tags/Algorithm/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Algorithm</a>
                                 </h6>
                             
                         </span>
@@ -582,7 +573,7 @@
 
   <script>
     window.subData = {
-      title: 'CSS揭秘：4.边框内圆角',
+      title: 'CSS揭秘：5.条纹背景（下）',
       tools: true
     }
   </script>
@@ -662,7 +653,7 @@
 </header>
 
     <div class='content pure'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、斜向条纹"><span class="toc-text">一、斜向条纹</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-斜向-First-Try"><span class="toc-text">1. 斜向 First Try</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-斜向-Second-Try-双条纹"><span class="toc-text">2. 斜向 Second Try 双条纹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-斜向-Third-Try-三条纹"><span class="toc-text">3. 斜向 Third Try 三条纹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-斜向-Forth-Try-同色间隔条纹"><span class="toc-text">4. 斜向 Forth Try 同色间隔条纹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-斜向-Fifth-Try"><span class="toc-text">5. 斜向 Fifth Try</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-斜向-Sixth-Try-60deg"><span class="toc-text">6. 斜向 Sixth Try 60deg</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#相关阅读"><span class="toc-text">相关阅读</span></a>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、斜向条纹"><span class="toc-text">一、斜向条纹</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-斜向-First-Try"><span class="toc-text">1. 斜向 First Try</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-斜向-Second-Try-双条纹"><span class="toc-text">2. 斜向 Second Try 双条纹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-斜向-Third-Try-三条纹"><span class="toc-text">3. 斜向 Third Try 三条纹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-斜向-Forth-Try-同色间隔条纹"><span class="toc-text">4. 斜向 Forth Try 同色间隔条纹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-斜向-Fifth-Try"><span class="toc-text">5. 斜向 Fifth Try</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-斜向-Sixth-Try-60deg"><span class="toc-text">6. 斜向 Sixth Try 60deg</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a>
     </div>
   </section>
 
@@ -769,9 +760,9 @@
     <div class='content pure'>
       <ul class="entry">
         
-          <li><a class="flat-box" title="/categories/Algorithm/" href="/categories/Algorithm/"><div class='name'>Algorithm</div><div class='badge'>(52)</div></a></li>
+          <li><a class="flat-box" title="/categories/Algorithm/" href="/categories/Algorithm/"><div class='name'>Algorithm</div><div class='badge'>(58)</div></a></li>
         
-          <li><a class="flat-box child" title="/categories/Algorithm/每日一题/" href="/categories/Algorithm/每日一题/"><div class='name'>每日一题</div><div class='badge'>(51)</div></a></li>
+          <li><a class="flat-box child" title="/categories/Algorithm/每日一题/" href="/categories/Algorithm/每日一题/"><div class='name'>每日一题</div><div class='badge'>(57)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Angular/" href="/categories/Angular/"><div class='name'>Angular</div><div class='badge'>(3)</div></a></li>
         

@@ -274,9 +274,131 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
       
     
     
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/Algorithm/每日一题/JavaScript：leetcode_209. 长度最小的子数组（滑动窗口 + 双指针）/">
+      JavaScript：leetcode_209. 长度最小的子数组（滑动窗口 + 双指针）
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    <a href="https://www.zsfmyz.top" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>赵十八</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2020-06-29</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Algorithm/每日一题/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Algorithm&nbsp;/&nbsp;每日一题</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h3 id="题目说明"><a href="#题目说明" class="headerlink" title="题目说明"></a>题目说明</h3><p>给定一个含有 n 个正整数的数组和一个正整数 s ，找出该数组中满足其和 ≥ s 的长度最小的连续子数组，并返回其长度。如果不存在符合条件的连续子数组，返回 0。</p>
+<p>示例：</p>
+<p>输入：s = 7, nums = [2,3,1,2,4,3]<br>输出：2<br>解释：子数组 [4,3] 是该条件下的长度最小的连续子数组。</p>
+<p>进阶：</p>
+<p>如果你已经完成了 O(n) 时间复杂度的解法, 请尝试 O(n log n) 时间复杂度的解法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 解题思路一</span><br><span class="line">1. 第一种方法，比较常规，符合我们的脑回路。</span><br><span class="line">2. 遍历数组，求遍历过的和sum。</span><br><span class="line">3. 当sum &gt;= s时，依次减去sum前面的数字，并判断是否依旧符合sum &gt;= s。</span><br><span class="line">4. 直到sum &gt;= s不成立，记录start--到end的长度。</span><br><span class="line">5. 继续遍历数组的下一位，循环2-3步骤，比较之后取最小长度。</span><br><span class="line">### 代码实现一</span><br><span class="line">```javascript</span><br><span class="line">/**</span><br><span class="line"> * @param &#123;number&#125; s</span><br><span class="line"> * @param &#123;number[]&#125; nums</span><br><span class="line"> * @return &#123;number&#125;</span><br><span class="line"> */</span><br><span class="line">var minSubArrayLen = function(s, nums) &#123;</span><br><span class="line">    let sum = 0;</span><br><span class="line">    let start = 0;</span><br><span class="line">    let end = 0;</span><br><span class="line">    let min = nums.length + 1;</span><br><span class="line">    for(let i = 0; i &lt; nums.length; i++) &#123;</span><br><span class="line">        sum += nums[i];</span><br><span class="line">        if (sum &gt;= s) &#123;</span><br><span class="line">            end = i;</span><br><span class="line">            while(sum &gt;= s) &#123;</span><br><span class="line">                sum -= nums[start++];</span><br><span class="line">            &#125;</span><br><span class="line">            start--;</span><br><span class="line">            sum += nums[start];</span><br><span class="line">            if (min &gt; (end - start)) &#123;</span><br><span class="line">                min = end - start + 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (min &gt; nums.length) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    return min;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h3 id="解题思路二（双指针）"><a href="#解题思路二（双指针）" class="headerlink" title="解题思路二（双指针）"></a>解题思路二（双指针）</h3><ol>
+<li>先求出nums数组中第一次符合条件的情况。也就是看nums的前多少位&gt;=s。记录start，end。</li>
+<li>start，end即为我们的双指针，分别代表子序列的开头和结尾。</li>
+<li>如果sum &gt;= s, 我们就右移动start，求最小长度。</li>
+<li>如果sum &lt; s, 我们就右移动end，求符合条件的情况。</li>
+<li>直到end到达nums的尾部结束。<h3 id="代码实现二"><a href="#代码实现二" class="headerlink" title="代码实现二"></a>代码实现二</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">s</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">nums</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> minSubArrayLen = <span class="function"><span class="keyword">function</span>(<span class="params">s, nums</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> start = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> end = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> min = nums.length + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (sum &lt; s) &#123;</span><br><span class="line">        sum += nums[end++];</span><br><span class="line">    &#125;</span><br><span class="line">    min = <span class="built_in">Math</span>.min(end - start, min);</span><br><span class="line">    <span class="keyword">while</span>(end &lt;= nums.length) &#123;</span><br><span class="line">        <span class="keyword">if</span> (sum &gt;= s) &#123;</span><br><span class="line">            sum -= nums[start++];</span><br><span class="line">             <span class="keyword">if</span> (sum &gt;= s) &#123;</span><br><span class="line">                min = <span class="built_in">Math</span>.min(end - start, min);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            sum += nums[end++];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (min &gt; nums.length) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> min;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
       
         
           <div class='post-wrapper'>
@@ -362,26 +484,13 @@
       <h1 id="边框内圆角"><a href="#边框内圆角" class="headerlink" title="边框内圆角"></a>边框内圆角</h1><blockquote>
 <p>背景知识：box-shadow，outline，“多重边框”</p>
 </blockquote>
-<h2 id="一、两个div嵌套"><a href="#一、两个div嵌套" class="headerlink" title="一、两个div嵌套"></a>一、两个div嵌套</h2><p>两个div实现内圆角很容易，只需要内圆角外直角即可。</p>
-<h3 id="div-First-Try"><a href="#div-First-Try" class="headerlink" title="div First Try"></a>div First Try</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    	<span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">        <span class="attribute">padding</span>: <span class="number">20px</span>;</span><br><span class="line">        <span class="attribute">background-color</span>: <span class="number">#655</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="selector-class">.content</span>&#123;</span><br><span class="line">       <span class="attribute">background-color</span>: tan;</span><br><span class="line">       <span class="attribute">border-radius</span>: .<span class="number">8em</span>;</span><br><span class="line">       <span class="attribute">padding</span>: <span class="number">20px</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/2020061823401650.png" alt="在这里插入图片描述"><br>这种方案更加灵活，我们可以在box上设置更多的样式，但是需要两个元素才能实现。</p>
-<h2 id="二、box-shadow-outline-方案"><a href="#二、box-shadow-outline-方案" class="headerlink" title="二、box-shadow + outline 方案"></a>二、box-shadow + outline 方案</h2><p>还记得上篇中，outline和box-shadow对于圆角的区别显示吗？box-shadow会贴合border的圆角，outline不会。当我们仅需要实现一个实色的边框加内圆角，使用这个方案可以达到相同的效果。</p>
-<h3 id="box-shadow-outline-First-Try"><a href="#box-shadow-outline-First-Try" class="headerlink" title="box-shadow + outline First Try"></a>box-shadow + outline First Try</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">width</span>: 160<span class="selector-tag">px</span>;</span><br><span class="line"><span class="selector-tag">background</span>: <span class="selector-tag">tan</span>;</span><br><span class="line"><span class="selector-tag">border-radius</span>: <span class="selector-class">.8em</span>;</span><br><span class="line"><span class="selector-tag">padding</span>: 20<span class="selector-tag">px</span>;</span><br><span class="line"><span class="selector-tag">margin</span>: 20<span class="selector-tag">px</span>;</span><br><span class="line"><span class="selector-tag">box-shadow</span>: 0<span class="selector-tag">px</span> 0<span class="selector-tag">px</span> 0<span class="selector-tag">px</span> <span class="selector-class">.4em</span> <span class="selector-id">#655</span>;</span><br><span class="line"><span class="selector-tag">outline</span>: 20<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#655</span>;</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/2020061823401650.png" alt="在这里插入图片描述"><br>这种方案中，<code>box-shadow</code>是用来填补<code>outline</code>和<code>border</code>之间的间隙的，如果不加<code>box-shadow</code>效果会是这样的。<br><img src="https://img-blog.csdnimg.cn/20200618235718311.png" alt="在这里插入图片描述"></p>
-<ol>
-<li>所以我们需要设置<code>box-shadow</code>的扩散半径来弥补四个类似三角形的空隙。</li>
-<li>至于扩散半径的大小，我们可以用勾股定理设置。</li>
-<li>也就是<code>border-radius</code>的圆角<strong>圆心到角的距离 - 半径</strong>。</li>
-<li><p><code>(√2 - 1)r</code>； <code>√2 ≈ 1.4</code>那么<code>(√2 - 1)</code> 也就是在<code>0.4 - 0.5</code>之间,我们可以按0.5计算即可。也就是0.5r。</p>
-</li>
-<li><p>最后再回顾一下<code>box-shadow</code>的用法，<code>outline</code>和<code>border</code>用法一样，同时可以使用<code>outline-offset: -30px;</code>调整位置。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/* x偏移量 | y偏移量 | 阴影模糊半径 | 阴影扩散半径 | 阴影颜色 */</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">box-shadow</span>: 2<span class="selector-tag">px</span> 2<span class="selector-tag">px</span> 2<span class="selector-tag">px</span> <span class="selector-class">.4em</span> <span class="selector-id">#655</span>;</span><br></pre></td></tr></table></figure>
-<p>说起这个有人会说，为什么不用<code>outline-offset:-10px;</code>这样来顶替<code>box-shadow</code>呢？试一下就知道了。<code>outline</code>的显示层级较<code>border</code>更高，所以border的圆角会被覆盖掉。<br><img src="https://img-blog.csdnimg.cn/20200618235913302.png" alt="在这里插入图片描述"></p>
-<h2 id="最终案例代码"><a href="#最终案例代码" class="headerlink" title="最终案例代码"></a>最终案例代码</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.box</span>&#123;</span></span><br><span class="line">            width: 200px;</span><br><span class="line">            padding: 20px;</span><br><span class="line"><span class="css">            <span class="selector-tag">background-color</span>: <span class="selector-id">#655</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.content</span>&#123;</span></span><br><span class="line">            background-color: tan;</span><br><span class="line"><span class="css">            <span class="selector-tag">border-radius</span>: <span class="selector-class">.8em</span>;</span></span><br><span class="line">            padding: 20px;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.box2</span> &#123;</span></span><br><span class="line">            width: 160px;</span><br><span class="line">            background: tan;</span><br><span class="line"><span class="css">            <span class="selector-tag">border-radius</span>: <span class="selector-class">.8em</span>;</span></span><br><span class="line">            padding: 20px;</span><br><span class="line">            margin: 20px;</span><br><span class="line"><span class="css">            <span class="selector-tag">box-shadow</span>: 0<span class="selector-tag">px</span> 0<span class="selector-tag">px</span> 0<span class="selector-tag">px</span> <span class="selector-class">.4em</span> <span class="selector-id">#655</span>;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">outline</span>: 20<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#655</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span></span><br><span class="line">            对酒当歌，人生几何。</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box2"</span>&gt;</span></span><br><span class="line">        对酒当歌，人生几何。</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span>   </span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
+      
+        <div class="readmore">
+          <a href="/Css/CSS揭秘：4.边框内圆角/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            阅读全文
+          </a>
+        </div>
       
     </div>
     
@@ -479,26 +588,14 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       <h1 id="灵活的背景定位"><a href="#灵活的背景定位" class="headerlink" title="灵活的背景定位"></a>灵活的背景定位</h1><blockquote>
-<p>背景知识：<code>background-position</code>的扩展语法，<code>background-origin，calc()</code></p>
-</blockquote>
-<h2 id="background-position扩展语法"><a href="#background-position扩展语法" class="headerlink" title="background-position扩展语法"></a>background-position扩展语法</h2><ol>
-<li><strong>background-position扩展语法：</strong> css3 中background-position 语法可以通过在偏移量前指定关键字，来设置四条边的偏移量。 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">background-positon</span>: <span class="selector-tag">right</span> 20<span class="selector-tag">px</span> <span class="selector-tag">bottom</span> 10<span class="selector-tag">px</span>;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="background-origin"><a href="#background-origin" class="headerlink" title="background-origin"></a>background-origin</h2><ol start="2">
-<li><strong>background-origin：</strong> css3 中 background-origin 可以指定背景图片的显示范围，默认以padding-box为准，即padding的外边沿。此时背景图片的位置将和padding一致。通常此方案更适合开发需求。<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">padding</span><span class="selector-pseudo">:20px</span>;</span><br><span class="line"><span class="selector-tag">background-origin</span>: <span class="selector-tag">content-box</span>;</span><br><span class="line"><span class="selector-tag">background-position</span>: 100% 100%;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="calc"><a href="#calc" class="headerlink" title="calc()"></a>calc()</h2><ol start="3">
-<li><strong>calc()：</strong> 允许填入 任意 <code>+ - * /</code> 四则运算组合的表达式。 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">background-position</span>: <span class="selector-tag">calc</span>(100% <span class="selector-tag">-</span> 20<span class="selector-tag">px</span>) <span class="selector-tag">calc</span>(100% <span class="selector-tag">-</span> 10<span class="selector-tag">px</span>);</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<blockquote>
-<p>扩展：<code>border-box</code> <code>边框</code>的外边沿；<code>padding-box</code> <code>内边距</code>的外边沿； <code>content-box</code> <code>内容</code>的外边沿。</p>
-</blockquote>
-<h3 id="原效果"><a href="#原效果" class="headerlink" title="原效果"></a>原效果</h3><p><img src="https://img-blog.csdnimg.cn/2020061200291226.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x1bmh1aTE5OTRf,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h3><p><img src="https://img-blog.csdnimg.cn/20200612002948787.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x1bmh1aTE5OTRf,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-
+<p>背景知识：<code>background-position</code>的扩展语法，<code>background-origin，calc()</code><br>
+      
+        <div class="readmore">
+          <a href="/Css/CSS揭秘：3.灵活的背景定位/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            阅读全文
+          </a>
+        </div>
       
     </div>
     
@@ -636,6 +733,228 @@
       
         
   <h2 class="title">
+    <a href="/Algorithm/每日一题/JavaScript：leetcode_9. 回文数（水题，三种方法）/">
+      JavaScript：leetcode_9. 回文数（水题，三种方法）
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    <a href="https://www.zsfmyz.top" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>赵十八</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2020-06-10</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Algorithm/每日一题/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Algorithm&nbsp;/&nbsp;每日一题</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h3 id="题目说明"><a href="#题目说明" class="headerlink" title="题目说明"></a>题目说明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。</span><br><span class="line"></span><br><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: 121</span><br><span class="line">输出: true</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: -121</span><br><span class="line">输出: false</span><br><span class="line">解释: 从左向右读, 为 -121 。 从右向左读, 为 121- 。因此它不是一个回文数。</span><br><span class="line">示例 3:</span><br><span class="line"></span><br><span class="line">输入: 10</span><br><span class="line">输出: false</span><br><span class="line">解释: 从右向左读, 为 01 。因此它不是一个回文数。</span><br><span class="line">进阶:</span><br><span class="line"></span><br><span class="line">你能不将整数转为字符串来解决这个问题吗？</span><br></pre></td></tr></table></figure>
+<h3 id="解题思路一（字符串反转）"><a href="#解题思路一（字符串反转）" class="headerlink" title="解题思路一（字符串反转）"></a>解题思路一（字符串反转）</h3><ol>
+<li>第一反应数字转字符串，然后前后对比。可以解决问题。</li>
+</ol>
+<h3 id="代码实现一"><a href="#代码实现一" class="headerlink" title="代码实现一"></a>代码实现一</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">x</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;boolean&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> isPalindrome = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> xStr = x + <span class="string">''</span>;</span><br><span class="line">    <span class="keyword">let</span> mid = +(xStr.length &gt;&gt; <span class="number">1</span>) + (+xStr.length % <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; mid; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (xStr.charAt(i) != xStr.charAt(xStr.length - i - <span class="number">1</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="解题思路二（求得x的位数，xLen-Math-log10-x"><a href="#解题思路二（求得x的位数，xLen-Math-log10-x" class="headerlink" title="解题思路二（求得x的位数，xLen =  Math.log10(x))"></a>解题思路二（求得x的位数，xLen =  Math.log10(x))</h3><ol>
+<li>求得长度，接下来跟字符串一样了。</li>
+<li>parseInt(x / Math.pow(10, xLen)) 得到首位</li>
+<li>x % 10 得到尾位</li>
+<li>对比是否相等</li>
+</ol>
+<h3 id="代码实现二"><a href="#代码实现二" class="headerlink" title="代码实现二"></a>代码实现二</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">x</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;boolean&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> isPalindrome = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> xLen = <span class="built_in">parseInt</span>(<span class="built_in">Math</span>.log10(x));</span><br><span class="line">    <span class="keyword">while</span>(x &gt;= <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span>(x % <span class="number">10</span> != <span class="built_in">parseInt</span>(x / <span class="built_in">Math</span>.pow(<span class="number">10</span>, xLen))) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">        x = x % <span class="built_in">Math</span>.pow(<span class="number">10</span>, xLen);</span><br><span class="line">        x = <span class="built_in">parseInt</span>(x /= <span class="number">10</span>);</span><br><span class="line">        xLen-=<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="解题思路三（反转尾部"><a href="#解题思路三（反转尾部" class="headerlink" title="解题思路三（反转尾部)"></a>解题思路三（反转尾部)</h3><ol>
+<li>这个是官方题解，反转尾部，直到前半部分小于等于反转后的尾部</li>
+<li>将x的尾部移出来，反转。一直到x剩下的前半部分等于或者小于反转的尾部。</li>
+<li>前半部分小于尾部，说明到了x的中间位。<ol>
+<li>跳出循环时，回文数只有两种情况。</li>
+<li>第一种，x为偶数，直接判断首尾是否相同。</li>
+<li>第二种，x为奇数，尾部除以10，再进行判断。</li>
+</ol>
+</li>
+</ol>
+<h3 id="代码实现三"><a href="#代码实现三" class="headerlink" title="代码实现三"></a>代码实现三</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">x</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;boolean&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> isPalindrome = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x &lt; <span class="number">0</span> || (x % <span class="number">10</span> == <span class="number">0</span> &amp;&amp; x &gt; <span class="number">9</span>)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> xTail = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> length = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(x &gt; xTail) &#123;</span><br><span class="line">        xTail *= <span class="number">10</span>;</span><br><span class="line">        xTail += x % <span class="number">10</span>;</span><br><span class="line">        x = <span class="built_in">parseInt</span>(x / <span class="number">10</span>);</span><br><span class="line">        length++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (x == xTail || x == <span class="built_in">parseInt</span>(xTail / <span class="number">10</span>)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/Algorithm/每日一题/JavaScript：leetcode_面试题46. 把数字翻译成字符串（斐波那契）/">
+      JavaScript：leetcode_面试题46. 把数字翻译成字符串（斐波那契）
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    <a href="https://www.zsfmyz.top" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>赵十八</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2020-06-09</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Algorithm/每日一题/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Algorithm&nbsp;/&nbsp;每日一题</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h3 id="题目说明"><a href="#题目说明" class="headerlink" title="题目说明"></a>题目说明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">给定一个数字，我们按照如下规则把它翻译为字符串：0 翻译成 “a” ，1 翻译成 “b”，……，11 翻译成 “l”，……，25 翻译成 “z”。一个数字可能有多个翻译。请编程实现一个函数，用来计算一个数字有多少种不同的翻译方法。</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: 12258</span><br><span class="line">输出: 5</span><br><span class="line">解释: 12258有5种不同的翻译，分别是&quot;bccfi&quot;, &quot;bwfi&quot;, &quot;bczi&quot;, &quot;mcfi&quot;和&quot;mzi&quot;</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">提示：</span><br><span class="line"></span><br><span class="line">0 &lt;= num &lt; 231</span><br></pre></td></tr></table></figure>
+<h3 id="解题思路一（斐波那契数列）"><a href="#解题思路一（斐波那契数列）" class="headerlink" title="解题思路一（斐波那契数列）"></a>解题思路一（斐波那契数列）</h3><ol>
+<li>我一般做题前喜欢先测试几个用例, 测试完发现这就是斐波那契数列</li>
+<li>该题主要判断 <code>i-1, i</code> 两位组合成的数字是否在<code>(10, 25)</code>闭区间内. 如果在就是斐波那契<code>f(n) = f(n-1) + f(n-2)</code>, 否则跟上一种情况一致<code>f(n) = f(n-1)</code>.</li>
+</ol>
+<h3 id="代码实现一"><a href="#代码实现一" class="headerlink" title="代码实现一"></a>代码实现一</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">num</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> translateNum = <span class="function"><span class="keyword">function</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> numStr = num + <span class="string">''</span>;</span><br><span class="line">    <span class="keyword">let</span> res;</span><br><span class="line">    <span class="keyword">if</span> (+(numStr[<span class="number">0</span>] + numStr[<span class="number">1</span>]) &lt; <span class="number">26</span> &amp;&amp; +numStr[<span class="number">0</span>] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        res = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        res = [<span class="number">1</span>, <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">2</span>; i &lt; numStr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (+(numStr[i - <span class="number">1</span>] + numStr[i]) &lt; <span class="number">26</span> &amp;&amp; +numStr[i - <span class="number">1</span>] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            res[i] = res[i - <span class="number">1</span>] + res[i - <span class="number">2</span>];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            res[i] = res[i - <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res[res.length<span class="number">-1</span>]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
     <a href="/Css/CSS揭秘：1.半透明边框/">
       CSS揭秘：1.半透明边框
     </a>
@@ -719,6 +1038,330 @@
       <div class="full-width auto-padding tags">
         
           <a href="/tags/Css/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Css</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/Algorithm/每日一题/JavaScript：leetcode_面试题29. 顺时针打印矩阵（分层 + 递归）/">
+      JavaScript：leetcode_面试题29. 顺时针打印矩阵（分层 + 递归）
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    <a href="https://www.zsfmyz.top" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>赵十八</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2020-06-05</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Algorithm/每日一题/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Algorithm&nbsp;/&nbsp;每日一题</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h3 id="题目说明"><a href="#题目说明" class="headerlink" title="题目说明"></a>题目说明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字。</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">示例 1：</span><br><span class="line"></span><br><span class="line">输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]</span><br><span class="line">输出：[1,2,3,6,9,8,7,4,5]</span><br><span class="line">示例 2：</span><br><span class="line"></span><br><span class="line">输入：matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]</span><br><span class="line">输出：[1,2,3,4,8,12,11,10,9,5,6,7]</span><br><span class="line"></span><br><span class="line">限制：</span><br><span class="line"></span><br><span class="line">0 &lt;= matrix.length &lt;= 100</span><br><span class="line">0 &lt;= matrix[i].length &lt;= 100</span><br><span class="line">注意：本题与主站 54 题相同：https://leetcode-cn.com/problems/spiral-matrix/</span><br></pre></td></tr></table></figure>
+<h3 id="解题思路一（分层-递归）"><a href="#解题思路一（分层-递归）" class="headerlink" title="解题思路一（分层+递归）"></a>解题思路一（分层+递归）</h3><ol>
+<li>首先明白题意,题目给出的示例数组是平铺的,不是特别清晰,可能短时间反应不过来它是想干嘛,我们先转换一下.</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">[1,2,3],</span><br><span class="line">[4,5,6],</span><br><span class="line">[7,8,9]</span><br><span class="line">]</span><br><span class="line">1 -&gt; 2 -&gt; 3 -&gt; 6 -&gt; 9 -&gt; 8 -&gt; 7 -&gt; 4 -&gt; 5</span><br><span class="line"></span><br><span class="line">矩形外围开始,顺时针输出.</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>因为是从外层开始顺时针的,所以我们先看最外层的我们如何得到.<ol>
+<li>首先最外层相当于一个正方形的四条边.(我们将顶点放入上下两条边)</li>
+<li><code>top: [2]</code>, 加入左上和右上两个顶点为<code>[1, 2, 3]</code></li>
+<li><code>right: [6]</code></li>
+<li><code>bottom: [8]</code>, 加入左下和右下两个顶点为 <code>[7, 8, 9]</code></li>
+<li><code>left: [4]</code></li>
+<li>结果<code>[1,2,3,6,9,8,7,4,5]</code> 其中<code>left, bottom</code> 需要反转过来.(因为顺时针)</li>
+</ol>
+</li>
+<li>剥离之后,原来的矩形只剩下了<code>[[5]]</code>, 假若我们矩形是多层的, 那么剩下来的仍然是个矩形,那么我们就可以将剩下的矩阵重新传入, 重复上面第二步求出<code>top right bottom left</code> <h3 id="代码实现一"><a href="#代码实现一" class="headerlink" title="代码实现一"></a>代码实现一</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[][]&#125;</span> <span class="variable">matrix</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number[]&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> spiralOrder = <span class="function"><span class="keyword">function</span>(<span class="params">matrix</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (matrix.length &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> matrix[<span class="number">0</span>] || [];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (matrix[<span class="number">0</span>].length &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> matrix.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">sum, item</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> [...sum, ...item];</span><br><span class="line">        &#125;, [])</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> top = matrix.shift();</span><br><span class="line">    <span class="keyword">let</span> right = [], left = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; matrix.length; i++) &#123;</span><br><span class="line">        right.push(matrix[i].pop());</span><br><span class="line">        left.unshift(matrix[i].shift());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> bottom = matrix.pop().reverse();</span><br><span class="line">    <span class="keyword">let</span> res = [...top, ...right, ...bottom, ...left];</span><br><span class="line">    <span class="keyword">return</span> res.concat(spiralOrder(matrix));</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/Algorithm/每日一题/JavaScript：leetcode_238. 除自身以外数组的乘积（左右乘积列表）/">
+      JavaScript：leetcode_238. 除自身以外数组的乘积（左右乘积列表）
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    <a href="https://www.zsfmyz.top" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>赵十八</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2020-06-04</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Algorithm/每日一题/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Algorithm&nbsp;/&nbsp;每日一题</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h3 id="题目说明"><a href="#题目说明" class="headerlink" title="题目说明"></a>题目说明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">给你一个长度为 n 的整数数组 nums，其中 n &gt; 1，返回输出数组 output ，其中 output[i] 等于 nums 中除 nums[i] 之外其余各元素的乘积。</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">示例:</span><br><span class="line"></span><br><span class="line">输入: [1,2,3,4]</span><br><span class="line">输出: [24,12,8,6]</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">提示：题目数据保证数组之中任意元素的全部前缀元素和后缀（甚至是整个数组）的乘积都在 32 位整数范围内。</span><br><span class="line"></span><br><span class="line">说明: 请不要使用除法，且在 O(n) 时间复杂度内完成此题。</span><br></pre></td></tr></table></figure>
+<h3 id="解题思路一（左右乘积列表）"><a href="#解题思路一（左右乘积列表）" class="headerlink" title="解题思路一（左右乘积列表）"></a>解题思路一（左右乘积列表）</h3><ol>
+<li>如果可以用除法，那我们只需要求出列表乘积，然后除以<code>nums[i]</code>就是所求值了。</li>
+<li>不用除法的情况下，我们需要求得<code>nums[i]</code>的左侧乘积L，和右侧乘积R，然后<code>L*R</code>求得目标值</li>
+<li>那么我们创建两个乘积列表<code>L,R</code>。<code>L[i]</code>代表从<code>nums</code>中从<code>0 ~ i</code>的乘积，<code>R[i]</code>代表<code>nums</code>中从<code>i ~ nums.length - 1</code>的乘积。</li>
+<li>那么我们所求的<code>output[i]</code>就变成了<code>L[I-1] * R[i+1]</code>;<h3 id="代码实现一"><a href="#代码实现一" class="headerlink" title="代码实现一"></a>代码实现一</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">nums</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number[]&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> productExceptSelf = <span class="function"><span class="keyword">function</span>(<span class="params">nums</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums.length &lt;= <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> nums.reverse();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> L = [nums[<span class="number">0</span>]]</span><br><span class="line">    <span class="keyword">let</span> R = <span class="keyword">new</span> <span class="built_in">Array</span>(nums.length);</span><br><span class="line">    R[nums.length<span class="number">-1</span>] = nums[nums.length<span class="number">-1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span>, j = nums.length - <span class="number">2</span>; i &lt; nums.length; i++, j--) &#123;</span><br><span class="line">        L[i] = L[i<span class="number">-1</span>] * nums[i];</span><br><span class="line">        R[j] = R[j + <span class="number">1</span>] * nums[j];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; nums.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        nums[i] = L[i<span class="number">-1</span>] * R[i + <span class="number">1</span>]; </span><br><span class="line">    &#125;</span><br><span class="line">    nums[<span class="number">0</span>] = R[<span class="number">1</span>];</span><br><span class="line">    nums[nums.length<span class="number">-1</span>] = L[nums.length<span class="number">-2</span>];</span><br><span class="line">    <span class="keyword">return</span> nums;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/Algorithm/每日一题/JavaScript：leetcode_1431. 拥有最多糖果的孩子/">
+      JavaScript：leetcode_1431. 拥有最多糖果的孩子
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    <a href="https://www.zsfmyz.top" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>赵十八</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2020-06-01</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Algorithm/每日一题/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Algorithm&nbsp;/&nbsp;每日一题</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h3 id="题目说明"><a href="#题目说明" class="headerlink" title="题目说明"></a>题目说明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">给你一个数组 candies 和一个整数 extraCandies ，其中 candies[i] 代表第 i 个孩子拥有的糖果数目。</span><br><span class="line"></span><br><span class="line">对每一个孩子，检查是否存在一种方案，将额外的 extraCandies 个糖果分配给孩子们之后，此孩子有 最多 的糖果。注意，允许有多个孩子同时拥有 最多 的糖果数目。</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">示例 1：</span><br><span class="line"></span><br><span class="line">输入：candies = [2,3,5,1,3], extraCandies = 3</span><br><span class="line">输出：[true,true,true,false,true] </span><br><span class="line">解释：</span><br><span class="line">孩子 1 有 2 个糖果，如果他得到所有额外的糖果（3个），那么他总共有 5 个糖果，他将成为拥有最多糖果的孩子。</span><br><span class="line">孩子 2 有 3 个糖果，如果他得到至少 2 个额外糖果，那么他将成为拥有最多糖果的孩子。</span><br><span class="line">孩子 3 有 5 个糖果，他已经是拥有最多糖果的孩子。</span><br><span class="line">孩子 4 有 1 个糖果，即使他得到所有额外的糖果，他也只有 4 个糖果，无法成为拥有糖果最多的孩子。</span><br><span class="line">孩子 5 有 3 个糖果，如果他得到至少 2 个额外糖果，那么他将成为拥有最多糖果的孩子。</span><br><span class="line">示例 2：</span><br><span class="line"></span><br><span class="line">输入：candies = [4,2,1,1,2], extraCandies = 1</span><br><span class="line">输出：[true,false,false,false,false] </span><br><span class="line">解释：只有 1 个额外糖果，所以不管额外糖果给谁，只有孩子 1 可以成为拥有糖果最多的孩子。</span><br><span class="line">示例 3：</span><br><span class="line"></span><br><span class="line">输入：candies = [12,1,12], extraCandies = 10</span><br><span class="line">输出：[true,false,true]</span><br></pre></td></tr></table></figure>
+<h3 id="解题思路一"><a href="#解题思路一" class="headerlink" title="解题思路一"></a>解题思路一</h3><ol>
+<li>这个题的话，理解好题意，很好回答。</li>
+<li>题意转化后的意思就是，看candies中各项<code>candies[i] + extraCandies</code> 是否是<code>candies</code>中的<code>最大值max</code>。</li>
+<li>那么首先我们先找出来最大值，然后看其他各位加上extraCandies 之后能不能大于或者等于它，可以的话，该i位为true，否则为false。<h3 id="代码实现一"><a href="#代码实现一" class="headerlink" title="代码实现一"></a>代码实现一</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">candies</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">extraCandies</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;boolean[]&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> kidsWithCandies = <span class="function"><span class="keyword">function</span>(<span class="params">candies, extraCandies</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> max = <span class="built_in">Math</span>.max(...candies);</span><br><span class="line">    <span class="keyword">return</span> candies.map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (item + extraCandies &gt;= max)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Algorithm</a>
         
       </div>
     
@@ -907,9 +1550,9 @@
     <div class='content pure'>
       <ul class="entry">
         
-          <li><a class="flat-box" title="/categories/Algorithm/" href="/categories/Algorithm/"><div class='name'>Algorithm</div><div class='badge'>(52)</div></a></li>
+          <li><a class="flat-box" title="/categories/Algorithm/" href="/categories/Algorithm/"><div class='name'>Algorithm</div><div class='badge'>(58)</div></a></li>
         
-          <li><a class="flat-box child" title="/categories/Algorithm/每日一题/" href="/categories/Algorithm/每日一题/"><div class='name'>每日一题</div><div class='badge'>(51)</div></a></li>
+          <li><a class="flat-box child" title="/categories/Algorithm/每日一题/" href="/categories/Algorithm/每日一题/"><div class='name'>每日一题</div><div class='badge'>(57)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Angular/" href="/categories/Angular/"><div class='name'>Angular</div><div class='badge'>(3)</div></a></li>
         
