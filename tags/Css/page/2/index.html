@@ -567,9 +567,9 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <p>#文字居中</p>
-<p>##垂直居中（vertical-align）<br>我们都知道有这么一个属性可以让图片，文本等在元素中垂直居中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vertical-align:middle;</span><br></pre></td></tr></table></figure></p>
+      <h1 id="文字居中"><a href="#文字居中" class="headerlink" title="文字居中"></a>文字居中</h1><h2 id="垂直居中（vertical-align）"><a href="#垂直居中（vertical-align）" class="headerlink" title="垂直居中（vertical-align）"></a>垂直居中（vertical-align）</h2><p>我们都知道有这么一个属性可以让图片，文本等在元素中垂直居中<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">vertical-align</span><span class="selector-pseudo">:middle</span>;</span><br></pre></td></tr></table></figure></p>
 <p>vertical-align值有很多，常用的就是middle，bottom，text-bottom等，我们先说middle。</p>
+<h4 id="vertical-align时而没效果"><a href="#vertical-align时而没效果" class="headerlink" title="vertical-align时而没效果"></a>vertical-align时而没效果</h4><p>然而真实使用的时候，我们会发现这个属性“时灵时不灵”，有些情况下我们加了这个属性之后仍然不见img或者text有任何的变化。<strong>那是因为vertical-align只作用在inline-block或者inline，还有table-cell等元素内</strong>。同时这两种还有所不同。</p>
       
         <div class="readmore">
           <a href="/Css/CSS：文本文字在DIV中垂直水平居中显示/" class="flat-box">
